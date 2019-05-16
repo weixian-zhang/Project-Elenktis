@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "elenktis.Informer.MandateServiceInformer", "Informer\MandateServiceInformer\elenktis.Informer.MandateServiceInformer\elenktis.Informer.MandateServiceInformer.csproj", "{B0823AA5-109F-47E1-886F-FB08FB58DB17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0823AA5-109F-47E1-886F-FB08FB58DB17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0823AA5-109F-47E1-886F-FB08FB58DB17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0823AA5-109F-47E1-886F-FB08FB58DB17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0823AA5-109F-47E1-886F-FB08FB58DB17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85853AD1-2C2D-437A-BD98-860BE4CB5D5A}
+	EndGlobalSection
+EndGlobal
