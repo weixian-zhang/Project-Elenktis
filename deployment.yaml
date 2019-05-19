@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aks-kv-sample-pod
+  labels:
+    app: aks-kv-demo
+    aadpodidbinding: "backend"
+spec:
+  containers:
+    - name: aks-kv-container 
+      image: thorstenhans/aks-keyvault-sample:latest 
+      imagePullPolicy: Always 
+      volumeMounts:
+        - name: kvVolume 
+          mountPath: /akvmnt 
+          readOnly: true 
+  volumes:
+    - name: kvVolume 
+      flexVolume: 
+        driver: "azure/kv" 
+        options: 
+          usepodidentity: "true" 
+          keyvaultname: "demokv" 
+          keyvaultobjectnames: "CosmosMongoDBUrl;ClientId;ClientSecret" 
+          keyvaultobjecttypes: "secret;secret;secret" 
+          resourcegroup: "rgCentralServices-dev" 
+          subscriptionid: "0ab40889-880a-4261-95e1-600c60074519" 
+          tenantid: "fc418f16-5c93-437d-b743-05e9e2a04d93"

@@ -3,7 +3,32 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "elenktis.Informer.MandateServiceInformer", "Informer\MandateServiceInformer\elenktis.Informer.MandateServiceInformer\elenktis.Informer.MandateServiceInformer.csproj", "{B0823AA5-109F-47E1-886F-FB08FB58DB17}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Informer", "Informer", "{D9E1A58E-C6F7-44A8-B2A0-1F7CA672EB78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elenktis.Informer.MandateServiceInformer", "Informer\MandateServiceInformer\Elenktis.Informer.MandateServiceInformer.csproj", "{7D14417C-D835-4A33-A3A2-532143252A6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fixer", "Fixer", "{9FDBD975-45B2-4005-9D7D-5C23FA4F20C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collector", "Collector", "{4CE62C97-92E3-4A0A-9AE3-45A3DED8DEAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{05980835-575A-465C-9276-9C40865A1E9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLib", "CommonLib", "{9547CCE3-288C-4F26-BFA7-A601385DA98E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elenktis.Common.Configuration", "CommonLib\Elenktis.Common.Configuration\Elenktis.Common.Configuration.csproj", "{AB82B04D-AA4E-4293-904D-557262523503}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MandateServiceInformer", "MandateServiceInformer", "{FC9842BB-059C-442B-B74E-EB94BAA95EE2}"
+	ProjectSection(SolutionItems) = preProject
+		deployment.yaml = deployment.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Informer", "Informer", "{C01F19C1-F9E8-4F6F-9D0A-7F90393844E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{17544DD5-A0A8-4491-A3C0-6A85A569D9EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLib", "CommonLib", "{54282F07-BB52-4879-A169-A7F6E3271101}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Elenktis.CommonLib", "Tests\CommonLib\Test.Elenktis.CommonLib\Test.Elenktis.CommonLib.csproj", "{4451B133-E092-496D-B5F6-B4D0ECDDE439}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +36,29 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B0823AA5-109F-47E1-886F-FB08FB58DB17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0823AA5-109F-47E1-886F-FB08FB58DB17}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0823AA5-109F-47E1-886F-FB08FB58DB17}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0823AA5-109F-47E1-886F-FB08FB58DB17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D14417C-D835-4A33-A3A2-532143252A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D14417C-D835-4A33-A3A2-532143252A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D14417C-D835-4A33-A3A2-532143252A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D14417C-D835-4A33-A3A2-532143252A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB82B04D-AA4E-4293-904D-557262523503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB82B04D-AA4E-4293-904D-557262523503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB82B04D-AA4E-4293-904D-557262523503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB82B04D-AA4E-4293-904D-557262523503}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4451B133-E092-496D-B5F6-B4D0ECDDE439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4451B133-E092-496D-B5F6-B4D0ECDDE439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4451B133-E092-496D-B5F6-B4D0ECDDE439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4451B133-E092-496D-B5F6-B4D0ECDDE439}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7D14417C-D835-4A33-A3A2-532143252A6C} = {D9E1A58E-C6F7-44A8-B2A0-1F7CA672EB78}
+		{AB82B04D-AA4E-4293-904D-557262523503} = {9547CCE3-288C-4F26-BFA7-A601385DA98E}
+		{FC9842BB-059C-442B-B74E-EB94BAA95EE2} = {C01F19C1-F9E8-4F6F-9D0A-7F90393844E5}
+		{C01F19C1-F9E8-4F6F-9D0A-7F90393844E5} = {05980835-575A-465C-9276-9C40865A1E9D}
+		{54282F07-BB52-4879-A169-A7F6E3271101} = {17544DD5-A0A8-4491-A3C0-6A85A569D9EC}
+		{4451B133-E092-496D-B5F6-B4D0ECDDE439} = {54282F07-BB52-4879-A169-A7F6E3271101}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85853AD1-2C2D-437A-BD98-860BE4CB5D5A}
