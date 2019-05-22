@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Elenktis.Informer
+namespace Elenktis.Fixer.MandateServiceFixer
 {
-    public class ServiceInformerConfig
+    public class FixerSecret
     {
         public string CosmosMongoDBUrl { get; set; }
 
@@ -13,5 +13,7 @@ namespace Elenktis.Informer
         public string ClientSecret { get; set; }
 
         public string TenantId { get; set; }
+
+        public string RabbitMQConnectionString { get; set; }
     }
 }

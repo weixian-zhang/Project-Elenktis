@@ -1,10 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Elenktis.Common.AzResourceManager;
 using Elenktis.Common.Configuration;
+using Microsoft.Azure.Management.Compute;
+using Microsoft.Azure.Management.OperationalInsights;
+using Microsoft.Azure.Management.OperationalInsights.Models;
+using Microsoft.Azure.Management.ResourceManager;
+using Microsoft.Azure.Management.ResourceManager.Models;
 using Microsoft.Azure.Management.Security;
-using Microsoft.Azure.Services.AppAuthentication;
+using Microsoft.Azure.Management.Security.Models;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
@@ -19,78 +26,71 @@ namespace Elenktis.Informer
     public static class MandateServiceInformer
     {
         [FunctionName("MandateServiceInformer")]
-        public async static Task Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log)
+        public async static Task Run([TimerTrigger("5 * * * * *")]TimerInfo myTimer, ILogger log)
         {
+            HydrateSecrets();
 
-            ServiceInformerConfig config = HydrateConfiguration();
+            _sdkCred = new AzMgtSDKCredentials(_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
 
-            var mgtSDKLogin = new AzMgtSDKAuthenticator(config.TenantId, config.ClientId, config.ClientSecret);
-
-            string accessToken =
-                AzAuthenticator.GetAccessToken(config.TenantId, config.ClientId, config.ClientSecret);
-
-            var subscriptionIds = GetAllSubscriptionIds(accessToken);
-
-            foreach(string id in subscriptionIds)
-            {
-                UpgradeSecurityCenterToStandardIfFree(id, mgtSDKLogin);
-            }
-
+            await CheckIfMandatoryServicesExist();
 
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
         }
 
-        private static ServiceInformerConfig HydrateConfiguration()
+        private static void HydrateSecrets()
         {
             var configInitializer = new FlexVolumeConfigInitializer();
             configInitializer.UsePropertyNameAsSecretName = true;
-            var serviceInformerConfig = configInitializer.Initialize<ServiceInformerConfig>();
+            _secrets = configInitializer.Initialize<ServiceInformerSecrets>();
 
-            return serviceInformerConfig;
+            //testing only, will remove
+            _secrets.TenantId = "fc418f16-5c93-437d-b743-05e9e2a04d93";
+            _secrets.ClientId = "442dcbee-62da-4462-b847-32a8003343f2";
+            _secrets.ClientSecret = "A4ATErF:/cbv*-EAr9TdJhMAtpt1Kku2";
         }
 
-        private static IEnumerable<string> GetAllSubscriptionIds(string accessToken)
+
+        private async static Task CheckIfMandatoryServicesExist()
         {
-            var restClient =
-                new RestClient(@"https://management.azure.com/providers/Microsoft.ResourceGraph/resources?api-version=2019-04-01");
+            var subscriptions =
+                new SubscriptionManager(_sdkCred)
+                    .GetAllSubscriptions().GetAwaiter().GetResult();
 
-            var request = new RestRequest(Method.POST);
-
-            request.AddHeader("Bearer", accessToken);
-
-            request.AddJsonBody(new ResourceGraphInput()
-                { Query = "project subscriptionId | distinct subscriptionId" });
-
-            var response = restClient.Execute<List<string>>(request);
-
-            //if(!response.IsSuccessful)
-            //serilog to mongo
-
-            var subscriptionIds = response.Data;
-
-            return subscriptionIds;
-        }
-
-        private static void UpgradeSecurityCenterToStandardIfFree
-            (string subscriptionId, AzMgtSDKAuthenticator sdkAuthenticator)
-        {
-            ISecurityCenterClient ascClient = new SecurityCenterClient(sdkAuthenticator);
-            ascClient.SubscriptionId = subscriptionId;
-
-            var ascPricing = ascClient.Pricings.Get("Free");
-
-            if(ascPricing.PricingTier == "Free")
+            foreach (var sub in subscriptions)
             {
-                var pricing =
-                    ascClient.Pricings.UpdateAsync("Standard", "Standard").GetAwaiter().GetResult();
+                
             }
-
-            //https://docs.microsoft.com/en-us/rest/api/securitycenter/
         }
 
-        private static void LogAnalyticsWorkspace()
+        private async static Task<bool> IsDefaultLAWorkspaceExist(TenantSubscription subscription)
         {
-            
+            return true;
         }
+
+        private async static Task<bool> IsASCStandardTier(TenantSubscription subscription)
+        {
+            return true;
+        }
+
+        private async static Task<bool> IsASCAssociatedToDefaultWorkspace(TenantSubscription subscription)
+        {
+            return true;
+        }
+
+        private async static Task<bool> IsASCAutoProvisioningEnabled(TenantSubscription subscription)
+        {
+            return true;
+        }
+
+        private async static Task<bool> IsIaaSAntimalwareInstalledOnVM(TenantSubscription subscription)
+        {
+            return true;
+        }
+
+
+
+        private static AzMgtSDKCredentials _sdkCred;
+
+        private static ServiceInformerSecrets _secrets;
     }
 }

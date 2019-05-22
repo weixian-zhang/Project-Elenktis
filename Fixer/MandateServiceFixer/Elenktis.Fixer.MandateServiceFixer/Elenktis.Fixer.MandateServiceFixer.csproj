@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLib\Elenktis.Common.Configuration\Elenktis.Common.Configuration.csproj" />
+    <ProjectReference Include="..\..\..\CommonLib\Elenktis.Common.Model\Elenktis.Common.Model\Elenktis.Common.AzResourceManager.csproj" />
+    <ProjectReference Include="..\..\..\Informer\Elenktis.Informer.Command\Elenktis.Informer.Command.csproj" />
+    <PackageReference Include="Microsoft.Azure.Management.Compute" Version="27.0.0" />
+    <PackageReference Include="Microsoft.Azure.Management.Monitor" Version="0.22.0-preview" />
+    <PackageReference Include="Microsoft.Azure.Management.OperationalInsights" Version="0.19.0-preview" />
+    <PackageReference Include="Microsoft.Azure.Management.ResourceManager" Version="2.0.0-preview" />
+    <PackageReference Include="Microsoft.Azure.Management.SecurityCenter" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

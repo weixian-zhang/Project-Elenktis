@@ -4,16 +4,20 @@
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Management.Compute" Version="27.0.0" />
     <PackageReference Include="Microsoft.Azure.Management.Monitor" Version="0.22.0-preview" />
+    <PackageReference Include="Microsoft.Azure.Management.OperationalInsights" Version="0.19.0-preview" />
+    <PackageReference Include="Microsoft.Azure.Management.ResourceManager" Version="2.0.0-preview" />
     <PackageReference Include="Microsoft.Azure.Management.SecurityCenter" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.2.0-preview3" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
     <PackageReference Include="MongoDB.Driver" Version="2.9.0-beta1" />
     <PackageReference Include="RabbitMQ" Version="3.6.2" />
     <PackageReference Include="RestSharp" Version="106.6.9" />
+    <PackageReference Include="Serilog.Sinks.MongoDB" Version="4.1.0-dev-00069" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Configuration\Elenktis.Common.Configuration.csproj" />
+    <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Model\Elenktis.Common.Model\Elenktis.Common.AzResourceManager.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

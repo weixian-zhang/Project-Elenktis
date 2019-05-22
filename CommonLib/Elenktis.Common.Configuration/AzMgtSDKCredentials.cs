@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Elenktis.Common.Configuration
 {
-    public class AzMgtSDKAuthenticator : ServiceClientCredentials
+    public class AzMgtSDKCredentials : ServiceClientCredentials
     {
-        public AzMgtSDKAuthenticator(string tenantId, string clientId, string clientSecret)
+        public AzMgtSDKCredentials(string tenantId, string clientId, string clientSecret)
         {
             _tenantId = tenantId;
             _clientId = clientId;

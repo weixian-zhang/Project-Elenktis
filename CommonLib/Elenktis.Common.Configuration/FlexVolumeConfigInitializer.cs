@@ -14,20 +14,23 @@ namespace Elenktis.Common.Configuration
         public T Initialize<T>() where T : class
         {
             T configObject = (T)Activator.CreateInstance(typeof(T));
-            var configObjectProperties = configObject.GetType().GetProperties();
+            var configObjectProps = configObject.GetType().GetProperties().ToArray();
 
             PropertyInfo[] configTypeProperties = typeof(T).GetProperties();
 
+            int i = 0;
+
             foreach (var prop in configTypeProperties)
             {
+                
+
                 string secretPath = Path.Combine(AKVVolumeMountPath, prop.Name);
 
                 string secret = File.ReadAllText(secretPath);
 
-                foreach(var objProp in configTypeProperties)
-                {
-                    objProp.SetValue(configObject, secret);
-                }
+                configObjectProps[i].SetValue(configObject, secret);
+
+                i++;
             }
 
             return configObject;
