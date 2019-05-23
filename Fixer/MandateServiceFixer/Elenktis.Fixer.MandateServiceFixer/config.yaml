@@ -1,2 +1,2 @@
-﻿DefaultLAWorkspaceName: "sccentralsvcs-"
-ResourceGroupName: "rgCentralSvcs-"
+﻿DefaultLAWorkspaceName: "centralservices-laworkspace"
+ResourceGroupName: "centralservices-defaultresourcegroup"

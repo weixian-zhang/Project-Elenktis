@@ -14,12 +14,18 @@
     <PackageReference Include="RabbitMQ" Version="3.6.2" />
     <PackageReference Include="RestSharp" Version="106.6.9" />
     <PackageReference Include="Serilog.Sinks.MongoDB" Version="4.1.0-dev-00069" />
+    <PackageReference Include="YamlDotNet" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Configuration\Elenktis.Common.Configuration.csproj" />
+    <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Messaging\Elenktis.Common.Messaging.csproj" />
     <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Model\Elenktis.Common.Model\Elenktis.Common.AzResourceManager.csproj" />
+    <ProjectReference Include="..\Elenktis.Informer.Command\Elenktis.Informer.Command.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

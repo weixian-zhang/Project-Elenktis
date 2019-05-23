@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Elenktis.Informer.Command
+namespace Elenktis.Common.Messaging
 {
-    class UpgradeASCStandardCommand
+    public interface IMessageReceiver
     {
     }
 }

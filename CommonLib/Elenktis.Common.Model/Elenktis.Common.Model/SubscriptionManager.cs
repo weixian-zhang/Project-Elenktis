@@ -17,7 +17,7 @@ namespace Elenktis.Common.AzResourceManager
             _sdkCreds = sdkCred;
         }
 
-        public async Task<IEnumerable<TenantSubscription>> GetAllSubscriptions()
+        public async Task<IEnumerable<TenantSubscription>> GetAllSubscriptionsAsync()
         {
             ISubscriptionClient subClient = new SubscriptionClient(_sdkCreds);
             

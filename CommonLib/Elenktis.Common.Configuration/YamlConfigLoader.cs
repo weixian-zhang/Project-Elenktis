@@ -18,9 +18,7 @@ namespace Elenktis.Common.Configuration
         {
             string yamlConfigStr = File.ReadAllText("config.yaml");
 
-            var deserializer = new DeserializerBuilder()
-                .WithNamingConvention(new CamelCaseNamingConvention())
-                .Build();
+            var deserializer = new DeserializerBuilder().Build();
 
             return deserializer.Deserialize<T>(yamlConfigStr);
         }

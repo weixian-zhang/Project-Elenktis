@@ -37,23 +37,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elenktis.Common.AzResourceM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MandateServiceFixer", "MandateServiceFixer", "{6363D70A-F2C6-45E6-9FF0-972F0A953707}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elenktis.Fixer.MandateServiceFixer", "Fixer\MandateServiceFixer\Elenktis.Fixer.MandateServiceFixer\Elenktis.Fixer.MandateServiceFixer.csproj", "{111B4ACB-A846-4E88-B06D-6C5A920B7E2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elenktis.Fixer.MandateServiceFixer", "Fixer\MandateServiceFixer\Elenktis.Fixer.MandateServiceFixer\Elenktis.Fixer.MandateServiceFixer.csproj", "{111B4ACB-A846-4E88-B06D-6C5A920B7E2C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MandateFeatureFixer", "MandateFeatureFixer", "{FA00A7B3-1B68-4B09-BFCC-78FF4D41F5FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DiagSettingsFixer", "DiagSettingsFixer", "{ECEFA8CF-12DF-48EE-8C0D-2D130FA9825B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elenktis.Fixer.MandateFeatureFixer", "Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer.csproj", "{37C46CE2-C09A-432C-8FB9-94D19C319363}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elenktis.Fixer.MandateFeatureFixer", "Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer.csproj", "{37C46CE2-C09A-432C-8FB9-94D19C319363}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elenktis.Fixer.DiagnosticSettingsFixer", "Fixer\DiagnosticSettingsFixer\Elenktis.Fixer.DiagnosticSettingsFixer\Elenktis.Fixer.DiagnosticSettingsFixer.csproj", "{3BAA19A6-F42D-4B78-8B66-BF51292277DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elenktis.Fixer.DiagnosticSettingsFixer", "Fixer\DiagnosticSettingsFixer\Elenktis.Fixer.DiagnosticSettingsFixer\Elenktis.Fixer.DiagnosticSettingsFixer.csproj", "{3BAA19A6-F42D-4B78-8B66-BF51292277DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elenktis.Informer.Command", "Informer\Elenktis.Informer.Command\Elenktis.Informer.Command.csproj", "{03333831-2FD6-43A7-AA81-94FBA83AC888}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elenktis.Informer.Command", "Informer\Elenktis.Informer.Command\Elenktis.Informer.Command.csproj", "{03333831-2FD6-43A7-AA81-94FBA83AC888}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MandateServiceInformer", "MandateServiceInformer", "{D140BB24-0252-4534-9D84-D1666CF9591C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MandateFeatureInformer", "MandateFeatureInformer", "{E672896E-9A6A-4EAD-90EE-A23F08221288}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DiagnosticSettingsInformer", "DiagnosticSettingsInformer", "{64C8166D-1521-412B-B20D-DBC44D7EDBE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elenktis.Common.Messaging", "CommonLib\Elenktis.Common.Messaging\Elenktis.Common.Messaging.csproj", "{20CCE0AC-FE5A-4996-815C-EDFDA4EB1FF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{03333831-2FD6-43A7-AA81-94FBA83AC888}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03333831-2FD6-43A7-AA81-94FBA83AC888}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03333831-2FD6-43A7-AA81-94FBA83AC888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20CCE0AC-FE5A-4996-815C-EDFDA4EB1FF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20CCE0AC-FE5A-4996-815C-EDFDA4EB1FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20CCE0AC-FE5A-4996-815C-EDFDA4EB1FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20CCE0AC-FE5A-4996-815C-EDFDA4EB1FF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +121,7 @@ Global
 		{D140BB24-0252-4534-9D84-D1666CF9591C} = {D9E1A58E-C6F7-44A8-B2A0-1F7CA672EB78}
 		{E672896E-9A6A-4EAD-90EE-A23F08221288} = {D9E1A58E-C6F7-44A8-B2A0-1F7CA672EB78}
 		{64C8166D-1521-412B-B20D-DBC44D7EDBE4} = {D9E1A58E-C6F7-44A8-B2A0-1F7CA672EB78}
+		{20CCE0AC-FE5A-4996-815C-EDFDA4EB1FF3} = {9547CCE3-288C-4F26-BFA7-A601385DA98E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85853AD1-2C2D-437A-BD98-860BE4CB5D5A}

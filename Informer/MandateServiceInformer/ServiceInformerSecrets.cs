@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Elenktis.Informer
+namespace Elenktis.Informer.MandateServiceInformer
 {
     public class ServiceInformerSecrets
     {
