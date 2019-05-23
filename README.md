@@ -3,4 +3,4 @@ A series of microservicelized components that keep your Azure subscriptions secu
 
 # Prerequisites
 
--- Service Principal - this is shared across all controller manager services and Flex Volume
+* Service Principal - this is shared across all controller manager services and Flex Volume
