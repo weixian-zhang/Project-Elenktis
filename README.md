@@ -5,4 +5,6 @@ A series of microservicelized components that keep your Azure subscriptions secu
 
 * Create Elenktis Azure service principal - this is shared across all controller manager services and Flex Volume. Service Principal for Elenktis is recommended to grant access at management group in order to gain assert all subscriptions under the management group.
 
-* Setup AAD-Pod-Identity
+* Setup AKV FlexVolume with service principal.
+  [instructions on AKV FlexVolume]: https://samcogan.com/access-azure-key-vault-from-your-kubernetes-pods/
+  
