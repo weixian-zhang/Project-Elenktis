@@ -17,10 +17,10 @@
     <PackageReference Include="YamlDotNet" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CommonLib\Elenktis.Common.AzResourceManager\Elenktis.Common.AzResourceManager.csproj" />
+    <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Command\Elenktis.Common.Command.csproj" />
     <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Configuration\Elenktis.Common.Configuration.csproj" />
     <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Messaging\Elenktis.Common.Messaging.csproj" />
-    <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Model\Elenktis.Common.Model\Elenktis.Common.AzResourceManager.csproj" />
-    <ProjectReference Include="..\Elenktis.Informer.Command\Elenktis.Informer.Command.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="config.yaml">

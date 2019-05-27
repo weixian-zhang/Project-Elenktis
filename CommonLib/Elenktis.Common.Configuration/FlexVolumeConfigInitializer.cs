@@ -9,7 +9,7 @@ namespace Elenktis.Common.Configuration
 {
     public class FlexVolumeConfigInitializer : IConfigInitializer
     {
-        const string AKVVolumeMountPath = "/akvmnt";
+        const string AKVVolumeMountPath = "/akvsecrets";
 
         public T Initialize<T>() where T : class
         {

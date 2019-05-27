@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Elenktis.Informer.Command.MandateFeatures
+namespace Elenktis.Common.Command
 {
-    class EnableAzSQLAuditCommand
+    class EnableAzStorageATPCommand
     {
     }
 }

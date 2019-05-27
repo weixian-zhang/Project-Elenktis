@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Elenktis.Common.AzResourceManager;
 using Elenktis.Common.Configuration;
-using Elenktis.Informer.Command;
+using Elenktis.Common.Command;
 using Microsoft.Azure.Management.Compute;
 using Microsoft.Azure.Management.OperationalInsights;
 using Microsoft.Azure.Management.OperationalInsights.Models;
@@ -47,7 +47,7 @@ namespace Elenktis.Informer.MandateServiceInformer
             _secrets = configInitializer.Initialize<ServiceInformerSecrets>();
 
             //testing only, will remove
-            _secrets = new ServiceInformerSecrets();
+            //_secrets = new ServiceInformerSecrets();
             _secrets.TenantId = "fc418f16-5c93-437d-b743-05e9e2a04d93";
             _secrets.ClientId = "442dcbee-62da-4462-b847-32a8003343f2";
             _secrets.ClientSecret = "A4ATErF:/cbv*-EAr9TdJhMAtpt1Kku2";
