@@ -1,29 +1,38 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: mandatesvc-informer
+  name: deployment-mandatesvcinformer
   labels:
-    app: mandatesvc-informer
+    app: deployment-mandatesvcinformer
 spec:
-  containers:
-    - name: mandatesvcinformer 
-      image: acrcentralsvcdev.azurecr.io/mandatesvcinformer:v0.2 
-      imagePullPolicy: Always 
-      volumeMounts:
-        - name: akvvolume 
-          mountPath: /akvsecrets
-          readOnly: true 
-  volumes:
-    - name: akvvolume 
-      flexVolume: 
-        driver: "azure/kv" 
-        secretRef:
-          name: akv-auth
-        options: 
-          usepodidentity: "false" 
-          keyvaultname: "akv-centralsvc" 
-          keyvaultobjectnames: "RabbitMQConnectionString;ClientId;ClientSecret;CosmosMongoDBUrl;TenantId" 
-          keyvaultobjecttypes: "secret;secret;secret;secret;secret" 
-          resourcegroup: "rgCentralServices-dev" 
-          subscriptionid: "0ab40889-880a-4261-95e1-600c60074519" 
-          tenantid: "fc418f16-5c93-437d-b743-05e9e2a04d93"
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: mandatesvcinformer
+  template:
+    metadata:
+      labels:
+        app: mandatesvcinformer
+    spec:
+      containers:
+      - name: mandatesvcinformer 
+        image: acrcentralsvcdev.azurecr.io/mandatesvcinformer:v0.4-sshdebug
+        imagePullPolicy: Always 
+        volumeMounts:
+          - name: akvvolume 
+            mountPath: /akvsecrets
+            readOnly: true 
+      volumes:
+      - name: akvvolume 
+        flexVolume: 
+          driver: "azure/kv" 
+          secretRef:
+            name: akv-auth
+          options: 
+            usepodidentity: "false" 
+            keyvaultname: "akv-centralsvc" 
+            keyvaultobjectnames: "RabbitMQConnectionString;ClientId;ClientSecret;CosmosMongoDBUrl;TenantId" 
+            keyvaultobjecttypes: "secret;secret;secret;secret;secret" 
+            resourcegroup: "rgCentralServices-dev" 
+            subscriptionid: "0ab40889-880a-4261-95e1-600c60074519" 
+            tenantid: "fc418f16-5c93-437d-b743-05e9e2a04d93"

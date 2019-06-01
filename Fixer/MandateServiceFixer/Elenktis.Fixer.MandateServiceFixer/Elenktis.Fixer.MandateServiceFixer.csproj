@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\CommonLib\Elenktis.Common.Configuration\Elenktis.Common.Configuration.csproj" />
-    <ProjectReference Include="..\..\..\CommonLib\Elenktis.Common.Model\Elenktis.Common.Model\Elenktis.Common.AzResourceManager.csproj" />
+    
     <PackageReference Include="Microsoft.Azure.Management.Compute" Version="27.0.0" />
     <PackageReference Include="Microsoft.Azure.Management.Monitor" Version="0.22.0-preview" />
     <PackageReference Include="Microsoft.Azure.Management.OperationalInsights" Version="0.19.0-preview" />
@@ -19,6 +19,10 @@
     <None Update="config.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLib\Elenktis.Common.AzResourceManager\Elenktis.Common.AzResourceManager.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,13 @@
+{
+  "scriptFile": "/home/site/wwwroot/bin/Elenktis.Informer.MandateServiceInformer.dll",
+  "entryPoint": "Elenktis.Informer.MandateServiceInformer.MandateServiceInformer.Run",
+  "bindings": [
+    {
+      "name": "timerInfo",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "5 * * * * *"
+    }
+  ],
+  "disabled": false
+}

@@ -21,14 +21,18 @@ using Microsoft.Extensions.Logging;
 
 using Microsoft.Rest;
 using RestSharp;
+using System.Threading;
 
 namespace Elenktis.Informer.MandateServiceInformer
 {
     public static class MandateServiceInformer
     {
         [FunctionName("MandateServiceInformer")]
-        public async static Task Run([TimerTrigger("5 * * * * *")]TimerInfo myTimer, ILogger log)
+        public async static Task Run
+            ([TimerTrigger("5 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, ILogger log)
         {
+            Thread.Sleep(15000);
+
             HydrateSecrets();
 
             _sdkCred = new AzMgtSDKCredentials(_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);

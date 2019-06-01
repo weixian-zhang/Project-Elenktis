@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Debug Remote AKS",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport":
+            {
+                "debuggerPath": "~/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceFolder}",
+        
+                "windows": {
+                    "pipeProgram": "plink.exe",
+                    "pipeArgs": [ "-l", "root", "-pw", "Docker!", "localhost", "-P", "2222", "-T" ],
+                    "quoteArgs": true
+                },
+                "osx": {
+                    "pipeProgram": "ssh",
+                    "pipeArgs": [ "root@localhost:2222" ],
+                    "quoteArgs": true
+                }, 
+                "linux": {
+                    "pipeProgram": "ssh",
+                    "pipeArgs": [ "root@localhost:2222" ],
+                    "quoteArgs": true
+                }
+            },
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}",
+            }
+        }
+
+    ]
+}
