@@ -20,41 +20,84 @@ using Microsoft.Extensions.Logging;
 
 
 using Microsoft.Rest;
-using RestSharp;
 using System.Threading;
+using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 
 namespace Elenktis.Informer.MandateServiceInformer
 {
     public static class MandateServiceInformer
     {
+        private const string _dbConnString =
+            "mongodb://cosmosmongo-centralsvc:rg1azoT149C8rEYw2E9b9Inx0Ar5WgDZnnUCsSnyKSKe0GCfGN1hBZtsDE5u2Fccys1lgfza1t6mYIBLL4Wirw==@cosmosmongo-centralsvc.documents.azure.com:10255/db-mandatesvcinformer?ssl=true";
+
+        private static Logger _appLogger = null;
+
+        private static Logger _activityLogger = null;
+
         [FunctionName("MandateServiceInformer")]
         public async static Task Run
-            ([TimerTrigger("5 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, ILogger log)
+            ([TimerTrigger("5 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, Microsoft.Extensions.Logging.ILogger log)
         {
-            Thread.Sleep(15000);
+            InitLogger();
 
             HydrateSecrets();
 
-            _sdkCred = new AzMgtSDKCredentials(_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
+            try
+            {
+                _sdkCred = new AzMgtSDKCredentials(_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
 
-            _config = YamlConfigLoader.Load<InformerConfig>();
+                _config = YamlConfigLoader.Load<InformerConfig>();
 
-            await CheckIfMandatoryServicesExist();
+                await CheckIfMandatoryServicesExist();
 
-            log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+                log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+            }
+            catch (Exception ex)
+            {
+                _appLogger.Error(ex, "exception thrown at Run()");
+                throw;
+            }
+        }
+
+        private static void InitLogger()
+        {
+            Serilog.Debugging.SelfLog.Enable(Console.Error);
+
+            _appLogger = new LoggerConfiguration()
+                .WriteTo.MongoDB(_dbConnString, collectionName: "AppLog",
+                period: TimeSpan.Zero,
+                restrictedToMinimumLevel: LogEventLevel.Verbose)
+                .WriteTo.Console()
+                .CreateLogger();
+
+            _activityLogger = new LoggerConfiguration()
+                .WriteTo.MongoDB(_dbConnString, collectionName: "ActivityLog",
+                period: TimeSpan.Zero,
+                restrictedToMinimumLevel: LogEventLevel.Verbose)
+                .WriteTo.Console()
+                .CreateLogger();
         }
 
         private static void HydrateSecrets()
         {
+            _activityLogger.Information("exec HydrateSecrets()");
+            
             var configInitializer = new FlexVolumeConfigInitializer();
             configInitializer.UsePropertyNameAsSecretName = true;
             _secrets = configInitializer.Initialize<ServiceInformerSecrets>();
 
             //testing only, will remove
             //_secrets = new ServiceInformerSecrets();
-            _secrets.TenantId = "fc418f16-5c93-437d-b743-05e9e2a04d93";
-            _secrets.ClientId = "442dcbee-62da-4462-b847-32a8003343f2";
-            _secrets.ClientSecret = "A4ATErF:/cbv*-EAr9TdJhMAtpt1Kku2";
+            //_secrets.TenantId = "fc418f16-5c93-437d-b743-05e9e2a04d93";
+            //_secrets.ClientId = "442dcbee-62da-4462-b847-32a8003343f2";
+            //  _secrets.ClientSecret = "A4ATErF:/cbv*-EAr9TdJhMAtpt1Kku2";
+
+            if (_secrets == null)
+                _secrets = new ServiceInformerSecrets();
+
+            _activityLogger.Information("exec complete HydrateSecrets(), secrets: {@Secrets}", _secrets);
         }
 
         private async static Task CheckIfMandatoryServicesExist()

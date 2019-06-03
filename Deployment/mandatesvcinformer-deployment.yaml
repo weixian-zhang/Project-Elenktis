@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mandatesvcinformer 
-        image: acrcentralsvcdev.azurecr.io/mandatesvcinformer:v0.4-sshdebug
+        image: acrcentralsvcdev.azurecr.io/mandatesvcinformer:v0.1-sshdebug
         imagePullPolicy: Always 
         volumeMounts:
           - name: akvvolume 
