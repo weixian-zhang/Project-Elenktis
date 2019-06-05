@@ -1,40 +1,22 @@
-FROM microsoft/dotnet:2.2-sdk AS installer-env
+FROM ubuntu:18.04@sha256:de774a3145f7ca4f0bd144c7d4ffb2931e06634f11529653b23eba85aef8e378
+ENV AzureWebJobsScriptRoot=/home/site/wwwroot
 
-WORKDIR /src
+RUN set -e; \
+  export DEBIAN_FRONTEND=noninteractive; \
+  apt-get update; \
+  apt-get install -y --no-install-recommends curl wget ca-certificates gpg dirmngr gpg-agent; \
+  wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb; \
+  dpkg -i packages-microsoft-prod.deb; \
+  curl -sL https://deb.nodesource.com/setup_8.x | bash -; \
+  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg; \
+  mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg; \
+  sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'; \
+  apt-get update; \
+  apt-get install -y nodejs azure-functions-core-tools; \
+  rm -rf /var/lib/apt/lists/* /var/log/apt
 
-COPY CommonLib /src/CommonLib/
-
-WORKDIR /src/CommonLib/Elenktis.Common.AzResourceManager
-RUN dotnet restore Elenktis.Common.AzResourceManager.csproj
-
-WORKDIR /src/CommonLib/Elenktis.Common.Configuration
-RUN dotnet restore Elenktis.Common.Configuration.csproj
-
-WORKDIR /src/CommonLib/Elenktis.Common.Messaging
-RUN dotnet restore Elenktis.Common.Messaging.csproj
-
-WORKDIR /src/CommonLib/Elenktis.Common.Command
-RUN dotnet restore Elenktis.Common.Command.csproj
-
-COPY Informer/MandateServiceInformer /src/Informer/MandateServiceInformer/
-RUN mkdir -p /home/site/wwwroot
-WORKDIR /src/Informer/MandateServiceInformer
-RUN dotnet publish -c Debug -o /home/site/wwwroot
-
-# Install the dependencies for Visual Studio Remote Debugger
-RUN apt-get update && apt-get install -y --no-install-recommends unzip procps
-
-RUN apt-get install curl -y
-
-# Install Visual Studio Remote Debugger
-RUN curl -sSL https://aka.ms/getvsdbgsh -o '/root/getvsdbg.sh';
-
-RUN bash /root/getvsdbg.sh -v latest -l /vsdbg;
-
-FROM mcr.microsoft.com/azure-functions/dotnet:2.0
-ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
-    AzureFunctionsJobHost__Logging__Console__IsEnabled=true
-
-COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
-
-#https://iboware.com/development/2018/10/12/remote-debugging-asp-net-core-applications-on-kubernetes/
+RUN groupadd -r func && useradd -d /home/func --no-log-init -r -g func func
+RUN mkdir /home/func
+RUN chown -R func:func /home/func
+RUN mkdir /.azurefunctions && chown func.func /.azurefunctions
+USER func:func

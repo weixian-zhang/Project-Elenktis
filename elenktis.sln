@@ -53,6 +53,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elenktis.Informer.MandateSe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elenktis.Common.Command", "CommonLib\Elenktis.Common.Command\Elenktis.Common.Command.csproj", "{671F8A2D-5139-428A-B3BC-BA7064778088}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{C969A414-4158-451C-B65F-1AB9D81DABE9}"
+	ProjectSection(SolutionItems) = preProject
+		az-setup-elenktis.sh = az-setup-elenktis.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +121,7 @@ Global
 		{17FBC81B-D1C7-4DE1-B526-D386F47A521C} = {9547CCE3-288C-4F26-BFA7-A601385DA98E}
 		{AA80E2DE-79EE-4784-AAC2-4CBBA3016FA9} = {D140BB24-0252-4534-9D84-D1666CF9591C}
 		{671F8A2D-5139-428A-B3BC-BA7064778088} = {9547CCE3-288C-4F26-BFA7-A601385DA98E}
+		{C969A414-4158-451C-B65F-1AB9D81DABE9} = {05980835-575A-465C-9276-9C40865A1E9D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85853AD1-2C2D-437A-BD98-860BE4CB5D5A}
