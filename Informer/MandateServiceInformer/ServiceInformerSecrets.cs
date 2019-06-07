@@ -6,7 +6,7 @@ namespace Elenktis.Informer.MandateServiceInformer
 {
     public class ServiceInformerSecrets
     {
-        public string CosmosMongoDBUrl { get; set; }
+        public string CosmosMongoDBConnectionString { get; set; }
 
         public string ClientId { get; set; }
 
@@ -14,6 +14,6 @@ namespace Elenktis.Informer.MandateServiceInformer
 
         public string TenantId { get; set; }
 
-        public string RabbitMQConnectionString { get; set; }
+        public string ServiceBusConnectionString { get; set; }
     }
 }

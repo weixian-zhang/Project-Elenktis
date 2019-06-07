@@ -55,7 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elenktis.Common.Command", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{C969A414-4158-451C-B65F-1AB9D81DABE9}"
 	ProjectSection(SolutionItems) = preProject
-		az-setup-elenktis.sh = az-setup-elenktis.sh
+		Deployment\azure\az-setup-elenktis.sh = Deployment\azure\az-setup-elenktis.sh
 	EndProjectSection
 EndProject
 Global

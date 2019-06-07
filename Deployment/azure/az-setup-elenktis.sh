@@ -16,3 +16,4 @@
 	#create secrets for above values
 
 #create AKS
+	# 2x nodes

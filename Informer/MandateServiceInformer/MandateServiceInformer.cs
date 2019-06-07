@@ -29,9 +29,6 @@ namespace Elenktis.Informer.MandateServiceInformer
 {
     public static class MandateServiceInformer
     {
-        private const string _dbConnString =
-            "mongodb://cosmosmongo-centralsvc:rg1azoT149C8rEYw2E9b9Inx0Ar5WgDZnnUCsSnyKSKe0GCfGN1hBZtsDE5u2Fccys1lgfza1t6mYIBLL4Wirw==@cosmosmongo-centralsvc.documents.azure.com:10255/db-mandatesvcinformer?ssl=true";
-
         private static Logger _appLogger = null;
 
         private static Logger _activityLogger = null;
@@ -66,14 +63,14 @@ namespace Elenktis.Informer.MandateServiceInformer
             Serilog.Debugging.SelfLog.Enable(Console.Error);
 
             _appLogger = new LoggerConfiguration()
-                .WriteTo.MongoDB(_dbConnString, collectionName: "AppLog",
+                .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "AppLog",
                 period: TimeSpan.Zero,
                 restrictedToMinimumLevel: LogEventLevel.Verbose)
                 .WriteTo.Console()
                 .CreateLogger();
 
             _activityLogger = new LoggerConfiguration()
-                .WriteTo.MongoDB(_dbConnString, collectionName: "ActivityLog",
+                .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "ActivityLog",
                 period: TimeSpan.Zero,
                 restrictedToMinimumLevel: LogEventLevel.Verbose)
                 .WriteTo.Console()

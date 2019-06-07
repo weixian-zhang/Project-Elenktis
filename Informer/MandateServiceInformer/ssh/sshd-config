@@ -1,7 +1,7 @@
 # This is ssh server system wide configuration file.
 #
-# /etc/sshd_config 
-Port                       2222
+# /etc/ssh/sshd_config 
+Port                       22
 ListenAddress              0.0.0.0
 LoginGraceTime             180
 X11Forwarding              yes
