@@ -10,12 +10,15 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="5.5.2-develop.2038" />
+    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.Management.Compute" Version="27.0.0" />
     <PackageReference Include="Microsoft.Azure.Management.Monitor" Version="0.22.0-preview" />
     <PackageReference Include="Microsoft.Azure.Management.OperationalInsights" Version="0.19.0-preview" />
     <PackageReference Include="Microsoft.Azure.Management.ResourceManager" Version="2.0.0-preview" />
     <PackageReference Include="Microsoft.Azure.Management.SecurityCenter" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.8" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0-preview5.19227.9" />
     <PackageReference Include="Microsoft.Extensions.Primitives" Version="3.0.0-preview5.19227.9" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.2-dev-00798" />
@@ -29,11 +32,14 @@
     <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Messaging\Elenktis.Common.Messaging.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="config.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="function.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="MandateServiceInformer\function.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -41,20 +47,20 @@
     <None Update="local.settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Properties\launchSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="sshd-config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="ssh\sshd-config">
+    <None Update="ssh\authorized_keys">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="ssh\sshkey-vsremotedebug.ppk">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    <None Update="ssh\sshd_config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="ssh\sshkeypublic-vsremotedebug">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="ssh\StartSSHAndApp.sh">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    <None Update="ssh\ssh_config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>

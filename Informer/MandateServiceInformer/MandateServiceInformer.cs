@@ -24,6 +24,8 @@ using System.Threading;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
+using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
 
 namespace Elenktis.Informer.MandateServiceInformer
 {
@@ -35,46 +37,65 @@ namespace Elenktis.Informer.MandateServiceInformer
 
         [FunctionName("MandateServiceInformer")]
         public async static Task Run
-            ([TimerTrigger("5 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, Microsoft.Extensions.Logging.ILogger log)
+            ([TimerTrigger("*/10 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, Microsoft.Extensions.Logging.ILogger log)
         {
+            IConfiguration config = new ConfigurationBuilder()
+                
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+
             InitLogger();
 
-            HydrateSecrets();
+            _activityLogger.Information("Run started and logger initialized");
 
-            try
-            {
-                _sdkCred = new AzMgtSDKCredentials(_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
+            _activityLogger.Information("Hydrating secrets");
 
-                _config = YamlConfigLoader.Load<InformerConfig>();
+            _activityLogger.Information($"debugger attached? {System.Diagnostics.Debugger.IsAttached.ToString() }");
+            
+            //try
+            //{
+            //    HydrateSecrets();
 
-                await CheckIfMandatoryServicesExist();
+            //    _sdkCred = new AzMgtSDKCredentials(_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
 
-                log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
-            }
-            catch (Exception ex)
-            {
-                _appLogger.Error(ex, "exception thrown at Run()");
-                throw;
-            }
+            //    _config = YamlConfigLoader.Load<InformerConfig>();
+
+            //    await CheckIfMandatoryServicesExist();
+
+            //    log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+            //}
+            //catch (Exception ex)
+            //{
+            //    _appLogger.Error(ex, "exception thrown at Run()");
+            //    throw;
+            //}
         }
 
         private static void InitLogger()
         {
-            Serilog.Debugging.SelfLog.Enable(Console.Error);
+            _activityLogger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .CreateLogger();
 
             _appLogger = new LoggerConfiguration()
-                .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "AppLog",
-                period: TimeSpan.Zero,
-                restrictedToMinimumLevel: LogEventLevel.Verbose)
                 .WriteTo.Console()
                 .CreateLogger();
 
-            _activityLogger = new LoggerConfiguration()
-                .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "ActivityLog",
-                period: TimeSpan.Zero,
-                restrictedToMinimumLevel: LogEventLevel.Verbose)
-                .WriteTo.Console()
-                .CreateLogger();
+            Serilog.Debugging.SelfLog.Enable(Console.Error);
+
+            //_appLogger = new LoggerConfiguration()
+            //    .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "AppLog",
+            //    period: TimeSpan.Zero,
+            //    restrictedToMinimumLevel: LogEventLevel.Verbose)
+            //    .WriteTo.Console()
+            //    .CreateLogger();
+
+            //_activityLogger = new LoggerConfiguration()
+            //    .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "ActivityLog",
+            //    period: TimeSpan.Zero,
+            //    restrictedToMinimumLevel: LogEventLevel.Verbose)
+            //    .WriteTo.Console()
+            //    .CreateLogger();
         }
 
         private static void HydrateSecrets()

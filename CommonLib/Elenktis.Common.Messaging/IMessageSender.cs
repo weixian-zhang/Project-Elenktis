@@ -2,7 +2,7 @@
 
 namespace Elenktis.Common.Messaging
 {
-    public interface Class1
+    public interface IMessageSender
     {
     }
 }

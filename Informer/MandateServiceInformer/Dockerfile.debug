@@ -1,0 +1,102 @@
+#FROM mcr.microsoft.com/dotnet/core/sdk:2.2
+FROM microsoft/dotnet:2.2-sdk
+
+#ENV HOST_VERSION=2.0.12490
+#ENV HOST_COMMIT=47c594d8ba823cf5a2db5475fbfcbb6d83e7deca
+
+# download azure function host
+#RUN BUILD_NUMBER=$(echo $HOST_VERSION | cut -d'.' -f 3) && \
+ #   wget https://github.com/Azure/azure-functions-host/archive/$HOST_COMMIT.tar.gz && \
+  #  tar xzf $HOST_COMMIT.tar.gz && \
+   # cd azure-functions-host-* && \
+    #dotnet publish -v q /p:BuildNumber=$BUILD_NUMBER /p:CommitHash=$HOST_COMMIT src/WebJobs.Script.WebHost/WebJobs.Script.WebHost.csproj --output /azure-functions-host --runtime linux-x64 && \
+    #mv /azure-functions-host/workers /workers && mkdir /azure-functions-host/workers
+
+# Build project
+WORKDIR /src
+
+COPY CommonLib /src/CommonLib/
+
+COPY Informer/MandateServiceInformer /src/Informer/MandateServiceInformer/
+
+WORKDIR /src/Informer/MandateServiceInformer
+
+RUN cd /src/Informer/MandateServiceInformer/ && \
+  dotnet publish -c "Debug" -o /home/site/wwwroot
+
+RUN apt-get update
+RUN apt-get install zip unzip curl -y
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install nodejs -y
+RUN npm i -g azure-functions-core-tools@core --unsafe-perm
+
+# install VS Remote Debugger & openssh
+#COPY Informer/MandateServiceInformer/ssh/authorized_keys ~/.ssh/authorized_keys
+
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends gnupg zip unzip curl -y
+RUN curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
+
+#RUN apt-get install -y openssh-server
+#RUN echo "root:root" | chpasswd
+#COPY Informer/MandateServiceInformer/ssh/sshd_config /etc/ssh/
+#COPY Informer/MandateServiceInformer/ssh/ssh_config /etc/ssh/
+#COPY Informer/MandateServiceInformer/ssh/authorized_keys /etc/ssh/
+#EXPOSE 22
+
+#ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
+#	AzureWebJobsStorage="DefaultEndpointsProtocol=https;AccountName=strgcentralsvc;AccountKey=IxJvwvD87KMVQufubwIeTCRU+QTLnY1TjaMAnnpiSN8tjJWp7JGhmdyYKN2nitqC70Rz6rlVuu9u5yg2JyCb6A==;EndpointSuffix=core.windows.net" \
+ #   HOME=/home \
+  #  FUNCTIONS_WORKER_RUNTIME=dotnet \
+	#AzureFunctionsJobHost__Logging__Console__IsEnabled=true
+
+ENV AzureFunctionsJobHost__Logging__Console__IsEnabled=true
+
+WORKDIR /home/site/wwwroot
+
+CMD func host start --debug VSCode
+#CMD func start --build
+
+#CMD service ssh start ; dotnet /azure-functions-host/Microsoft.Azure.WebJobs.Script.WebHost.dll
+
+
+#https://github.com/Azure/azure-functions-host/wiki
+#https://github.com/Azure/azure-functions-docker/blob/master/host/2.0/stretch/amd64/base.Dockerfile
+#https://github.com/Azure/azure-functions-docker/blob/master/host/2.0/bionic/arm32v7/dotnet-core/Dockerfile
+
+#setup ssh for remote debug
+#RUN apt-get install  openssh-server
+#RUN mkdir /var/run/sshd
+
+
+
+
+
+
+
+
+
+
+
+
+#go back to root dir to exec func cli
+#CMD ["cd", "/root"]
+
+#start openssh server
+#CMD ["/usr/sbin/sshd", "-D"]
+
+
+
+# Set password to 'Docker!'. Change as needed.  
+#RUN echo "root:P@s$w0rd" | chpasswd
+
+#Copy SSH settings file. See elsewhere to find them.
+#COPY Informer/MandateServiceInformer/ssh/sshd-config /src/etc/ssh/
+
+
+#ssh key, if using password only comment this line
+#COPY ./ssh/authorized_keys  root/.ssh/authorized_keys
+
+#https://blog.gypsyengineer.com/en/tips-and-tricks-en/running-an-ssh-server-in-a-docker-image-as-a-debugging-mode.html
+#https://github.com/triggermesh/azure-runtime
+# https://blog.quickbird.uk/debug-netcore-containers-remotely-9a103060b2ff

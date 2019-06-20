@@ -3,36 +3,46 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
+    "languageMappings": {
+        "C#": {
+          "languageId": "3F5162F8-07C6-11D3-9053-00C04FA302A1",
+          "extensions": [ "*" ]
+        }
+      },
+      "exceptionCategoryMappings": {
+        "CLR": "449EC4CC-30D2-4032-9256-EE18EB41B62B",
+        "MDA": "6ECE07A9-0EDE-45C4-8296-818D8FC401D4"
+      },
     "configurations": [
-        
         {
-            "name": "Debug Remote AKS",
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}",
+
+        },
+        {
+            "name": ".NET Core Docker Attach",
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickRemoteProcess}",
-            "pipeTransport":
-            {
-                "debuggerPath": "~/vsdbg/vsdbg",
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [ "exec -i msi"],
+                "debuggerPath": "/root/vsdbg/vsdbg",
                 "pipeCwd": "${workspaceFolder}",
-        
-                "windows": {
-                    "pipeProgram": "plink.exe",
-                    "pipeArgs": [ "-l", "root", "-pw", "Docker!", "localhost", "-P", "2222", "-T" ],
-                    "quoteArgs": true
-                },
-                "osx": {
-                    "pipeProgram": "ssh",
-                    "pipeArgs": [ "root@localhost:2222" ],
-                    "quoteArgs": true
-                }, 
-                "linux": {
-                    "pipeProgram": "ssh",
-                    "pipeArgs": [ "root@localhost:2222" ],
-                    "quoteArgs": true
-                }
+                "quoteArgs": false
             },
+            "justMyCode": false,
+            "requireExactSource": false,
             "sourceFileMap": {
-                "/src": "${workspaceFolder}",
+                "/src/Informer/MandateServiceInformer": "${workspaceFolder}/Informer/MandateServiceInformer"
+            },
+            "logging": {
+                "engineLogging": true,
+                "exceptions": true,
+                "programOutput": true,
+                "moduleLoad": true
             }
         }
 

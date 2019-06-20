@@ -22,8 +22,22 @@ RUN mkdir /.azurefunctions && chown func.func /.azurefunctions
 USER func:func
 
 
+#RUN apt-get install zip unzip curl -y
+#RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+#RUN apt-get install nodejs
+#RUN npm i -g azure-functions-core-tools@core --unsafe-perm
 
+#WORKDIR /src/CommonLib/Elenktis.Common.AzResourceManager
+#RUN dotnet restore Elenktis.Common.AzResourceManager.csproj
 
+#WORKDIR /src/CommonLib/Elenktis.Common.Configuration
+#RUN dotnet restore Elenktis.Common.Configuration.csproj
+
+#WORKDIR /src/CommonLib/Elenktis.Common.Messaging
+#RUN dotnet restore Elenktis.Common.Messaging.csproj
+
+#WORKDIR /src/CommonLib/Elenktis.Common.Command
+#RUN dotnet restore Elenktis.Common.Command.csproj
 
 
 # Install azure func core tool & dotnet sdk 2.2
