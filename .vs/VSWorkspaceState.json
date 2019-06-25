@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\CommonLib",
+    "\\Deployment",
+    "\\Informer",
+    "\\Informer\\MandateServiceInformer"
+  ],
+  "SelectedNode": "\\Informer\\MandateServiceInformer\\Dockerfile.dev.bak",
+  "PreviewInSolutionExplorer": false
+}

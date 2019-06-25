@@ -28,19 +28,18 @@
             "name": "SvcInformer-Docker",
             "type": "coreclr",
             "request": "attach",
-            "processId":"${command:pickRemoteProcess}",
+            "processId": "${command:pickRemoteProcess}",
             "pipeTransport": {
                 "pipeCwd": "${workspaceFolder}",
                 "pipeProgram": "docker",
-                "pipeArgs": [ "exec", "-i", "msi"],
+                "pipeArgs": [ "exec -i msi"],
                 "debuggerPath": "/root/vsdbg/vsdbg",
-                "quoteArgs": false
+                "quoteArgs": false,
             },
-            "requireExactSource": false,
-            "justMyCode": false,
             "sourceFileMap": {
-                "/home/site/wwwroot/bin": "${workspaceFolder}"
+                "/src/Informer/MandateServiceInformer": "${workspaceRoot}"
             },
+            "justMyCode": true,
             "logging": {
                 "engineLogging": true
             }
@@ -60,7 +59,7 @@
                     "--"
                 ],
                 "quoteArgs": false,
-                "debuggerPath": "/vsdbg/vsdbg"
+                "debuggerPath": "/root/vsdbg/vsdbg"
             },
             "sourceFileMap": {
                 "/path/to/original/source/files": "${workspaceRoot}"

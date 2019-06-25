@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-spy-defaultsvc
+  labels:
+    app: deploy-spy-defaultsvc
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: spy-defaultsvc
+  template:
+    metadata:
+      labels:
+        app: spy-defaultsvc
+    spec:
+      containers:
+      - name: spy-defaultsvc
+        image: acrcentralsvcdev.azurecr.io/spy:svcspy-v0.1
+        imagePullPolicy: Always
+        imagePullSecrets:
+        - name: acr-auth
+        volumeMounts:
+          - name: secret-clientid
+            mountPath: /ClientId
+            readOnly: true
+      volumes:
+      - name: secret-clientid 
+        flexVolume: 
+          driver: "azure/kv" 
+          secretRef:
+            name: akvcreds
+          options: 
+            usepodidentity: "false" 
+            keyvaultname: "akv-centralsvc" 
+            keyvaultobjectname: "ClientId" 
+            keyvaultobjecttype: "secret" 
+            resourcegroup: "centralservices-dev-rg" 
+            subscriptionid: "0ab40889-880a-4261-95e1-600c60074519" 
+            tenantid: "fc418f16-5c93-437d-b743-05e9e2a04d93"

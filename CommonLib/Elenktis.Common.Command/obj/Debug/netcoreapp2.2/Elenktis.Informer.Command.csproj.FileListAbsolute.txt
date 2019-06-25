@@ -1,0 +1,9 @@
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\Elenktis.Informer.Command\bin\Debug\netcoreapp2.2\Elenktis.Informer.Command.deps.json
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\Elenktis.Informer.Command\bin\Debug\netcoreapp2.2\Elenktis.Informer.Command.dll
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\Elenktis.Informer.Command\bin\Debug\netcoreapp2.2\Elenktis.Informer.Command.pdb
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\Elenktis.Informer.Command\obj\Debug\netcoreapp2.2\Elenktis.Informer.Command.csprojAssemblyReference.cache
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\Elenktis.Informer.Command\obj\Debug\netcoreapp2.2\Elenktis.Informer.Command.csproj.CoreCompileInputs.cache
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\Elenktis.Informer.Command\obj\Debug\netcoreapp2.2\Elenktis.Informer.Command.AssemblyInfoInputs.cache
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\Elenktis.Informer.Command\obj\Debug\netcoreapp2.2\Elenktis.Informer.Command.AssemblyInfo.cs
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\Elenktis.Informer.Command\obj\Debug\netcoreapp2.2\Elenktis.Informer.Command.dll
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\Elenktis.Informer.Command\obj\Debug\netcoreapp2.2\Elenktis.Informer.Command.pdb

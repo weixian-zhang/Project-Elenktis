@@ -1,0 +1,9 @@
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Configuration\bin\Release\netcoreapp2.2\Elenktis.Common.Configuration.deps.json
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Configuration\bin\Release\netcoreapp2.2\Elenktis.Common.Configuration.dll
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Configuration\bin\Release\netcoreapp2.2\Elenktis.Common.Configuration.pdb
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Configuration\obj\Release\netcoreapp2.2\Elenktis.Common.Configuration.csprojAssemblyReference.cache
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Configuration\obj\Release\netcoreapp2.2\Elenktis.Common.Configuration.csproj.CoreCompileInputs.cache
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Configuration\obj\Release\netcoreapp2.2\Elenktis.Common.Configuration.AssemblyInfoInputs.cache
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Configuration\obj\Release\netcoreapp2.2\Elenktis.Common.Configuration.AssemblyInfo.cs
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Configuration\obj\Release\netcoreapp2.2\Elenktis.Common.Configuration.dll
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Configuration\obj\Release\netcoreapp2.2\Elenktis.Common.Configuration.pdb

@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.2",
+    "signature": "81f55776da668a46488087caf94752482c4e5b2a"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.2": {
+      "Elenktis.Common.Messaging/1.0.0": {
+        "dependencies": {
+          "RabbitMQ.Client": "6.0.0-pre3"
+        },
+        "runtime": {
+          "Elenktis.Common.Messaging.dll": {}
+        }
+      },
+      "RabbitMQ.Client/6.0.0-pre3": {
+        "runtime": {
+          "lib/netstandard2.0/RabbitMQ.Client.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Elenktis.Common.Messaging/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RabbitMQ.Client/6.0.0-pre3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8OPb5MlMsTVfa7aLS95+DmLjxsK3PeUPmp1gUQCmy+t6eC5e5dpdb8V+thEQkQIPQ7IwkT44dOMh6NTe8NRq5Q==",
+      "path": "rabbitmq.client/6.0.0-pre3",
+      "hashPath": "rabbitmq.client.6.0.0-pre3.nupkg.sha512"
+    }
+  }
+}

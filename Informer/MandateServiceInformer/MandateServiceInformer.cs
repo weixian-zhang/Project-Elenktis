@@ -39,10 +39,14 @@ namespace Elenktis.Informer.MandateServiceInformer
         public async static Task Run
             ([TimerTrigger("*/10 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, Microsoft.Extensions.Logging.ILogger log)
         {
-            IConfiguration config = new ConfigurationBuilder()
-                
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .Build();
+            // Test if we can successfully create a culture info
+            //new System.Globalization.CultureInfo("en-US");
+
+            //_activityLogger.Information("Test successful.");
+
+            // IConfiguration config = new ConfigurationBuilder()
+            //     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            //     .Build();
 
             InitLogger();
 

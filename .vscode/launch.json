@@ -15,37 +15,15 @@
       },
     "configurations": [
         {
-            "name": ".NET Core Attach",
+            "name": "DefaultSvcSpy-Local",
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}",
 
         },
-        {
-            "name": ".NET Core Docker Attach",
-            "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickRemoteProcess}",
-            "pipeTransport": {
-                "pipeProgram": "powershell",
-                "pipeArgs": [ "docker exec -i dss"],
-                "debuggerPath": "/home/vsdbg/vsdbg",
-                "pipeCwd": "${workspaceFolder}",
-                "quoteArgs": false,
-            },
-            "sourceFileMap": {
-                "/src/dotnet-function-app": "${workspaceFolder}\\Spy\\DefaultServiceSpy"
-            },
-            "justMyCode": false,
-            "requireExactSource": false,
-            "logging": {
-                "engineLogging": true,
-                "exceptions": true
-            }
-        },
         //https://github.com/OmniSharp/omnisharp-vscode/issues/2488
         {
-            "name": "Kube Debugger",
+            "name": "DefaultSvcSpy-AKS",
             "type": "coreclr",
             "request": "attach",
             "processId": 1,

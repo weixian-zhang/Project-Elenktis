@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.2",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.2": {
+      "Elenktis.Common.Command/1.0.0": {
+        "runtime": {
+          "Elenktis.Common.Command.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Elenktis.Common.Command/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,16 +1,15 @@
 #FROM mcr.microsoft.com/dotnet/core/sdk:2.2
 FROM microsoft/dotnet:2.2-sdk
 
-#ENV HOST_VERSION=2.0.12490
-#ENV HOST_COMMIT=47c594d8ba823cf5a2db5475fbfcbb6d83e7deca
-
+ENV HOST_VERSION=2.0.12490
+ENV HOST_COMMIT=47c594d8ba823cf5a2db5475fbfcbb6d83e7deca
 # download azure function host
-#RUN BUILD_NUMBER=$(echo $HOST_VERSION | cut -d'.' -f 3) && \
- #   wget https://github.com/Azure/azure-functions-host/archive/$HOST_COMMIT.tar.gz && \
-  #  tar xzf $HOST_COMMIT.tar.gz && \
-   # cd azure-functions-host-* && \
-    #dotnet publish -v q /p:BuildNumber=$BUILD_NUMBER /p:CommitHash=$HOST_COMMIT src/WebJobs.Script.WebHost/WebJobs.Script.WebHost.csproj --output /azure-functions-host --runtime linux-x64 && \
-    #mv /azure-functions-host/workers /workers && mkdir /azure-functions-host/workers
+RUN BUILD_NUMBER=$(echo $HOST_VERSION | cut -d'.' -f 3) && \
+    wget https://github.com/Azure/azure-functions-host/archive/$HOST_COMMIT.tar.gz && \
+    tar xzf $HOST_COMMIT.tar.gz && \
+    cd azure-functions-host-* && \
+    dotnet publish -v q /p:BuildNumber=$BUILD_NUMBER /p:CommitHash=$HOST_COMMIT src/WebJobs.Script.WebHost/WebJobs.Script.WebHost.csproj --output /azure-functions-host --runtime linux-x64 && \
+    mv /azure-functions-host/workers /workers && mkdir /azure-functions-host/workers
 
 # Build project
 WORKDIR /src
@@ -22,19 +21,20 @@ COPY Informer/MandateServiceInformer /src/Informer/MandateServiceInformer/
 WORKDIR /src/Informer/MandateServiceInformer
 
 RUN cd /src/Informer/MandateServiceInformer/ && \
-  dotnet publish -c "Debug" -o /home/site/wwwroot
+  dotnet build -c Debug -o /home/site/wwwroot
 
-RUN apt-get update
-RUN apt-get install zip unzip curl -y
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install nodejs -y
-RUN npm i -g azure-functions-core-tools@core --unsafe-perm
+#RUN apt-get update
+#RUN apt-get install zip unzip curl -y
+#RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+#RUN apt-get install nodejs -y
+#RUN npm i -g azure-functions-core-tools@core --unsafe-perm
 
 # install VS Remote Debugger & openssh
 #COPY Informer/MandateServiceInformer/ssh/authorized_keys ~/.ssh/authorized_keys
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends gnupg zip unzip curl -y
+RUN rm -rf /var/lib/apt/lists/*
 RUN curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 
 #RUN apt-get install -y openssh-server
@@ -44,20 +44,12 @@ RUN curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 #COPY Informer/MandateServiceInformer/ssh/authorized_keys /etc/ssh/
 #EXPOSE 22
 
-#ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
-#	AzureWebJobsStorage="DefaultEndpointsProtocol=https;AccountName=strgcentralsvc;AccountKey=IxJvwvD87KMVQufubwIeTCRU+QTLnY1TjaMAnnpiSN8tjJWp7JGhmdyYKN2nitqC70Rz6rlVuu9u5yg2JyCb6A==;EndpointSuffix=core.windows.net" \
- #   HOME=/home \
-  #  FUNCTIONS_WORKER_RUNTIME=dotnet \
-	#AzureFunctionsJobHost__Logging__Console__IsEnabled=true
-
+ENV HOME=/home
+ENV FUNCTIONS_WORKER_RUNTIME=dotnet
 ENV AzureFunctionsJobHost__Logging__Console__IsEnabled=true
+ENV AzureWebJobsScriptRoot=/home/site/wwwroot
 
-WORKDIR /home/site/wwwroot
-
-CMD func host start --debug VSCode
-#CMD func start --build
-
-#CMD service ssh start ; dotnet /azure-functions-host/Microsoft.Azure.WebJobs.Script.WebHost.dll
+CMD dotnet /azure-functions-host/Microsoft.Azure.WebJobs.Script.WebHost.dll
 
 
 #https://github.com/Azure/azure-functions-host/wiki

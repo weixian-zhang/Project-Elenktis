@@ -1,0 +1,11 @@
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\bin\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.deps.json
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\bin\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.runtimeconfig.json
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\bin\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.runtimeconfig.dev.json
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\bin\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.dll
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\bin\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.pdb
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\obj\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.csproj.CoreCompileInputs.cache
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\obj\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.AssemblyInfoInputs.cache
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\obj\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.AssemblyInfo.cs
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\obj\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.dll
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\obj\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.pdb
+C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Fixer\MandateFeatureFixer\Elenktis.Fixer.MandateFeatureFixer\obj\Debug\netcoreapp2.2\Elenktis.Fixer.MandateFeatureFixer.csprojAssemblyReference.cache
