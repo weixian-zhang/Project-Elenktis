@@ -27,24 +27,51 @@
             "request": "attach",
             "processId": "${command:pickRemoteProcess}",
             "pipeTransport": {
-                "pipeProgram": "docker",
-                "pipeArgs": [ "exec -i msi"],
-                "debuggerPath": "/root/vsdbg/vsdbg",
+                "pipeProgram": "powershell",
+                "pipeArgs": [ "docker exec -i dss"],
+                "debuggerPath": "/home/vsdbg/vsdbg",
                 "pipeCwd": "${workspaceFolder}",
-                "quoteArgs": false
+                "quoteArgs": false,
+            },
+            "sourceFileMap": {
+                "/src/dotnet-function-app": "${workspaceFolder}\\Spy\\DefaultServiceSpy"
             },
             "justMyCode": false,
             "requireExactSource": false,
-            "sourceFileMap": {
-                "/src/Informer/MandateServiceInformer": "${workspaceFolder}/Informer/MandateServiceInformer"
-            },
             "logging": {
                 "engineLogging": true,
-                "exceptions": true,
-                "programOutput": true,
-                "moduleLoad": true
+                "exceptions": true
+            }
+        },
+        //https://github.com/OmniSharp/omnisharp-vscode/issues/2488
+        {
+            "name": "Kube Debugger",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": 1,
+            "pipeTransport": {
+                "debuggerPath": "/home/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceFolder}",
+                "windows": {
+                    "pipeProgram": "kubectl",
+                    "pipeArgs": [
+                        "exec",
+                        "-i",
+                        "deploy-spy-defaultsvc-687d7c7565-nz75j",
+                        "--"
+                    ],
+                    "quoteArgs": false
+                }
+            },
+            "sourceFileMap": {
+                "/src/dotnet-function-app": "${workspaceFolder}/Spy/DefaultServiceSpy"
+            },
+            "justMyCode": false,
+            "requireExactSource": false,
+            "logging": {
+                "engineLogging": true,
+                "exceptions": true
             }
         }
-
     ]
 }
