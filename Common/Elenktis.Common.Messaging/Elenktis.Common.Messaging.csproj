@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="5.5.2-develop.2038" />
+    <PackageReference Include="Microsoft.NET.Sdk" Version="1.0.0-alpha-20161104-2"/>
+  </ItemGroup>
+
+</Project>

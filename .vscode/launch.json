@@ -18,7 +18,7 @@
             "name": "DefaultSvcSpy-Local",
             "type": "coreclr",
             "request": "attach",
-            "processId": "${command:pickProcess}",
+            "processName": "func",
 
         },
         //https://github.com/OmniSharp/omnisharp-vscode/issues/2488
@@ -35,14 +35,15 @@
                     "pipeArgs": [
                         "exec",
                         "-i",
-                        "deploy-spy-defaultsvc-687d7c7565-nz75j",
+                        "deploy-spy-defaultsvc-59f9468d44-q4dfk",
                         "--"
                     ],
                     "quoteArgs": false
                 }
             },
             "sourceFileMap": {
-                "/src/dotnet-function-app": "${workspaceFolder}/Spy/DefaultServiceSpy"
+                "/src/Spy/DefaultServiceSpy": "${workspaceFolder}/Spy/DefaultServiceSpy",
+                "/src/Common/Elenktis.Configuration": "${workspaceFolder}/Common/Elenktis.Configuration"
             },
             "justMyCode": false,
             "requireExactSource": false,

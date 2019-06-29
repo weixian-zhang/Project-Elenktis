@@ -4,5 +4,6 @@
     "azureFunctions.projectRuntime": "~2",
     "debug.internalConsoleOptions": "openOnSessionStart",
     "azureFunctions.preDeployTask": "publish",
-    "cloudcode.azureExplorerVisible": true
+    "cloudcode.azureExplorerVisible": true,
+    "docker.defaultRegistryPath": "acrcentralsvcdev.azurecr.io"
 }

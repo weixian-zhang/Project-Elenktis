@@ -1,0 +1,15 @@
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\bin\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\bin\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\bin\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\bin\Debug\netcoreapp2.2\Elenktis.Common.Configuration.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\bin\Debug\netcoreapp2.2\Elenktis.Common.Configuration.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\obj\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.csprojAssemblyReference.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\obj\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.csproj.CoreCompileInputs.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\obj\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.AssemblyInfoInputs.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\obj\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.AssemblyInfo.cs
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\obj\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.csproj.CopyComplete
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\obj\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.AzResourceManager\obj\Debug\netcoreapp2.2\Elenktis.Common.AzResourceManager.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.AzResourceManager.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.AzResourceManager.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.AzResourceManager.pdb

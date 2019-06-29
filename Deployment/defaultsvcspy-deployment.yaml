@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
       - name: spy-defaultsvc
-        image: acrcentralsvcdev.azurecr.io/spy:svcspy-v0.1
+        image: acrcentralsvcdev.azurecr.io/defaultsvcspy:defaultsvcspy-v0.11
         imagePullPolicy: Always
         imagePullSecrets:
         - name: acr-auth
         volumeMounts:
           - name: secret-clientid
-            mountPath: /ClientId
+            mountPath: /akv
             readOnly: true
       volumes:
       - name: secret-clientid 
@@ -33,8 +33,8 @@ spec:
           options: 
             usepodidentity: "false" 
             keyvaultname: "akv-centralsvc" 
-            keyvaultobjectname: "ClientId" 
-            keyvaultobjecttype: "secret" 
+            keyvaultobjectname: "ClientId;ClientSecret;EtcdPassword;EtcdUsername;CosmosMongoDBConnectionString;ServiceBusConnectionString;TenantId" 
+            keyvaultobjecttype: "secret;secret;secret;secret;secret;secret;secret" 
             resourcegroup: "centralservices-dev-rg" 
             subscriptionid: "0ab40889-880a-4261-95e1-600c60074519" 
             tenantid: "fc418f16-5c93-437d-b743-05e9e2a04d93"
