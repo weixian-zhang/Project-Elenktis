@@ -1,0 +1,12 @@
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.Messaging.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.Messaging.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.Messaging.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.Messaging\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.Messaging.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.Messaging\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.Messaging.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.Messaging\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.Messaging.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.Messaging\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.Messaging.csprojAssemblyReference.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.Messaging\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.Messaging.csproj.CoreCompileInputs.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.Messaging\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.Messaging.AssemblyInfoInputs.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.Messaging\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.Messaging.AssemblyInfo.cs
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.Messaging\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.Messaging.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Common.Messaging\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.Messaging.pdb

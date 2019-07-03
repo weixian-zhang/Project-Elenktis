@@ -1,0 +1,15 @@
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.AzResourceManager.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.AzResourceManager.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.AzResourceManager.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.AzResourceManager.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.AzResourceManager.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.AzResourceManager.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Configuration.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Configuration.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Azure.csprojAssemblyReference.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Azure.csproj.CoreCompileInputs.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Azure.AssemblyInfoInputs.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Azure.AssemblyInfo.cs
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Azure.csproj.CopyComplete
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.AzResourceManager.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Azure\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Common.AzResourceManager.pdb

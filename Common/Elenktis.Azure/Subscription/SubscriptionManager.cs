@@ -1,5 +1,4 @@
-﻿using Elenktis.Configuration;
-using Microsoft.Azure.Management.ResourceManager;
+﻿using Microsoft.Azure.Management.ResourceManager;
 using Microsoft.Azure.Management.ResourceManager.Models;
 using System;
 using System.Collections;

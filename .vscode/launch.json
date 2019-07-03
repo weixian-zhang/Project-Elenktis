@@ -35,7 +35,7 @@
                     "pipeArgs": [
                         "exec",
                         "-i",
-                        "deploy-spy-defaultsvc-59f9468d44-q4dfk",
+                        "deploy-spy-defaultsvc-647cf94cff-8xzll",
                         "--"
                     ],
                     "quoteArgs": false
@@ -43,7 +43,8 @@
             },
             "sourceFileMap": {
                 "/src/Spy/DefaultServiceSpy": "${workspaceFolder}/Spy/DefaultServiceSpy",
-                "/src/Common/Elenktis.Configuration": "${workspaceFolder}/Common/Elenktis.Configuration"
+                "/src/Common/Elenktis.Configuration": "${workspaceFolder}/Common/Elenktis.Configuration",
+                "/src/Common/Elenktis.Assessment": "${workspaceFolder}/Common/Elenktis.Assessment"
             },
             "justMyCode": false,
             "requireExactSource": false,

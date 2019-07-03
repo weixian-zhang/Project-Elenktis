@@ -7,7 +7,7 @@ COPY Spy/DefaultServiceSpy /src/Spy/DefaultServiceSpy/
 
 
 RUN cd /src/Spy/DefaultServiceSpy/ && \
-  dotnet build *.csproj -c Debug -o /home/site/wwwroot
+  dotnet build -c Debug -o /home/site/wwwroot
 
 FROM mcr.microsoft.com/azure-functions/dotnet:2.0
 ENV AzureWebJobsScriptRoot=/home/site/wwwroot \

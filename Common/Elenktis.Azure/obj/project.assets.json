@@ -104,8 +104,19 @@
           "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.dll": {}
         }
       },
-      "Microsoft.NET.Sdk/2.2.101": {
-        "type": "package"
+      "Microsoft.NET.Sdk/1.0.0-alpha-20161104-2": {
+        "type": "package",
+        "dependencies": {
+          "Nuget.Build.Tasks.Pack": "4.0.0-rc-2048"
+        },
+        "build": {
+          "build/Microsoft.NET.Sdk.props": {},
+          "build/Microsoft.NET.Sdk.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildCrossTargeting/Microsoft.NET.Sdk.props": {},
+          "buildCrossTargeting/Microsoft.NET.Sdk.targets": {}
+        }
       },
       "Microsoft.NETCore.App/2.2.0": {
         "type": "package",
@@ -317,28 +328,40 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1-rc2-24027": {
         "type": "package"
       },
-      "Microsoft.Rest.ClientRuntime/3.0.3": {
+      "Microsoft.Rest.ClientRuntime/3.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1-rc2-24027",
-          "Microsoft.NETCore.Runtime": "1.0.2-rc2-24027",
+          "Microsoft.NETCore.Platforms": "1.0.1-rc2-23931",
+          "Microsoft.NETCore.Runtime": "1.0.2-rc2-23931",
           "Newtonsoft.Json": "8.0.3",
-          "System.Collections": "4.0.11-rc2-24027",
-          "System.Diagnostics.Debug": "4.0.11-rc2-24027",
-          "System.Diagnostics.Tools": "4.0.1-rc2-24027",
-          "System.Diagnostics.Tracing": "4.1.0-rc2-24027",
-          "System.Globalization": "4.0.11-rc2-24027",
-          "System.Linq": "4.1.0-rc2-24027",
-          "System.Linq.Expressions": "4.0.11-rc2-24027",
-          "System.Net.Http": "4.0.1-rc2-24027",
-          "System.Net.Primitives": "4.0.11-rc2-24027",
-          "System.ObjectModel": "4.0.12-rc2-24027",
-          "System.Reflection.Extensions": "4.0.1-rc2-24027",
-          "System.Resources.ResourceManager": "4.0.1-rc2-24027",
-          "System.Runtime.Extensions": "4.1.0-rc2-24027",
-          "System.Text.RegularExpressions": "4.0.12-rc2-24027",
-          "System.Threading": "4.0.11-rc2-24027",
-          "System.Xml.ReaderWriter": "4.0.11-rc2-24027"
+          "System.Collections": "4.0.11-rc2-23931",
+          "System.Collections.Concurrent": "4.0.12-rc2-23931",
+          "System.Diagnostics.Debug": "4.0.11-rc2-23931",
+          "System.Diagnostics.Tools": "4.0.1-rc2-23931",
+          "System.Diagnostics.Tracing": "4.1.0-rc2-23931",
+          "System.Globalization": "4.0.11-rc2-23931",
+          "System.IO": "4.1.0-rc2-23931",
+          "System.IO.Compression": "4.1.0-rc2-23931",
+          "System.Linq": "4.1.0-rc2-23931",
+          "System.Net.Http": "4.0.1-rc2-23931",
+          "System.Net.Primitives": "4.0.11-rc2-23931",
+          "System.ObjectModel": "4.0.12-rc2-23931",
+          "System.Reflection": "4.1.0-rc2-23931",
+          "System.Reflection.Extensions": "4.0.1-rc2-23931",
+          "System.Reflection.Primitives": "4.0.1-rc2-23931",
+          "System.Resources.ResourceManager": "4.0.1-rc2-23931",
+          "System.Runtime": "4.1.0-rc2-23931",
+          "System.Runtime.Extensions": "4.1.0-rc2-23931",
+          "System.Runtime.InteropServices": "4.1.0-rc2-23931",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0-rc2-23931",
+          "System.Runtime.Numerics": "4.0.1-rc2-23931",
+          "System.Text.Encoding": "4.0.11-rc2-23931",
+          "System.Text.Encoding.Extensions": "4.0.11-rc2-23931",
+          "System.Text.RegularExpressions": "4.0.12-rc2-23931",
+          "System.Threading": "4.0.11-rc2-23931",
+          "System.Threading.Tasks": "4.0.11-rc2-23931",
+          "System.Xml.ReaderWriter": "4.0.11-rc2-23931",
+          "System.Xml.XDocument": "4.0.11-rc2-23931"
         },
         "compile": {
           "lib/netstandard1.5/Microsoft.Rest.ClientRuntime.dll": {}
@@ -479,6 +502,15 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
+      "NuGet.Build.Tasks.Pack/4.0.0-rc-2048": {
+        "type": "package",
+        "build": {
+          "build/NuGet.Build.Tasks.Pack.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildCrossTargeting/NuGet.Build.Tasks.Pack.targets": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
         "type": "package",
         "runtimeTargets": {
@@ -518,6 +550,9 @@
         "runtime": {
           "lib/netstandard1.0/_._": {}
         }
+      },
+      "runtime.native.System.IO.Compression/4.1.0-rc2-24027": {
+        "type": "package"
       },
       "runtime.native.System.Net.Http/4.3.0": {
         "type": "package",
@@ -1036,6 +1071,36 @@
           "ref/netstandard1.5/System.IO.dll": {}
         }
       },
+      "System.IO.Compression/4.1.0-rc2-24027": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.11-rc2-24027",
+          "System.Diagnostics.Debug": "4.0.11-rc2-24027",
+          "System.IO": "4.1.0-rc2-24027",
+          "System.Resources.ResourceManager": "4.0.1-rc2-24027",
+          "System.Runtime": "4.1.0-rc2-24027",
+          "System.Runtime.Extensions": "4.1.0-rc2-24027",
+          "System.Runtime.Handles": "4.0.1-rc2-24027",
+          "System.Runtime.InteropServices": "4.1.0-rc2-24027",
+          "System.Text.Encoding": "4.0.11-rc2-24027",
+          "System.Threading": "4.0.11-rc2-24027",
+          "System.Threading.Tasks": "4.0.11-rc2-24027",
+          "runtime.native.System.IO.Compression": "4.1.0-rc2-24027"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.IO.Compression.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard1.3/System.IO.Compression.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win7/lib/netstandard1.3/System.IO.Compression.dll": {
+            "assetType": "runtime",
+            "rid": "win7"
+          }
+        }
+      },
       "System.IO.FileSystem/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1463,7 +1528,16 @@
           "System.Runtime.Handles": "4.3.0"
         },
         "compile": {
-          "ref/netcoreapp1.1/_._": {}
+          "ref/netcoreapp1.1/System.Runtime.InteropServices.dll": {}
+        }
+      },
+      "System.Runtime.InteropServices.RuntimeInformation/4.0.0-rc2-24027": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.1.0-rc2-24027"
+        },
+        "compile": {
+          "ref/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -1475,7 +1549,7 @@
           "System.Runtime.Extensions": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.1/_._": {}
+          "ref/netstandard1.1/System.Runtime.Numerics.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
@@ -1849,7 +1923,7 @@
           "System.Text.Encoding": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Text.Encoding.Extensions.dll": {}
         }
       },
       "System.Text.RegularExpressions/4.3.0": {
@@ -2042,7 +2116,7 @@
         "dependencies": {
           "Microsoft.Azure.KeyVault": "3.0.3",
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "4.5.1",
-          "Microsoft.NET.Sdk": "(, )",
+          "Microsoft.NET.Sdk": "1.0.0-alpha-20161104-2",
           "Serilog.Sinks.MongoDB": "4.0.0"
         },
         "compile": {
@@ -2191,99 +2265,76 @@
         "microsoft.identitymodel.clients.activedirectory.nuspec"
       ]
     },
-    "Microsoft.NET.Sdk/2.2.101": {
-      "sha512": "FReo12Dtgxcx5SvdE7Pnj4hv43rE/3aw/TlTN5kpRVc0JW7p4OxoI7PfTYuEkB2xS2PekWPeTxQRB/HTi0krpA==",
+    "Microsoft.NET.Sdk/1.0.0-alpha-20161104-2": {
+      "sha512": "GDnuUnllJt2/kFb5W5nljTiczMIdesfadksMliOKQBihwqpSMv7Ehw16ILcLWiIy9wQhgDMHSniMfHh+tnHq6w==",
       "type": "package",
-      "path": "microsoft.net.sdk/2.2.101",
+      "path": "microsoft.net.sdk/1.0.0-alpha-20161104-2",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Sdk/Sdk.props",
-        "Sdk/Sdk.targets",
-        "microsoft.net.sdk.2.2.101.nupkg.sha512",
+        "build/Microsoft.NET.DefaultOutputPaths.targets",
+        "build/Microsoft.NET.DisableStandardFrameworkResolution.targets",
+        "build/Microsoft.NET.GenerateAssemblyInfo.targets",
+        "build/Microsoft.NET.PreserveCompilationContext.targets",
+        "build/Microsoft.NET.Publish.targets",
+        "build/Microsoft.NET.RuntimeIdentifierInference.targets",
+        "build/Microsoft.NET.Sdk.BeforeCommon.targets",
+        "build/Microsoft.NET.Sdk.BeforeCommonCrossTargeting.targets",
+        "build/Microsoft.NET.Sdk.CSharp.props",
+        "build/Microsoft.NET.Sdk.CSharp.targets",
+        "build/Microsoft.NET.Sdk.Common.targets",
+        "build/Microsoft.NET.Sdk.VisualBasic.props",
+        "build/Microsoft.NET.Sdk.VisualBasic.targets",
+        "build/Microsoft.NET.Sdk.props",
+        "build/Microsoft.NET.Sdk.targets",
+        "build/Microsoft.NET.TargetFrameworkInference.targets",
+        "build/Microsoft.PackageDependencyResolution.targets",
+        "buildCrossTargeting/Microsoft.NET.Sdk.props",
+        "buildCrossTargeting/Microsoft.NET.Sdk.targets",
+        "microsoft.net.sdk.1.0.0-alpha-20161104-2.nupkg.sha512",
         "microsoft.net.sdk.nuspec",
-        "targets/GenerateDeps/GenerateDeps.proj",
-        "targets/Microsoft.NET.ComposeStore.targets",
-        "targets/Microsoft.NET.ConflictResolution.targets",
-        "targets/Microsoft.NET.CrossGen.targets",
-        "targets/Microsoft.NET.DefaultAssemblyInfo.targets",
-        "targets/Microsoft.NET.DefaultOutputPaths.targets",
-        "targets/Microsoft.NET.DefaultPackageConflictOverrides.targets",
-        "targets/Microsoft.NET.DisableStandardFrameworkResolution.targets",
-        "targets/Microsoft.NET.GenerateAssemblyInfo.targets",
-        "targets/Microsoft.NET.GenerateSupportedRuntime.targets",
-        "targets/Microsoft.NET.NuGetOfflineCache.targets",
-        "targets/Microsoft.NET.ObsoleteReferences.targets",
-        "targets/Microsoft.NET.PackTool.props",
-        "targets/Microsoft.NET.PackTool.targets",
-        "targets/Microsoft.NET.PreserveCompilationContext.targets",
-        "targets/Microsoft.NET.Publish.targets",
-        "targets/Microsoft.NET.RuntimeIdentifierInference.targets",
-        "targets/Microsoft.NET.Sdk.BeforeCommon.targets",
-        "targets/Microsoft.NET.Sdk.BeforeCommonCrossTargeting.targets",
-        "targets/Microsoft.NET.Sdk.CSharp.props",
-        "targets/Microsoft.NET.Sdk.CSharp.targets",
-        "targets/Microsoft.NET.Sdk.Common.targets",
-        "targets/Microsoft.NET.Sdk.CrossTargeting.targets",
-        "targets/Microsoft.NET.Sdk.DefaultItems.props",
-        "targets/Microsoft.NET.Sdk.DefaultItems.targets",
-        "targets/Microsoft.NET.Sdk.FSharp.props",
-        "targets/Microsoft.NET.Sdk.FSharp.targets",
-        "targets/Microsoft.NET.Sdk.FSharpTargetsShim.targets",
-        "targets/Microsoft.NET.Sdk.VisualBasic.props",
-        "targets/Microsoft.NET.Sdk.VisualBasic.targets",
-        "targets/Microsoft.NET.Sdk.props",
-        "targets/Microsoft.NET.Sdk.targets",
-        "targets/Microsoft.NET.SupportedTargetFrameworks.props",
-        "targets/Microsoft.NET.TargetFrameworkInference.targets",
-        "targets/Microsoft.PackageDependencyResolution.targets",
         "tools/net46/Microsoft.DotNet.PlatformAbstractions.dll",
         "tools/net46/Microsoft.Extensions.DependencyModel.dll",
         "tools/net46/Microsoft.NET.Build.Tasks.dll",
-        "tools/net46/Microsoft.NET.Build.Tasks.pdb",
         "tools/net46/Newtonsoft.Json.dll",
         "tools/net46/NuGet.Common.dll",
         "tools/net46/NuGet.Configuration.dll",
         "tools/net46/NuGet.DependencyResolver.Core.dll",
         "tools/net46/NuGet.Frameworks.dll",
         "tools/net46/NuGet.LibraryModel.dll",
+        "tools/net46/NuGet.Packaging.Core.Types.dll",
         "tools/net46/NuGet.Packaging.Core.dll",
         "tools/net46/NuGet.Packaging.dll",
         "tools/net46/NuGet.ProjectModel.dll",
-        "tools/net46/NuGet.Protocol.dll",
+        "tools/net46/NuGet.Protocol.Core.Types.dll",
+        "tools/net46/NuGet.Protocol.Core.v3.dll",
+        "tools/net46/NuGet.Repositories.dll",
+        "tools/net46/NuGet.RuntimeModel.dll",
         "tools/net46/NuGet.Versioning.dll",
-        "tools/net46/System.Collections.Immutable.dll",
-        "tools/net46/System.Reflection.Metadata.dll",
         "tools/net46/System.Runtime.InteropServices.RuntimeInformation.dll",
-        "tools/net46/cs/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/de/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/es/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/fr/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/it/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/ja/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/ko/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/pl/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/pt-BR/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/ru/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/tr/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/zh-Hans/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/zh-Hant/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/Microsoft.NET.Build.Tasks.dll",
-        "tools/netcoreapp2.0/Microsoft.NET.Build.Tasks.pdb",
-        "tools/netcoreapp2.0/cs/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/de/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/es/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/fr/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/it/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/ja/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/ko/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/pl/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/pt-BR/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/ru/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/tr/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/zh-Hans/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/zh-Hant/Microsoft.NET.Build.Tasks.resources.dll"
+        "tools/net46/System.Security.Cryptography.Algorithms.dll",
+        "tools/net46/System.Security.Cryptography.Primitives.dll",
+        "tools/net46/System.Threading.Thread.dll",
+        "tools/netcoreapp1.0/Microsoft.DotNet.PlatformAbstractions.dll",
+        "tools/netcoreapp1.0/Microsoft.Extensions.DependencyModel.dll",
+        "tools/netcoreapp1.0/Microsoft.NET.Build.Tasks.dll",
+        "tools/netcoreapp1.0/Newtonsoft.Json.dll",
+        "tools/netcoreapp1.0/NuGet.Common.dll",
+        "tools/netcoreapp1.0/NuGet.Configuration.dll",
+        "tools/netcoreapp1.0/NuGet.DependencyResolver.Core.dll",
+        "tools/netcoreapp1.0/NuGet.Frameworks.dll",
+        "tools/netcoreapp1.0/NuGet.LibraryModel.dll",
+        "tools/netcoreapp1.0/NuGet.Packaging.Core.Types.dll",
+        "tools/netcoreapp1.0/NuGet.Packaging.Core.dll",
+        "tools/netcoreapp1.0/NuGet.Packaging.dll",
+        "tools/netcoreapp1.0/NuGet.ProjectModel.dll",
+        "tools/netcoreapp1.0/NuGet.Protocol.Core.Types.dll",
+        "tools/netcoreapp1.0/NuGet.Protocol.Core.v3.dll",
+        "tools/netcoreapp1.0/NuGet.Repositories.dll",
+        "tools/netcoreapp1.0/NuGet.RuntimeModel.dll",
+        "tools/netcoreapp1.0/NuGet.Versioning.dll",
+        "tools/netcoreapp1.0/System.Runtime.Serialization.Primitives.dll"
       ]
     },
     "Microsoft.NETCore.App/2.2.0": {
@@ -2680,17 +2731,17 @@
         "runtime.json"
       ]
     },
-    "Microsoft.Rest.ClientRuntime/3.0.3": {
-      "sha512": "5F4v+7YC/vVBSKKXFluSOMuTGnoIbCbB2RJzneNeHLOhUHqkW9DrCVBDRe73qdsDMbTORaKX/vBN52jo2caQGQ==",
+    "Microsoft.Rest.ClientRuntime/3.0.0": {
+      "sha512": "d15LijCL16isj69vxFriP/59w5DJVCc27gYGDCHlMKkNgrpqbWqkIKdodxWmSYKwxWRagp0zjqLabfOt4gavVg==",
       "type": "package",
-      "path": "microsoft.rest.clientruntime/3.0.3",
+      "path": "microsoft.rest.clientruntime/3.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net45/Microsoft.Rest.ClientRuntime.dll",
         "lib/netstandard1.1/Microsoft.Rest.ClientRuntime.dll",
         "lib/netstandard1.5/Microsoft.Rest.ClientRuntime.dll",
-        "microsoft.rest.clientruntime.3.0.3.nupkg.sha512",
+        "microsoft.rest.clientruntime.3.0.0.nupkg.sha512",
         "microsoft.rest.clientruntime.nuspec"
       ]
     },
@@ -2985,6 +3036,58 @@
         "tools/install.ps1"
       ]
     },
+    "NuGet.Build.Tasks.Pack/4.0.0-rc-2048": {
+      "sha512": "n+ww0YXKxJKcW65Hy6mVHv/sr9y7HN6++zfN6OnN9InWHkB4CI52N8XyfLhjNv92y01zE4iHWvCDWZF0x5cfZA==",
+      "type": "package",
+      "path": "nuget.build.tasks.pack/4.0.0-rc-2048",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CoreCLR/NuGet.Build.Tasks.Pack.dll",
+        "CoreCLR/NuGet.Client.dll",
+        "CoreCLR/NuGet.Commands.dll",
+        "CoreCLR/NuGet.Common.dll",
+        "CoreCLR/NuGet.Configuration.dll",
+        "CoreCLR/NuGet.ContentModel.dll",
+        "CoreCLR/NuGet.DependencyResolver.Core.dll",
+        "CoreCLR/NuGet.DependencyResolver.dll",
+        "CoreCLR/NuGet.Frameworks.dll",
+        "CoreCLR/NuGet.LibraryModel.dll",
+        "CoreCLR/NuGet.Packaging.Core.Types.dll",
+        "CoreCLR/NuGet.Packaging.Core.dll",
+        "CoreCLR/NuGet.Packaging.dll",
+        "CoreCLR/NuGet.ProjectModel.dll",
+        "CoreCLR/NuGet.Protocol.Core.Types.dll",
+        "CoreCLR/NuGet.Protocol.Core.v3.dll",
+        "CoreCLR/NuGet.Repositories.dll",
+        "CoreCLR/NuGet.RuntimeModel.dll",
+        "CoreCLR/NuGet.Versioning.dll",
+        "Desktop/Newtonsoft.Json.dll",
+        "Desktop/NuGet.Build.Tasks.Pack.dll",
+        "Desktop/NuGet.Client.dll",
+        "Desktop/NuGet.Commands.dll",
+        "Desktop/NuGet.Common.dll",
+        "Desktop/NuGet.Configuration.dll",
+        "Desktop/NuGet.ContentModel.dll",
+        "Desktop/NuGet.DependencyResolver.Core.dll",
+        "Desktop/NuGet.DependencyResolver.dll",
+        "Desktop/NuGet.Frameworks.dll",
+        "Desktop/NuGet.LibraryModel.dll",
+        "Desktop/NuGet.Packaging.Core.Types.dll",
+        "Desktop/NuGet.Packaging.Core.dll",
+        "Desktop/NuGet.Packaging.dll",
+        "Desktop/NuGet.ProjectModel.dll",
+        "Desktop/NuGet.Protocol.Core.Types.dll",
+        "Desktop/NuGet.Protocol.Core.v3.dll",
+        "Desktop/NuGet.Repositories.dll",
+        "Desktop/NuGet.RuntimeModel.dll",
+        "Desktop/NuGet.Versioning.dll",
+        "build/NuGet.Build.Tasks.Pack.targets",
+        "buildCrossTargeting/NuGet.Build.Tasks.Pack.targets",
+        "nuget.build.tasks.pack.4.0.0-rc-2048.nupkg.sha512",
+        "nuget.build.tasks.pack.nuspec"
+      ]
+    },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
       "sha512": "jwcVUu4ELwy6ObG6ChIFz3PeRH1mKZW65o+FellG99FUwCmnnjdGkIFnVoeHPIvyue/lf1y9Zgw2axylGCP38g==",
       "type": "package",
@@ -3038,6 +3141,19 @@
         "lib/netstandard1.0/_._",
         "runtime.native.system.4.3.0.nupkg.sha512",
         "runtime.native.system.nuspec"
+      ]
+    },
+    "runtime.native.System.IO.Compression/4.1.0-rc2-24027": {
+      "sha512": "r84dFA/jE921UfQNrFyNUAdvU//SNzdAv2eMb4YXH4DlXF0V/FM5QqYodZQkr4tVNbQM3KqIn1eIjbWcDCB7Dg==",
+      "type": "package",
+      "path": "runtime.native.system.io.compression/4.1.0-rc2-24027",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.native.system.io.compression.4.1.0-rc2-24027.nupkg.sha512",
+        "runtime.native.system.io.compression.nuspec"
       ]
     },
     "runtime.native.System.Net.Http/4.3.0": {
@@ -4248,6 +4364,76 @@
         "ref/xamarinwatchos10/_._",
         "system.io.4.3.0.nupkg.sha512",
         "system.io.nuspec"
+      ]
+    },
+    "System.IO.Compression/4.1.0-rc2-24027": {
+      "sha512": "tDUl9OuEauxpXOcWFXLW5nPqE0GqpC4sHOq5KbruncfTsTLQp+/vX156Wm8LpdHmeC35sQmSyYeRGJQHfoPfww==",
+      "type": "package",
+      "path": "system.io.compression/4.1.0-rc2-24027",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net46/System.IO.Compression.dll",
+        "lib/portable-net45+win8+wpa81/_._",
+        "lib/win8/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net46/System.IO.Compression.dll",
+        "ref/netcore50/System.IO.Compression.dll",
+        "ref/netcore50/System.IO.Compression.xml",
+        "ref/netcore50/de/System.IO.Compression.xml",
+        "ref/netcore50/es/System.IO.Compression.xml",
+        "ref/netcore50/fr/System.IO.Compression.xml",
+        "ref/netcore50/it/System.IO.Compression.xml",
+        "ref/netcore50/ja/System.IO.Compression.xml",
+        "ref/netcore50/ko/System.IO.Compression.xml",
+        "ref/netcore50/ru/System.IO.Compression.xml",
+        "ref/netcore50/zh-hans/System.IO.Compression.xml",
+        "ref/netcore50/zh-hant/System.IO.Compression.xml",
+        "ref/netstandard1.1/System.IO.Compression.dll",
+        "ref/netstandard1.1/System.IO.Compression.xml",
+        "ref/netstandard1.1/de/System.IO.Compression.xml",
+        "ref/netstandard1.1/es/System.IO.Compression.xml",
+        "ref/netstandard1.1/fr/System.IO.Compression.xml",
+        "ref/netstandard1.1/it/System.IO.Compression.xml",
+        "ref/netstandard1.1/ja/System.IO.Compression.xml",
+        "ref/netstandard1.1/ko/System.IO.Compression.xml",
+        "ref/netstandard1.1/ru/System.IO.Compression.xml",
+        "ref/netstandard1.1/zh-hans/System.IO.Compression.xml",
+        "ref/netstandard1.1/zh-hant/System.IO.Compression.xml",
+        "ref/netstandard1.3/System.IO.Compression.dll",
+        "ref/netstandard1.3/System.IO.Compression.xml",
+        "ref/netstandard1.3/de/System.IO.Compression.xml",
+        "ref/netstandard1.3/es/System.IO.Compression.xml",
+        "ref/netstandard1.3/fr/System.IO.Compression.xml",
+        "ref/netstandard1.3/it/System.IO.Compression.xml",
+        "ref/netstandard1.3/ja/System.IO.Compression.xml",
+        "ref/netstandard1.3/ko/System.IO.Compression.xml",
+        "ref/netstandard1.3/ru/System.IO.Compression.xml",
+        "ref/netstandard1.3/zh-hans/System.IO.Compression.xml",
+        "ref/netstandard1.3/zh-hant/System.IO.Compression.xml",
+        "ref/portable-net45+win8+wpa81/_._",
+        "ref/win8/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/unix/lib/netstandard1.3/System.IO.Compression.dll",
+        "runtimes/win7/lib/netstandard1.3/System.IO.Compression.dll",
+        "system.io.compression.4.1.0-rc2-24027.nupkg.sha512",
+        "system.io.compression.nuspec"
       ]
     },
     "System.IO.FileSystem/4.3.0": {
@@ -5547,6 +5733,32 @@
         "ref/xamarinwatchos10/_._",
         "system.runtime.interopservices.4.3.0.nupkg.sha512",
         "system.runtime.interopservices.nuspec"
+      ]
+    },
+    "System.Runtime.InteropServices.RuntimeInformation/4.0.0-rc2-24027": {
+      "sha512": "nsKC00hUZY8SbNHMK3RMu62zEmgdB9xKO+7B30DfLLy5R/10ICrfUVUJvvc/HQC/VSObPUdjYUsqAFoQMIaHHA==",
+      "type": "package",
+      "path": "system.runtime.interopservices.runtimeinformation/4.0.0-rc2-24027",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.runtime.interopservices.runtimeinformation.4.0.0-rc2-24027.nupkg.sha512",
+        "system.runtime.interopservices.runtimeinformation.nuspec"
       ]
     },
     "System.Runtime.Numerics/4.3.0": {
@@ -6932,9 +7144,9 @@
       "Elenktis.Configuration >= 1.0.0",
       "Microsoft.Azure.Management.ResourceManager >= 2.0.0-preview",
       "Microsoft.IdentityModel.Clients.ActiveDirectory >= 5.1.0",
-      "Microsoft.NET.Sdk",
+      "Microsoft.NET.Sdk >= 1.0.0-alpha-20161104-2",
       "Microsoft.NETCore.App >= 2.2.0",
-      "Microsoft.Rest.ClientRuntime >= 3.0.3"
+      "Microsoft.Rest.ClientRuntime >= 3.0.0"
     ]
   },
   "packageFolders": {
@@ -6998,7 +7210,7 @@
           },
           "Microsoft.NET.Sdk": {
             "target": "Package",
-            "version": "(, )"
+            "version": "[1.0.0-alpha-20161104-2, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
@@ -7008,7 +7220,7 @@
           },
           "Microsoft.Rest.ClientRuntime": {
             "target": "Package",
-            "version": "[3.0.3, )"
+            "version": "[3.0.0, )"
           }
         },
         "imports": [
@@ -7021,10 +7233,310 @@
   },
   "logs": [
     {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on Microsoft.NETCore.Platforms (>= 1.0.1-rc2-23931) but Microsoft.NETCore.Platforms 1.0.1-rc2-23931 was not found. An approximate best match of Microsoft.NETCore.Platforms 1.0.1-rc2-24027 was resolved.",
+      "libraryId": "Microsoft.NETCore.Platforms",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on Microsoft.NETCore.Runtime (>= 1.0.2-rc2-23931) but Microsoft.NETCore.Runtime 1.0.2-rc2-23931 was not found. An approximate best match of Microsoft.NETCore.Runtime 1.0.2-rc2-24027 was resolved.",
+      "libraryId": "Microsoft.NETCore.Runtime",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Collections (>= 4.0.11-rc2-23931) but System.Collections 4.0.11-rc2-23931 was not found. An approximate best match of System.Collections 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Collections",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Collections.Concurrent (>= 4.0.12-rc2-23931) but System.Collections.Concurrent 4.0.12-rc2-23931 was not found. An approximate best match of System.Collections.Concurrent 4.0.12-rc2-24027 was resolved.",
+      "libraryId": "System.Collections.Concurrent",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Diagnostics.Debug (>= 4.0.11-rc2-23931) but System.Diagnostics.Debug 4.0.11-rc2-23931 was not found. An approximate best match of System.Diagnostics.Debug 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Diagnostics.Debug",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Diagnostics.Tools (>= 4.0.1-rc2-23931) but System.Diagnostics.Tools 4.0.1-rc2-23931 was not found. An approximate best match of System.Diagnostics.Tools 4.0.1-rc2-24027 was resolved.",
+      "libraryId": "System.Diagnostics.Tools",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Diagnostics.Tracing (>= 4.1.0-rc2-23931) but System.Diagnostics.Tracing 4.1.0-rc2-23931 was not found. An approximate best match of System.Diagnostics.Tracing 4.1.0-rc2-24027 was resolved.",
+      "libraryId": "System.Diagnostics.Tracing",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Globalization (>= 4.0.11-rc2-23931) but System.Globalization 4.0.11-rc2-23931 was not found. An approximate best match of System.Globalization 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Globalization",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.IO (>= 4.1.0-rc2-23931) but System.IO 4.1.0-rc2-23931 was not found. An approximate best match of System.IO 4.1.0-rc2-24027 was resolved.",
+      "libraryId": "System.IO",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.IO.Compression (>= 4.1.0-rc2-23931) but System.IO.Compression 4.1.0-rc2-23931 was not found. An approximate best match of System.IO.Compression 4.1.0-rc2-24027 was resolved.",
+      "libraryId": "System.IO.Compression",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Linq (>= 4.1.0-rc2-23931) but System.Linq 4.1.0-rc2-23931 was not found. An approximate best match of System.Linq 4.1.0-rc2-24027 was resolved.",
+      "libraryId": "System.Linq",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Net.Http (>= 4.0.1-rc2-23931) but System.Net.Http 4.0.1-rc2-23931 was not found. An approximate best match of System.Net.Http 4.0.1-rc2-24027 was resolved.",
+      "libraryId": "System.Net.Http",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Net.Primitives (>= 4.0.11-rc2-23931) but System.Net.Primitives 4.0.11-rc2-23931 was not found. An approximate best match of System.Net.Primitives 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Net.Primitives",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.ObjectModel (>= 4.0.12-rc2-23931) but System.ObjectModel 4.0.12-rc2-23931 was not found. An approximate best match of System.ObjectModel 4.0.12-rc2-24027 was resolved.",
+      "libraryId": "System.ObjectModel",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Reflection (>= 4.1.0-rc2-23931) but System.Reflection 4.1.0-rc2-23931 was not found. An approximate best match of System.Reflection 4.1.0-rc2-24027 was resolved.",
+      "libraryId": "System.Reflection",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Reflection.Extensions (>= 4.0.1-rc2-23931) but System.Reflection.Extensions 4.0.1-rc2-23931 was not found. An approximate best match of System.Reflection.Extensions 4.0.1-rc2-24027 was resolved.",
+      "libraryId": "System.Reflection.Extensions",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Reflection.Primitives (>= 4.0.1-rc2-23931) but System.Reflection.Primitives 4.0.1-rc2-23931 was not found. An approximate best match of System.Reflection.Primitives 4.0.1-rc2-24027 was resolved.",
+      "libraryId": "System.Reflection.Primitives",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Resources.ResourceManager (>= 4.0.1-rc2-23931) but System.Resources.ResourceManager 4.0.1-rc2-23931 was not found. An approximate best match of System.Resources.ResourceManager 4.0.1-rc2-24027 was resolved.",
+      "libraryId": "System.Resources.ResourceManager",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Runtime (>= 4.1.0-rc2-23931) but System.Runtime 4.1.0-rc2-23931 was not found. An approximate best match of System.Runtime 4.1.0-rc2-24027 was resolved.",
+      "libraryId": "System.Runtime",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Runtime.Extensions (>= 4.1.0-rc2-23931) but System.Runtime.Extensions 4.1.0-rc2-23931 was not found. An approximate best match of System.Runtime.Extensions 4.1.0-rc2-24027 was resolved.",
+      "libraryId": "System.Runtime.Extensions",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Runtime.InteropServices (>= 4.1.0-rc2-23931) but System.Runtime.InteropServices 4.1.0-rc2-23931 was not found. An approximate best match of System.Runtime.InteropServices 4.1.0-rc2-24027 was resolved.",
+      "libraryId": "System.Runtime.InteropServices",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Runtime.InteropServices.RuntimeInformation (>= 4.0.0-rc2-23931) but System.Runtime.InteropServices.RuntimeInformation 4.0.0-rc2-23931 was not found. An approximate best match of System.Runtime.InteropServices.RuntimeInformation 4.0.0-rc2-24027 was resolved.",
+      "libraryId": "System.Runtime.InteropServices.RuntimeInformation",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Runtime.Numerics (>= 4.0.1-rc2-23931) but System.Runtime.Numerics 4.0.1-rc2-23931 was not found. An approximate best match of System.Runtime.Numerics 4.0.1-rc2-24027 was resolved.",
+      "libraryId": "System.Runtime.Numerics",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Text.Encoding (>= 4.0.11-rc2-23931) but System.Text.Encoding 4.0.11-rc2-23931 was not found. An approximate best match of System.Text.Encoding 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Text.Encoding",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Text.Encoding.Extensions (>= 4.0.11-rc2-23931) but System.Text.Encoding.Extensions 4.0.11-rc2-23931 was not found. An approximate best match of System.Text.Encoding.Extensions 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Text.Encoding.Extensions",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Text.RegularExpressions (>= 4.0.12-rc2-23931) but System.Text.RegularExpressions 4.0.12-rc2-23931 was not found. An approximate best match of System.Text.RegularExpressions 4.0.12-rc2-24027 was resolved.",
+      "libraryId": "System.Text.RegularExpressions",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Threading (>= 4.0.11-rc2-23931) but System.Threading 4.0.11-rc2-23931 was not found. An approximate best match of System.Threading 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Threading",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Threading.Tasks (>= 4.0.11-rc2-23931) but System.Threading.Tasks 4.0.11-rc2-23931 was not found. An approximate best match of System.Threading.Tasks 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Threading.Tasks",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Xml.ReaderWriter (>= 4.0.11-rc2-23931) but System.Xml.ReaderWriter 4.0.11-rc2-23931 was not found. An approximate best match of System.Xml.ReaderWriter 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Xml.ReaderWriter",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Microsoft.Rest.ClientRuntime 3.0.0 depends on System.Xml.XDocument (>= 4.0.11-rc2-23931) but System.Xml.XDocument 4.0.11-rc2-23931 was not found. An approximate best match of System.Xml.XDocument 4.0.11-rc2-24027 was resolved.",
+      "libraryId": "System.Xml.XDocument",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Microsoft.Azure.Management.ResourceManager 2.0.0-preview requires Microsoft.Rest.ClientRuntime (>= 2.3.13 && < 3.0.0) but version Microsoft.Rest.ClientRuntime 3.0.3 was resolved.",
+      "message": "Detected package version outside of dependency constraint: Microsoft.Azure.Management.ResourceManager 2.0.0-preview requires Microsoft.Rest.ClientRuntime (>= 2.3.13 && < 3.0.0) but version Microsoft.Rest.ClientRuntime 3.0.0 was resolved.",
       "libraryId": "Microsoft.Rest.ClientRuntime",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.2"
@@ -7034,7 +7546,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Microsoft.Azure.KeyVault 3.0.3 requires Microsoft.Rest.ClientRuntime (>= 2.3.18 && < 3.0.0) but version Microsoft.Rest.ClientRuntime 3.0.3 was resolved.",
+      "message": "Detected package version outside of dependency constraint: Microsoft.Azure.KeyVault 3.0.3 requires Microsoft.Rest.ClientRuntime (>= 2.3.18 && < 3.0.0) but version Microsoft.Rest.ClientRuntime 3.0.0 was resolved.",
       "libraryId": "Microsoft.Rest.ClientRuntime",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.2"
@@ -7044,7 +7556,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Microsoft.Rest.ClientRuntime.Azure 3.3.18 requires Microsoft.Rest.ClientRuntime (>= 2.3.17 && < 3.0.0) but version Microsoft.Rest.ClientRuntime 3.0.3 was resolved.",
+      "message": "Detected package version outside of dependency constraint: Microsoft.Rest.ClientRuntime.Azure 3.3.18 requires Microsoft.Rest.ClientRuntime (>= 2.3.17 && < 3.0.0) but version Microsoft.Rest.ClientRuntime 3.0.0 was resolved.",
       "libraryId": "Microsoft.Rest.ClientRuntime",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.2"

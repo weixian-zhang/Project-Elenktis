@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Elenktis.Azure;
 using Elenktis.Configuration;
-using Elenktis.Common.Command;
+
 using Microsoft.Azure.Management.Compute;
 using Microsoft.Azure.Management.OperationalInsights;
 using Microsoft.Azure.Management.OperationalInsights.Models;
@@ -44,11 +44,17 @@ namespace Elenktis.Spy
         public async Task Run
             ([TimerTrigger("*/10 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, Microsoft.Extensions.Logging.ILogger log)
         {
-            InitLogger();
-
             try
             {
-               HydrateSecrets();
+               //HydrateSecrets();
+
+               //InitLogger();
+
+               var configStore =
+                new Elenktis.Assessment.EtcdAssessmentPlanStore
+                    ("etcdserver.policycontroller-dev.svc.cluster.local", 2379);
+
+                await configStore.TestConn();
 
                //await CheckIfMandatoryServicesExist();
 
@@ -63,13 +69,13 @@ namespace Elenktis.Spy
 
         private void InitLogger()
         {
-            _activityLogger = new LoggerConfiguration()
-                .WriteTo.Console()
-                .CreateLogger();
+            // _activityLogger = new LoggerConfiguration()
+            //     .WriteTo.Console()
+            //     .CreateLogger();
 
-            _appLogger = new LoggerConfiguration()
-                .WriteTo.Console()
-                .CreateLogger();
+            // _appLogger = new LoggerConfiguration()
+            //     .WriteTo.Console()
+            //     .CreateLogger();
 
             Serilog.Debugging.SelfLog.Enable(Console.Error);
 

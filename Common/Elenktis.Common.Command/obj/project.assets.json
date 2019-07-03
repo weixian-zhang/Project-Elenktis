@@ -2,8 +2,19 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
-      "Microsoft.NET.Sdk/2.2.101": {
-        "type": "package"
+      "Microsoft.NET.Sdk/1.0.0-alpha-20161104-2": {
+        "type": "package",
+        "dependencies": {
+          "Nuget.Build.Tasks.Pack": "4.0.0-rc-2048"
+        },
+        "build": {
+          "build/Microsoft.NET.Sdk.props": {},
+          "build/Microsoft.NET.Sdk.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildCrossTargeting/Microsoft.NET.Sdk.props": {},
+          "buildCrossTargeting/Microsoft.NET.Sdk.targets": {}
+        }
       },
       "Microsoft.NETCore.App/2.2.0": {
         "type": "package",
@@ -210,103 +221,89 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "NuGet.Build.Tasks.Pack/4.0.0-rc-2048": {
+        "type": "package",
+        "build": {
+          "build/NuGet.Build.Tasks.Pack.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildCrossTargeting/NuGet.Build.Tasks.Pack.targets": {}
+        }
       }
     }
   },
   "libraries": {
-    "Microsoft.NET.Sdk/2.2.101": {
-      "sha512": "FReo12Dtgxcx5SvdE7Pnj4hv43rE/3aw/TlTN5kpRVc0JW7p4OxoI7PfTYuEkB2xS2PekWPeTxQRB/HTi0krpA==",
+    "Microsoft.NET.Sdk/1.0.0-alpha-20161104-2": {
+      "sha512": "GDnuUnllJt2/kFb5W5nljTiczMIdesfadksMliOKQBihwqpSMv7Ehw16ILcLWiIy9wQhgDMHSniMfHh+tnHq6w==",
       "type": "package",
-      "path": "microsoft.net.sdk/2.2.101",
+      "path": "microsoft.net.sdk/1.0.0-alpha-20161104-2",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Sdk/Sdk.props",
-        "Sdk/Sdk.targets",
-        "microsoft.net.sdk.2.2.101.nupkg.sha512",
+        "build/Microsoft.NET.DefaultOutputPaths.targets",
+        "build/Microsoft.NET.DisableStandardFrameworkResolution.targets",
+        "build/Microsoft.NET.GenerateAssemblyInfo.targets",
+        "build/Microsoft.NET.PreserveCompilationContext.targets",
+        "build/Microsoft.NET.Publish.targets",
+        "build/Microsoft.NET.RuntimeIdentifierInference.targets",
+        "build/Microsoft.NET.Sdk.BeforeCommon.targets",
+        "build/Microsoft.NET.Sdk.BeforeCommonCrossTargeting.targets",
+        "build/Microsoft.NET.Sdk.CSharp.props",
+        "build/Microsoft.NET.Sdk.CSharp.targets",
+        "build/Microsoft.NET.Sdk.Common.targets",
+        "build/Microsoft.NET.Sdk.VisualBasic.props",
+        "build/Microsoft.NET.Sdk.VisualBasic.targets",
+        "build/Microsoft.NET.Sdk.props",
+        "build/Microsoft.NET.Sdk.targets",
+        "build/Microsoft.NET.TargetFrameworkInference.targets",
+        "build/Microsoft.PackageDependencyResolution.targets",
+        "buildCrossTargeting/Microsoft.NET.Sdk.props",
+        "buildCrossTargeting/Microsoft.NET.Sdk.targets",
+        "microsoft.net.sdk.1.0.0-alpha-20161104-2.nupkg.sha512",
         "microsoft.net.sdk.nuspec",
-        "targets/GenerateDeps/GenerateDeps.proj",
-        "targets/Microsoft.NET.ComposeStore.targets",
-        "targets/Microsoft.NET.ConflictResolution.targets",
-        "targets/Microsoft.NET.CrossGen.targets",
-        "targets/Microsoft.NET.DefaultAssemblyInfo.targets",
-        "targets/Microsoft.NET.DefaultOutputPaths.targets",
-        "targets/Microsoft.NET.DefaultPackageConflictOverrides.targets",
-        "targets/Microsoft.NET.DisableStandardFrameworkResolution.targets",
-        "targets/Microsoft.NET.GenerateAssemblyInfo.targets",
-        "targets/Microsoft.NET.GenerateSupportedRuntime.targets",
-        "targets/Microsoft.NET.NuGetOfflineCache.targets",
-        "targets/Microsoft.NET.ObsoleteReferences.targets",
-        "targets/Microsoft.NET.PackTool.props",
-        "targets/Microsoft.NET.PackTool.targets",
-        "targets/Microsoft.NET.PreserveCompilationContext.targets",
-        "targets/Microsoft.NET.Publish.targets",
-        "targets/Microsoft.NET.RuntimeIdentifierInference.targets",
-        "targets/Microsoft.NET.Sdk.BeforeCommon.targets",
-        "targets/Microsoft.NET.Sdk.BeforeCommonCrossTargeting.targets",
-        "targets/Microsoft.NET.Sdk.CSharp.props",
-        "targets/Microsoft.NET.Sdk.CSharp.targets",
-        "targets/Microsoft.NET.Sdk.Common.targets",
-        "targets/Microsoft.NET.Sdk.CrossTargeting.targets",
-        "targets/Microsoft.NET.Sdk.DefaultItems.props",
-        "targets/Microsoft.NET.Sdk.DefaultItems.targets",
-        "targets/Microsoft.NET.Sdk.FSharp.props",
-        "targets/Microsoft.NET.Sdk.FSharp.targets",
-        "targets/Microsoft.NET.Sdk.FSharpTargetsShim.targets",
-        "targets/Microsoft.NET.Sdk.VisualBasic.props",
-        "targets/Microsoft.NET.Sdk.VisualBasic.targets",
-        "targets/Microsoft.NET.Sdk.props",
-        "targets/Microsoft.NET.Sdk.targets",
-        "targets/Microsoft.NET.SupportedTargetFrameworks.props",
-        "targets/Microsoft.NET.TargetFrameworkInference.targets",
-        "targets/Microsoft.PackageDependencyResolution.targets",
         "tools/net46/Microsoft.DotNet.PlatformAbstractions.dll",
         "tools/net46/Microsoft.Extensions.DependencyModel.dll",
         "tools/net46/Microsoft.NET.Build.Tasks.dll",
-        "tools/net46/Microsoft.NET.Build.Tasks.pdb",
         "tools/net46/Newtonsoft.Json.dll",
         "tools/net46/NuGet.Common.dll",
         "tools/net46/NuGet.Configuration.dll",
         "tools/net46/NuGet.DependencyResolver.Core.dll",
         "tools/net46/NuGet.Frameworks.dll",
         "tools/net46/NuGet.LibraryModel.dll",
+        "tools/net46/NuGet.Packaging.Core.Types.dll",
         "tools/net46/NuGet.Packaging.Core.dll",
         "tools/net46/NuGet.Packaging.dll",
         "tools/net46/NuGet.ProjectModel.dll",
-        "tools/net46/NuGet.Protocol.dll",
+        "tools/net46/NuGet.Protocol.Core.Types.dll",
+        "tools/net46/NuGet.Protocol.Core.v3.dll",
+        "tools/net46/NuGet.Repositories.dll",
+        "tools/net46/NuGet.RuntimeModel.dll",
         "tools/net46/NuGet.Versioning.dll",
-        "tools/net46/System.Collections.Immutable.dll",
-        "tools/net46/System.Reflection.Metadata.dll",
         "tools/net46/System.Runtime.InteropServices.RuntimeInformation.dll",
-        "tools/net46/cs/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/de/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/es/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/fr/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/it/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/ja/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/ko/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/pl/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/pt-BR/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/ru/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/tr/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/zh-Hans/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/net46/zh-Hant/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/Microsoft.NET.Build.Tasks.dll",
-        "tools/netcoreapp2.0/Microsoft.NET.Build.Tasks.pdb",
-        "tools/netcoreapp2.0/cs/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/de/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/es/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/fr/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/it/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/ja/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/ko/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/pl/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/pt-BR/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/ru/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/tr/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/zh-Hans/Microsoft.NET.Build.Tasks.resources.dll",
-        "tools/netcoreapp2.0/zh-Hant/Microsoft.NET.Build.Tasks.resources.dll"
+        "tools/net46/System.Security.Cryptography.Algorithms.dll",
+        "tools/net46/System.Security.Cryptography.Primitives.dll",
+        "tools/net46/System.Threading.Thread.dll",
+        "tools/netcoreapp1.0/Microsoft.DotNet.PlatformAbstractions.dll",
+        "tools/netcoreapp1.0/Microsoft.Extensions.DependencyModel.dll",
+        "tools/netcoreapp1.0/Microsoft.NET.Build.Tasks.dll",
+        "tools/netcoreapp1.0/Newtonsoft.Json.dll",
+        "tools/netcoreapp1.0/NuGet.Common.dll",
+        "tools/netcoreapp1.0/NuGet.Configuration.dll",
+        "tools/netcoreapp1.0/NuGet.DependencyResolver.Core.dll",
+        "tools/netcoreapp1.0/NuGet.Frameworks.dll",
+        "tools/netcoreapp1.0/NuGet.LibraryModel.dll",
+        "tools/netcoreapp1.0/NuGet.Packaging.Core.Types.dll",
+        "tools/netcoreapp1.0/NuGet.Packaging.Core.dll",
+        "tools/netcoreapp1.0/NuGet.Packaging.dll",
+        "tools/netcoreapp1.0/NuGet.ProjectModel.dll",
+        "tools/netcoreapp1.0/NuGet.Protocol.Core.Types.dll",
+        "tools/netcoreapp1.0/NuGet.Protocol.Core.v3.dll",
+        "tools/netcoreapp1.0/NuGet.Repositories.dll",
+        "tools/netcoreapp1.0/NuGet.RuntimeModel.dll",
+        "tools/netcoreapp1.0/NuGet.Versioning.dll",
+        "tools/netcoreapp1.0/System.Runtime.Serialization.Primitives.dll"
       ]
     },
     "Microsoft.NETCore.App/2.2.0": {
@@ -777,11 +774,63 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "NuGet.Build.Tasks.Pack/4.0.0-rc-2048": {
+      "sha512": "n+ww0YXKxJKcW65Hy6mVHv/sr9y7HN6++zfN6OnN9InWHkB4CI52N8XyfLhjNv92y01zE4iHWvCDWZF0x5cfZA==",
+      "type": "package",
+      "path": "nuget.build.tasks.pack/4.0.0-rc-2048",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CoreCLR/NuGet.Build.Tasks.Pack.dll",
+        "CoreCLR/NuGet.Client.dll",
+        "CoreCLR/NuGet.Commands.dll",
+        "CoreCLR/NuGet.Common.dll",
+        "CoreCLR/NuGet.Configuration.dll",
+        "CoreCLR/NuGet.ContentModel.dll",
+        "CoreCLR/NuGet.DependencyResolver.Core.dll",
+        "CoreCLR/NuGet.DependencyResolver.dll",
+        "CoreCLR/NuGet.Frameworks.dll",
+        "CoreCLR/NuGet.LibraryModel.dll",
+        "CoreCLR/NuGet.Packaging.Core.Types.dll",
+        "CoreCLR/NuGet.Packaging.Core.dll",
+        "CoreCLR/NuGet.Packaging.dll",
+        "CoreCLR/NuGet.ProjectModel.dll",
+        "CoreCLR/NuGet.Protocol.Core.Types.dll",
+        "CoreCLR/NuGet.Protocol.Core.v3.dll",
+        "CoreCLR/NuGet.Repositories.dll",
+        "CoreCLR/NuGet.RuntimeModel.dll",
+        "CoreCLR/NuGet.Versioning.dll",
+        "Desktop/Newtonsoft.Json.dll",
+        "Desktop/NuGet.Build.Tasks.Pack.dll",
+        "Desktop/NuGet.Client.dll",
+        "Desktop/NuGet.Commands.dll",
+        "Desktop/NuGet.Common.dll",
+        "Desktop/NuGet.Configuration.dll",
+        "Desktop/NuGet.ContentModel.dll",
+        "Desktop/NuGet.DependencyResolver.Core.dll",
+        "Desktop/NuGet.DependencyResolver.dll",
+        "Desktop/NuGet.Frameworks.dll",
+        "Desktop/NuGet.LibraryModel.dll",
+        "Desktop/NuGet.Packaging.Core.Types.dll",
+        "Desktop/NuGet.Packaging.Core.dll",
+        "Desktop/NuGet.Packaging.dll",
+        "Desktop/NuGet.ProjectModel.dll",
+        "Desktop/NuGet.Protocol.Core.Types.dll",
+        "Desktop/NuGet.Protocol.Core.v3.dll",
+        "Desktop/NuGet.Repositories.dll",
+        "Desktop/NuGet.RuntimeModel.dll",
+        "Desktop/NuGet.Versioning.dll",
+        "build/NuGet.Build.Tasks.Pack.targets",
+        "buildCrossTargeting/NuGet.Build.Tasks.Pack.targets",
+        "nuget.build.tasks.pack.4.0.0-rc-2048.nupkg.sha512",
+        "nuget.build.tasks.pack.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "Microsoft.NET.Sdk",
+      "Microsoft.NET.Sdk >= 1.0.0-alpha-20161104-2",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
@@ -834,7 +883,7 @@
         "dependencies": {
           "Microsoft.NET.Sdk": {
             "target": "Package",
-            "version": "(, )"
+            "version": "[1.0.0-alpha-20161104-2, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",

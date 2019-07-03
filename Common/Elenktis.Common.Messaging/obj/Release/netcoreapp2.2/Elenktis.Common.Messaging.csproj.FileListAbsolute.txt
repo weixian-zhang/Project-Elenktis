@@ -1,9 +1,0 @@
-C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Messaging\bin\Release\netcoreapp2.2\Elenktis.Common.Messaging.deps.json
-C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Messaging\bin\Release\netcoreapp2.2\Elenktis.Common.Messaging.dll
-C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Messaging\bin\Release\netcoreapp2.2\Elenktis.Common.Messaging.pdb
-C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Messaging\obj\Release\netcoreapp2.2\Elenktis.Common.Messaging.csprojAssemblyReference.cache
-C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Messaging\obj\Release\netcoreapp2.2\Elenktis.Common.Messaging.csproj.CoreCompileInputs.cache
-C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Messaging\obj\Release\netcoreapp2.2\Elenktis.Common.Messaging.AssemblyInfoInputs.cache
-C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Messaging\obj\Release\netcoreapp2.2\Elenktis.Common.Messaging.AssemblyInfo.cs
-C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Messaging\obj\Release\netcoreapp2.2\Elenktis.Common.Messaging.dll
-C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\CommonLib\Elenktis.Common.Messaging\obj\Release\netcoreapp2.2\Elenktis.Common.Messaging.pdb

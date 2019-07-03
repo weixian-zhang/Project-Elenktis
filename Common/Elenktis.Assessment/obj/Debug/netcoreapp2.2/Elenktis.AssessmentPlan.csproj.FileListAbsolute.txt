@@ -1,0 +1,12 @@
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.AssessmentPlan.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.AssessmentPlan.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.AssessmentPlan.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\bin\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\bin\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\bin\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.csprojAssemblyReference.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.csproj.CoreCompileInputs.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.AssemblyInfoInputs.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.AssemblyInfo.cs
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.pdb

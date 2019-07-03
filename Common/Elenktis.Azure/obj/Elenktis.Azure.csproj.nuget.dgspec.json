@@ -61,7 +61,7 @@
             },
             "Microsoft.NET.Sdk": {
               "target": "Package",
-              "version": "(, )"
+              "version": "[1.0.0-alpha-20161104-2, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -71,7 +71,7 @@
             },
             "Microsoft.Rest.ClientRuntime": {
               "target": "Package",
-              "version": "[3.0.3, )"
+              "version": "[3.0.0, )"
             }
           },
           "imports": [
@@ -135,7 +135,7 @@
             },
             "Microsoft.NET.Sdk": {
               "target": "Package",
-              "version": "(, )"
+              "version": "[1.0.0-alpha-20161104-2, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",

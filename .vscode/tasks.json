@@ -2,56 +2,31 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "clean",
-            "command": "dotnet clean",
+            "label": "DockerBuild-DefaultSvcSpy",
+            "command": "docker build -f Dockerfile.debug ../../ -t acrcentralsvcdev.azurecr.io/defaultsvcspy:defaultsvcspy-v0.30",
             "type": "shell",
-            "problemMatcher": "$msCompile",
+            "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/Informer\\Testy"
+                "cwd": "${workspaceFolder}/Spy/DefaultServiceSpy"
             }
         },
         {
-            "label": "build",
-            "command": "dotnet build",
+            "label": "DeleteDeploymentAKS-DefaultSvcSpy",
+            "command": "kubectl delete deployment deploy-spy-defaultsvc",
             "type": "shell",
-            "dependsOn": "clean",
-            "group": {
-                "kind": "build",
-                "isDefault": true
+            "options": {
+                "cwd": "${workspaceFolder}/Deployment"
             },
-            "problemMatcher": "$msCompile",
-            "options": {
-                "cwd": "${workspaceFolder}/Informer\\Testy"
-            }
+            "problemMatcher": []
         },
         {
-            "label": "clean release",
-            "command": "dotnet clean --configuration Release",
+            "label": "DeployAKS-DefaultSvcSpy",
+            "command": "kubectl apply --validate=false -f defaultsvcspy-deployment.yaml",
             "type": "shell",
-            "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/Informer\\Testy"
-            }
-        },
-        {
-            "label": "publish",
-            "command": "dotnet publish --configuration Release",
-            "type": "shell",
-            "dependsOn": "clean release",
-            "problemMatcher": "$msCompile",
-            "options": {
-                "cwd": "${workspaceFolder}/Informer\\Testy"
-            }
-        },
-        {
-            "type": "func",
-            "dependsOn": "build",
-            "options": {
-                "cwd": "${workspaceFolder}/Informer\\Testy/bin/Debug/netcoreapp2.1"
+                "cwd": "${workspaceFolder}/Deployment"
             },
-            "command": "host start",
-            "isBackground": true,
-            "problemMatcher": "$func-watch"
+            "problemMatcher": []
         }
     ]
 }

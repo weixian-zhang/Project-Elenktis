@@ -1,6 +1,6 @@
+
 namespace Elenktis.Configuration
 {
-
 
     public class ElenktisSecret
     {

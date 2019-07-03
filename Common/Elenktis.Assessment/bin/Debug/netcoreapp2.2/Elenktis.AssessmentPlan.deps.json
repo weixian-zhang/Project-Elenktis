@@ -1,0 +1,57 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.2",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.2": {
+      "Elenktis.AssessmentPlan/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2",
+          "etcdnetv2": "2.0.1"
+        },
+        "runtime": {
+          "Elenktis.AssessmentPlan.dll": {}
+        }
+      },
+      "etcdnetv2/2.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/EtcdNet.dll": {
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/11.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.2.21924"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Elenktis.AssessmentPlan/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "etcdnetv2/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Dk/uaAkU+ewg9ReiVCIEbJPuTy+Lum+7oof+p9yufhyXlerVkirbYBNcZGgXYFle/pNXfH4l9qHPcT7OwlfaGA==",
+      "path": "etcdnetv2/2.0.1",
+      "hashPath": "etcdnetv2.2.0.1.nupkg.sha512"
+    },
+    "Newtonsoft.Json/11.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "path": "newtonsoft.json/11.0.2",
+      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+    }
+  }
+}

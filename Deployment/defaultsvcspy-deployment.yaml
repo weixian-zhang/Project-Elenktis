@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: spy-defaultsvc
-        image: acrcentralsvcdev.azurecr.io/defaultsvcspy:defaultsvcspy-v0.11
+        image: acrcentralsvcdev.azurecr.io/defaultsvcspy:defaultsvcspy-v0.30
         imagePullPolicy: Always
         imagePullSecrets:
         - name: acr-auth
