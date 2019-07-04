@@ -49,10 +49,10 @@ namespace Elenktis.Spy
                //HydrateSecrets();
 
                //InitLogger();
+            //string etcdUrl = Environment.GetEnvironmentVariable("etcdUrl");
 
                var configStore =
-                new Elenktis.Assessment.EtcdAssessmentPlanStore
-                    ("etcdserver.policycontroller-dev.svc.cluster.local", 2379);
+                    new Elenktis.Assessment.EtcdAssessmentPlanStore("etcd-client", 2379);
 
                 await configStore.TestConn();
 

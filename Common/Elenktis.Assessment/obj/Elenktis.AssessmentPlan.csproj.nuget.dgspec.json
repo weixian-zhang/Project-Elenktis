@@ -57,9 +57,9 @@
               "target": "Package",
               "version": "[11.0.2, )"
             },
-            "etcdnetv2": {
+            "etcd.v3": {
               "target": "Package",
-              "version": "[2.0.1, )"
+              "version": "[0.0.1.3, )"
             }
           },
           "imports": [

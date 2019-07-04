@@ -6,6 +6,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2"/>
-    <PackageReference Include="etcdnetv2" Version="2.0.1"/>
+    <PackageReference Include="etcd.v3" Version="0.0.1.3"/>
   </ItemGroup>
 </Project>

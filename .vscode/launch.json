@@ -35,7 +35,7 @@
                     "pipeArgs": [
                         "exec",
                         "-i",
-                        "deploy-spy-defaultsvc-647cf94cff-8xzll",
+                        "deploy-spy-defaultsvc-647cf94cff-xn6wb",
                         "--"
                     ],
                     "quoteArgs": false
