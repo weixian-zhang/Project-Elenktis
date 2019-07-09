@@ -27,6 +27,7 @@ using Serilog.Core;
 using Serilog.Events;
 using System.Diagnostics;
 using Microsoft.Extensions.Configuration;
+using Elenktis.Assessment;
 
 namespace Elenktis.Spy
 {
@@ -51,10 +52,9 @@ namespace Elenktis.Spy
                //InitLogger();
             //string etcdUrl = Environment.GetEnvironmentVariable("etcdUrl");
 
-               var configStore =
-                    new Elenktis.Assessment.EtcdAssessmentPlanStore("etcd-client", 2379);
+            //    var configStore =
+            //         new EtcdPolicyStore("etcd-client", 2379);
 
-                await configStore.TestConn();
 
                //await CheckIfMandatoryServicesExist();
 

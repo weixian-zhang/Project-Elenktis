@@ -1,3 +1,11 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: configmap-defaultsvcspy
+data:
+  # Configuration values can be set as key-value properties
+  etcdUrl: etcd-client:2379
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,7 +20,8 @@ spec:
   template:
     metadata:
       labels:
-        app: spy-defaultsvc
+        app: defaultservicespy
+        type: spy
     spec:
       containers:
       - name: spy-defaultsvc
@@ -20,6 +29,8 @@ spec:
         imagePullPolicy: Always
         imagePullSecrets:
         - name: acr-auth
+        envFrom:
+          - configMapRef: configmap-defaultsvcspy
         volumeMounts:
           - name: secret-clientid
             mountPath: /akv

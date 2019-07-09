@@ -1,8 +1,14 @@
 namespace Elenktis.Assessment
 {
-    ///A marker class
-    public abstract class Policy
+    public class Policy
     {
+        public Policy(AssessmentPlan plan)
+        {
+            _assessmentPlan = plan;
+        }
 
+        private AssessmentPlan _assessmentPlan;
+
+        public AssessmentPlan AssessmentPlan { get; }
     }
 }
