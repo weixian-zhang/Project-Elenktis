@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ETCD.V3;
-using Etcdserverpb;
 using Google.Protobuf;
 using Grpc.Core;
 using Newtonsoft.Json;
-using static Etcdserverpb.Watch;
+using dotnet_etcd;
+using Etcdserverpb;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Elenktis.Assessment
 {
@@ -19,34 +20,32 @@ namespace Elenktis.Assessment
             _hostname = hostname;
             _port = port;
 
-            _etcd = new Client($"{hostname}:{port.ToString()}");
+            _etcd = new EtcdClient(hostname, port); //($"{hostname}:{port.ToString()}");
 
             _keyMapper = keyMapper; 
         }
 
-        public async Task SetPolicy<T>(T policy) where T : Policy
+        public async Task SetPolicyAsync<T>(T policy) where T : Policy
         {
-           IEnumerable<KeyMeasureValue> kmvs = _keyMapper.MapPolicytoConfigKeys(policy);
+           IEnumerable<PolicyKeyMeasureMap> kmvs = _keyMapper.MapPolicytoKeys(policy);
 
            foreach(var kmv in kmvs)
            {
-               await _etcd.PutAsync(kmv.Key, kmv.MeasureValue);
+               await _etcd.PutAsync(kmv.PolicyKey, kmv.MeasureValue);
            }
         }
 
-        public async Task<T> GetPolicy<T>() where T : Policy
+        public async Task<T> GetPolicyAsync<T>() where T : Policy
         {
             T policy = (T)Activator.CreateInstance(typeof(T));
 
-            IEnumerable<KeyMeasureValue> kmvs = _keyMapper.MapPolicytoConfigKeys(policy);
+            IEnumerable<PolicyKeyMeasureMap> kmvs = _keyMapper.MapPolicytoKeys(policy);
 
             var props = policy.GetType().GetProperties();
 
             foreach(var kmv in kmvs)
             {
-                RangeResponse resp = await _etcd.RangeAsync(kmv.Key);
-
-                string policyMeasureValue = resp.Kvs[0].Value.ToStringUtf8();
+                string policyMeasureValue = await _etcd.GetValAsync(kmv.PolicyKey);
 
                  foreach(var prop in props)
                  {
@@ -60,36 +59,34 @@ namespace Elenktis.Assessment
             return policy;
         }
 
-        // public T GetPoliciesByAssessmentPlan<T>(T plan) where T : AssessmentPlan
-        // {
-
-        // }
-
-        // public Task WatchPolicyChange<T>(T policy) where T : Policy
-        // {
-        //     IEnumerable<KeyMeasureValue> kmvs  = _keyMapper.MapPolicytoConfigKeys(policy);
-
-        //     foreach(var kmv in kmvs)
-        //     {
-        //         WatchRequest request = new WatchRequest()
-        //             {
-        //                 CreateRequest = new WatchCreateRequest()
-        //                 {
-        //                     Key = ByteString.CopyFromUtf8(kmv.Key)
-
-        //                 }
-                    
-        //             };
-
-                  
-              
-        //     }
+        public void WatchPolicyChange<TPolicy>
+            (Expression<Func<TPolicy,object>> property, Action<string> onValueChanged)
+                where TPolicy : Policy
+        {
             
-        //}
+            var measureProp = ((MemberExpression)property.Body).Member as PropertyInfo;
+
+           string key = _keyMapper.MapKeyFromMeasureProperty(measureProp);
+
+            WatchRequest request = new WatchRequest()
+                {
+                    CreateRequest = new WatchCreateRequest()
+                    {
+                        Key = ByteString.CopyFromUtf8(key)
+                    }
+                };
+
+            _etcd.Watch(request, (resp) =>{
+
+                    string value = resp.Events[0].Kv.Value.ToStringUtf8();
+
+                    onValueChanged(value);
+            } );
+        }
 
         private string _hostname;
         private int _port;
-        private Client _etcd;
+        private EtcdClient _etcd;
 
         private IPolicyStoreKeyMapper _keyMapper;
     }

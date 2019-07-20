@@ -9,14 +9,5 @@ namespace Elenktis.Assessment.DefaultService
         {
 
         }
-
-        [PolicyMeasure]
-        public bool Assess { get; set; } = true;
-
-        [PolicyMeasure]
-        public bool Remediate { get; set; } = true;
-
-        [PolicyMeasure]
-        public bool Ignore { get; set; } = false;
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 
 namespace Elenktis.Assessment
 {
     public interface IPolicyStoreKeyMapper
     {
-        IEnumerable<KeyMeasureValue> MapPolicytoConfigKeys<T>(T policy) where T : Policy;
+        IEnumerable<PolicyKeyMeasureMap> MapPolicytoKeys<T>(T policy) where T : Policy;
+
+        string MapKeyFromMeasureProperty(PropertyInfo measure);
     }
 }

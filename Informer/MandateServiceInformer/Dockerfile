@@ -13,8 +13,8 @@ RUN dotnet restore Elenktis.Common.Configuration.csproj
 WORKDIR /src/CommonLib/Elenktis.Common.Messaging
 RUN dotnet restore Elenktis.Common.Messaging.csproj
 
-WORKDIR /src/CommonLib/Elenktis.Common.Command
-RUN dotnet restore Elenktis.Common.Command.csproj
+WORKDIR /src/CommonLib/Elenktis.Message
+RUN dotnet restore Elenktis.Message.csproj
 
 COPY Informer/MandateServiceInformer /src/Informer/MandateServiceInformer/
 RUN mkdir -p /home/site/wwwroot

@@ -1,15 +1,16 @@
+using System;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Elenktis.Assessment
 {
     public interface IPolicyStore
     {
-        Task SetPolicy<T>(T policy) where T : Policy;
+        Task SetPolicyAsync<TPolicy>(TPolicy policy) where TPolicy : Policy;
 
-        Task<T> GetPolicy<T>()  where T : Policy;
+        Task<TPolicy> GetPolicyAsync<TPolicy>()  where TPolicy : Policy;
 
-        //Task WatchPolicyChange<T>(T policy) where T : Policy;
-
-        //T GetPoliciesByAssessmentPlan<T>(T plan) where T : AssessmentPlan;
+        void WatchPolicyChange<TPolicy>
+            (Expression<Func<TPolicy,object>> policy, Action<string> onValueChanged)  where TPolicy : Policy;
     }
 }

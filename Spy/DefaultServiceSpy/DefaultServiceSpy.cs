@@ -28,18 +28,19 @@ using Serilog.Events;
 using System.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Elenktis.Assessment;
+using TenantSubscription = Elenktis.Azure.TenantSubscription;
 
 namespace Elenktis.Spy
 {
     public class DefaultServiceSpy
     {
-        public DefaultServiceSpy(ISecretHydrator secretHydrator, IAzure azureManager)
+        public DefaultServiceSpy
+            (ISecretHydrator secretHydrator, IAzure azureManager, IPlanManager planManager)
         {
             _secretHydrator = secretHydrator;
             _azureManager = azureManager;
+            _planManager = planManager;
         }
-
-        
 
         [FunctionName("DefaultServiceSpy")]
         public async Task Run
@@ -47,18 +48,11 @@ namespace Elenktis.Spy
         {
             try
             {
-               //HydrateSecrets();
+               HydrateSecrets();
 
-               //InitLogger();
-            //string etcdUrl = Environment.GetEnvironmentVariable("etcdUrl");
+               InitLogger();
 
-            //    var configStore =
-            //         new EtcdPolicyStore("etcd-client", 2379);
-
-
-               //await CheckIfMandatoryServicesExist();
-
-               log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+               await AssessDefaultServicesAsync();
             }
             catch (Exception ex)
             {
@@ -96,53 +90,64 @@ namespace Elenktis.Spy
 
         private void HydrateSecrets()
         {
-            _secrets = _secretHydrator.Hydrate<ElenktisSecret>();
+            //_secrets = _secretHydrator.Hydrate<ControllerSecret>();
+
+            //_azcred =
+                //new AzSDKCredentials(_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
 
             //testing only, will remove
-            //_secrets = new ServiceInformerSecrets();
-            //_secrets.TenantId = "fc418f16-5c93-437d-b743-05e9e2a04d93";
-            //_secrets.ClientId = "442dcbee-62da-4462-b847-32a8003343f2";
-            //  _secrets.ClientSecret = "A4ATErF:/cbv*-EAr9TdJhMAtpt1Kku2";
+            _secrets = new ControllerSecret();
+            _secrets.TenantId = "fc418f16-5c93-437d-b743-05e9e2a04d93";
+            _secrets.ClientId = "442dcbee-62da-4462-b847-32a8003343f2";
+            _secrets.ClientSecret = "A4ATErF:/cbv*-EAr9TdJhMAtpt1Kku2";
+            _secrets.EtcdHost = "http://127.0.0.1";
+            _secrets.EtcdPort = 2379;
         }
 
-        // private async Task CheckIfMandatoryServicesExist()
-        // {
-        //     var subscriptions = await new SubscriptionManager(_sdkCred).GetAllSubscriptionsAsync();
+        private async Task AssessDefaultServicesAsync()
+        {
+            var subscriptions =
+                await _azureManager.SubscriptionManager.GetAllSubscriptionsAsync();
 
-        //     foreach (var sub in subscriptions)
-        //     {
-        //         await CheckASCStandardTier(sub);
+            foreach (var sub in subscriptions)
+            {
+                await CheckASCStandardTier(sub);
 
-        //         await CheckASCAutoProvisioningEnabled(sub);
+                //await CheckASCAutoProvisioningEnabled(sub);
 
-        //         await CheckIaaSAntimalwareInstalledOnVM(sub);
-        //     }
-        // }
+                //await CheckIaaSAntimalwareInstalledOnVM(sub);
+            }
+        }
 
-        // private async Task CheckASCStandardTier(TenantSubscription subscription)
-        // {
-        //     ISecurityCenterClient ascClient = new SecurityCenterClient(_sdkCred);
-        //     ascClient.SubscriptionId = subscription.SubscriptionId;
+        private async Task CheckASCStandardTier(TenantSubscription subscription)
+        {
+            if(!_planManager.GetDefaultServicePlan().ASCUpgradeStandardTierPolicy.ToAssess)
+                return;
 
-        //     var pricings = await ascClient.Pricings.ListAsync();
+            ISecurityCenterClient ascClient = new SecurityCenterClient(_azcred);
+            ascClient.SubscriptionId = subscription.SubscriptionId;
 
-        //     var ascPricingCmd = new UpgradeASCPricingsStandardCommand();
-        //     ascPricingCmd.SubscriptionId = subscription.SubscriptionId;
+            var pricings = await ascClient.Pricings.ListAsync();
 
-        //     foreach (var p in pricings.Value)
-        //     {
-        //         if (p.Name == "VirtualMachines" && p.PricingTier == "Free")
-        //             ascPricingCmd.IsVMASCPricingFree = true;
-        //         else if (p.Name == "SqlServers" && p.PricingTier == "Free")
-        //             ascPricingCmd.IsSQLASCPricingFree = true;
-        //         else if (p.Name == "AppServices" && p.PricingTier == "Free")
-        //             ascPricingCmd.IsAppServiceASCPricingFree = true;
-        //         else if (p.Name == "StorageAccounts" && p.PricingTier == "Free")
-        //             ascPricingCmd.IsStorageASCPricingFree = true;
-        //     }
+            
+            //prepare command to send
+            // var ascPricingCmd = new UpgradeASCPricingsStandardCommand();
+            // ascPricingCmd.SubscriptionId = subscription.SubscriptionId;
 
-        //     //send command to upgrade
-        // }
+            // foreach (var p in pricings.Value)
+            // {
+            //     if (p.Name == "VirtualMachines" && p.PricingTier == "Free")
+            //         ascPricingCmd.IsVMASCPricingFree = true;
+            //     else if (p.Name == "SqlServers" && p.PricingTier == "Free")
+            //         ascPricingCmd.IsSQLASCPricingFree = true;
+            //     else if (p.Name == "AppServices" && p.PricingTier == "Free")
+            //         ascPricingCmd.IsAppServiceASCPricingFree = true;
+            //     else if (p.Name == "StorageAccounts" && p.PricingTier == "Free")
+            //         ascPricingCmd.IsStorageASCPricingFree = true;
+            // }
+
+            //send command to upgrade
+        }
 
         // private async Task CheckASCAutoProvisioningEnabled(TenantSubscription subscription)
         // {
@@ -184,8 +189,10 @@ namespace Elenktis.Spy
 
         private Logger _appLogger = null;
         private Logger _activityLogger = null;
+        private AzSDKCredentials _azcred = null;
         private ISecretHydrator _secretHydrator = null;
         private IAzure _azureManager = null;
-        private static ElenktisSecret _secrets;
+        private ControllerSecret _secrets;
+        private IPlanManager _planManager;
     }
 }

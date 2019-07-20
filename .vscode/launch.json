@@ -21,6 +21,14 @@
             "processName": "func",
 
         },
+        {
+            "name": "DefaultSvcSpy-Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/Spy/DefaultServiceSpy",
+            "program": "func start"
+
+        },
         //https://github.com/OmniSharp/omnisharp-vscode/issues/2488
         {
             "name": "DefaultSvcSpy-AKS",

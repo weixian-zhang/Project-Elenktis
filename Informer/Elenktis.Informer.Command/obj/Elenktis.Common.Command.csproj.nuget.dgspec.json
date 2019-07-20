@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Weixian\\Projects\\Src\\POCs\\Project Elenktís\\elenktis\\Informer\\Elenktis.Informer.Command\\Elenktis.Common.Command.csproj": {}
+    "C:\\Weixian\\Projects\\Src\\POCs\\Project Elenktís\\elenktis\\Informer\\Elenktis.Informer.Command\\Elenktis.Message.csproj": {}
   },
   "projects": {
-    "C:\\Weixian\\Projects\\Src\\POCs\\Project Elenktís\\elenktis\\Informer\\Elenktis.Informer.Command\\Elenktis.Common.Command.csproj": {
+    "C:\\Weixian\\Projects\\Src\\POCs\\Project Elenktís\\elenktis\\Informer\\Elenktis.Informer.Command\\Elenktis.Message.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Weixian\\Projects\\Src\\POCs\\Project Elenktís\\elenktis\\Informer\\Elenktis.Informer.Command\\Elenktis.Common.Command.csproj",
-        "projectName": "Elenktis.Common.Command",
-        "projectPath": "C:\\Weixian\\Projects\\Src\\POCs\\Project Elenktís\\elenktis\\Informer\\Elenktis.Informer.Command\\Elenktis.Common.Command.csproj",
+        "projectUniqueName": "C:\\Weixian\\Projects\\Src\\POCs\\Project Elenktís\\elenktis\\Informer\\Elenktis.Informer.Command\\Elenktis.Message.csproj",
+        "projectName": "Elenktis.Message",
+        "projectPath": "C:\\Weixian\\Projects\\Src\\POCs\\Project Elenktís\\elenktis\\Informer\\Elenktis.Informer.Command\\Elenktis.Message.csproj",
         "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
         "outputPath": "C:\\Weixian\\Projects\\Src\\POCs\\Project Elenktís\\elenktis\\Informer\\Elenktis.Informer.Command\\obj\\",
         "projectStyle": "PackageReference",

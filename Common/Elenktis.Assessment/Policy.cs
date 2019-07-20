@@ -10,5 +10,11 @@ namespace Elenktis.Assessment
         private AssessmentPlan _assessmentPlan;
 
         public AssessmentPlan AssessmentPlan { get; }
+
+        [PolicyMeasure]
+        public bool ToAssess { get; set; } = true;
+
+        [PolicyMeasure()]
+        public bool ToRemediate { get; set; } = true;
     }
 }

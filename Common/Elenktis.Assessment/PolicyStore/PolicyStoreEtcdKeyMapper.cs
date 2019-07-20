@@ -7,32 +7,52 @@ namespace Elenktis.Assessment
 {
     public class PolicyStoreEtcdKeyMapper : IPolicyStoreKeyMapper
     {
-        public IEnumerable<KeyMeasureValue> MapPolicytoConfigKeys<T>(T policy) where T : Policy
+        public IEnumerable<PolicyKeyMeasureMap> MapPolicytoKeys<T>(T policy) where T : Policy
         {
-           string assessmentPlanName = GetAssessmentPlanNameFromAttribute(policy);
+           
            string subscriptionId = GetSubscriptionId(policy);
+           string assessmentPlanName = GetAssessmentPlanNameFromAttribute(policy);
            string policyName = GetPolicyName(policy);
            var measures = GetPolicyMeasures(policy);
 
-            var keyMeasureValues = new List<KeyMeasureValue>();
+            var keyMeasureValues = new List<PolicyKeyMeasureMap>();
 
             foreach(var tuple in measures)
             {
                 string measureName = tuple.Item1;
 
-                string key = $"/plan/{subscriptionId}/{assessmentPlanName}/{policyName}/{measureName}";
+                string key =
+                    GenerateEtcdKey(subscriptionId, assessmentPlanName, policyName, measureName);
                 
                 string value = tuple.Item2;
 
-                keyMeasureValues.Add(new KeyMeasureValue()
+                keyMeasureValues.Add(new PolicyKeyMeasureMap()
                 {
-                    Key = key,
+                    PolicyKey = key,
                     MeasureName = measureName,
                     MeasureValue = value
                 });
             }
 
             return keyMeasureValues;
+        }
+
+        public string MapKeyFromMeasureProperty(PropertyInfo measure)
+        {
+            Type policyType = measure.ReflectedType;
+
+           string subscriptionId = GetSubscriptionId(policyType);
+           string assessmentPlanName = GetAssessmentPlanNameFromAttribute(policyType);
+           string policyName = GetPolicyName(policyType);
+           var measureName = measure.Name;
+
+           return GenerateEtcdKey(subscriptionId, assessmentPlanName, policyName, measureName);
+        }
+
+        private string GenerateEtcdKey
+            (string subscriptionId, string assessmentPlanName, string policyName, string measureName)
+        {
+            return $"/plan/{subscriptionId}/{assessmentPlanName}/{policyName}/{measureName}";
         }
 
         private string GetAssessmentPlanNameFromAttribute<T>(T policy)

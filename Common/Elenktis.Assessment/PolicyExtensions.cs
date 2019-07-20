@@ -12,5 +12,15 @@ namespace Elenktis.Assessment
             else
                 return false;
         }
+
+        public static bool ToBool(this string value)
+        {
+            if(value.ToLowerInvariant() == "true")
+                return true;
+            else if(value.ToLowerInvariant() == "false")
+                return false;
+            
+            return true;
+        }
     }
 }

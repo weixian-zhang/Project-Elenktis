@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Elenktis.Azure;
 using Elenktis.Configuration;
+using Elenktis.Assessment;
 
 [assembly: FunctionsStartup(typeof(Elenktis.Spy.Startup))]
 namespace Elenktis.Spy {
@@ -12,8 +13,17 @@ namespace Elenktis.Spy {
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            // ISecretHydrator _secretHydrator = new AKVSecretHydrator();
+
+            // builder.Services.AddSingleton<ISecretHydrator>((sp) => {
+            //     return _secretHydrator;
+            // } );
+
             builder.Services.AddTransient<ISecretHydrator, AKVSecretHydrator>();
             builder.Services.AddTransient<IAzure, AzureManager>();
+            builder.Services.AddTransient<IPlanManager, PlanManager>();
+
+            
         }
     }
 

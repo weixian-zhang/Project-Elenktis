@@ -27,7 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CommonLib\Elenktis.Common.AzResourceManager\Elenktis.Common.AzResourceManager.csproj" />
-    <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Command\Elenktis.Common.Command.csproj" />
+    <ProjectReference Include="..\..\CommonLib\Elenktis.Message\Elenktis.Message.csproj" />
     <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Configuration\Elenktis.Common.Configuration.csproj" />
     <ProjectReference Include="..\..\CommonLib\Elenktis.Common.Messaging\Elenktis.Common.Messaging.csproj" />
   </ItemGroup>

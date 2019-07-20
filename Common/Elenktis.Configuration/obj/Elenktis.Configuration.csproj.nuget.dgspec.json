@@ -47,14 +47,6 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
-            "Microsoft.Azure.KeyVault": {
-              "target": "Package",
-              "version": "[3.0.3, )"
-            },
-            "Microsoft.IdentityModel.Clients.ActiveDirectory": {
-              "target": "Package",
-              "version": "[4.5.1, )"
-            },
             "Microsoft.NET.Sdk": {
               "target": "Package",
               "version": "[1.0.0-alpha-20161104-2, )"
@@ -64,10 +56,6 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
-            },
-            "Serilog.Sinks.MongoDB": {
-              "target": "Package",
-              "version": "[4.0.0, )"
             }
           },
           "imports": [
