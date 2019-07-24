@@ -19,14 +19,12 @@
             "type": "coreclr",
             "request": "attach",
             "processName": "func",
-
-        },
-        {
-            "name": "DefaultSvcSpy-Launch",
-            "type": "coreclr",
-            "request": "launch",
-            "cwd": "${workspaceFolder}/Spy/DefaultServiceSpy",
-            "program": "func start"
+            "justMyCode": false,
+            "requireExactSource": false,
+            "logging": {
+                "engineLogging": true,
+                "exceptions": true
+            }
 
         },
         //https://github.com/OmniSharp/omnisharp-vscode/issues/2488

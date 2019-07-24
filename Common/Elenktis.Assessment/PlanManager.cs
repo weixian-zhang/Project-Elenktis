@@ -10,8 +10,10 @@ namespace Elenktis.Assessment
 {
     public sealed class PlanManager : IPlanManager
     {
-        public PlanManager() 
+        public PlanManager(TenantSubscription subscription) 
         { 
+            _subscription = subscription;
+            
             SetupDependencies();
             
             InitializeDefaultServicePlansAsync().GetAwaiter().GetResult();
@@ -19,11 +21,11 @@ namespace Elenktis.Assessment
 
         private async Task InitializeDefaultServicePlansAsync()
         {
-            _defaultServicePlan = new DefaultServiceAssessmentPlan();
+            _defaultServicePlan = new DefaultServiceAssessmentPlan(_subscription);
             
             //init ASCAutoRegisterVMEnabledPolicy
             _defaultServicePlan.ASCAutoRegisterVMEnabledPolicy = 
-                await _policyStore.GetPolicyAsync<ASCAutoRegisterVMEnabledPolicy>();
+                await _policyStore.GetPolicyAsync<ASCAutoRegisterVMEnabledPolicy>(_defaultServicePlan);
             
             _policyStore.
                 WatchPolicyChange<ASCAutoRegisterVMEnabledPolicy>((p) => p.ToAssess,
@@ -41,7 +43,7 @@ namespace Elenktis.Assessment
 
             // ASCUpgradeStandardTierPolicy
             _defaultServicePlan.ASCUpgradeStandardTierPolicy =
-                await _policyStore.GetPolicyAsync<ASCUpgradeStandardTierPolicy>();
+                await _policyStore.GetPolicyAsync<ASCUpgradeStandardTierPolicy>(_defaultServicePlan);
 
             _policyStore.WatchPolicyChange<ASCUpgradeStandardTierPolicy>((p) => p.ToAssess,
                 (changedValue => {
@@ -55,7 +57,7 @@ namespace Elenktis.Assessment
 
             // AssociateASCToDefaultLAWorkspacePolicy
             _defaultServicePlan.AssociateASCToDefaultLAWorkspacePolicy =
-                await _policyStore.GetPolicyAsync<AssociateASCToDefaultLAWorkspacePolicy>();
+                await _policyStore.GetPolicyAsync<AssociateASCToDefaultLAWorkspacePolicy>(_defaultServicePlan);
 
             _policyStore.WatchPolicyChange<AssociateASCToDefaultLAWorkspacePolicy>((p) => p.ToAssess,
                 (changedValue => {
@@ -69,7 +71,7 @@ namespace Elenktis.Assessment
 
             // CreateDefaultLogAnalyticsWorkspacePolicy
             _defaultServicePlan.CreateDefaultLogAnalyticsWorkspacePolicy =
-                await _policyStore.GetPolicyAsync<CreateDefaultLogAnalyticsWorkspacePolicy>();
+                await _policyStore.GetPolicyAsync<CreateDefaultLogAnalyticsWorkspacePolicy>(_defaultServicePlan);
 
             _policyStore.WatchPolicyChange<CreateDefaultLogAnalyticsWorkspacePolicy>((p) => p.ToAssess,
                 (changedValue => {
@@ -105,16 +107,23 @@ namespace Elenktis.Assessment
         private void SetupDependencies()
         {
             ISecretHydrator secretHydrator = new AKVSecretHydrator();
-            ControllerSecret secrets = secretHydrator.Hydrate<ControllerSecret>();
+            //ControllerSecret secrets = secretHydrator.Hydrate<ControllerSecret>();
+
+            var secrets = new ControllerSecret();
+            secrets.TenantId = "fc418f16-5c93-437d-b743-05e9e2a04d93";
+            secrets.ClientId = "442dcbee-62da-4462-b847-32a8003343f2";
+            secrets.ClientSecret = "A4ATErF:/cbv*-EAr9TdJhMAtpt1Kku2";
+            secrets.EtcdHost = "http://127.0.0.1";
+            secrets.EtcdPort = 2379;
 
             var svcCollection = new ServiceCollection();
 
-            svcCollection.AddTransient<IPolicyStoreKeyMapper, PolicyStoreEtcdKeyMapper>();
+            svcCollection.AddTransient<IPolicyStoreKeyMapper, EtcdKeyMapper>();
         
             svcCollection.AddTransient<IPolicyStore>((sp) => 
             {
                 return new EtcdPolicyStore
-                    (secrets.EtcdHost, secrets.EtcdPort, new PolicyStoreEtcdKeyMapper());
+                    (secrets.EtcdHost, secrets.EtcdPort, new EtcdKeyMapper());
             });
 
             ServiceProvider svcProvider = svcCollection.BuildServiceProvider();
@@ -122,6 +131,7 @@ namespace Elenktis.Assessment
             _policyStore = svcProvider.GetService<IPolicyStore>();
         }
 
+        private TenantSubscription _subscription;
         private ControllerSecret  _secrets;
         private IPolicyStore _policyStore;
         private DefaultServiceAssessmentPlan _defaultServicePlan;

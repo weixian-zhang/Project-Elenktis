@@ -1,1 +1,0 @@
-﻿DebugAdapterHost.Launch /LaunchJson:"C:\Weixian\Projects\Src\POCs\Project Elenktís\elenktis\Informer\MandateServiceInformer\launch.json" /EngineGuid:541B8A8A-6081-4506-9F0A-1CE771DEBC04

@@ -841,9 +841,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\Elenktis.Message.csproj",
-      "projectName": "Elenktis.Message",
-      "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\Elenktis.Message.csproj",
+      "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\Elenktis.Command.csproj",
+      "projectName": "Elenktis.Command",
+      "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\Elenktis.Command.csproj",
       "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
       "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\obj\\",
       "projectStyle": "PackageReference",

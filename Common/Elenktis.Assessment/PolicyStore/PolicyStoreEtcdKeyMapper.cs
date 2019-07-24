@@ -5,11 +5,10 @@ using System.Reflection;
 
 namespace Elenktis.Assessment
 {
-    public class PolicyStoreEtcdKeyMapper : IPolicyStoreKeyMapper
+    public class EtcdKeyMapper : IPolicyStoreKeyMapper
     {
         public IEnumerable<PolicyKeyMeasureMap> MapPolicytoKeys<T>(T policy) where T : Policy
         {
-           
            string subscriptionId = GetSubscriptionId(policy);
            string assessmentPlanName = GetAssessmentPlanNameFromAttribute(policy);
            string policyName = GetPolicyName(policy);

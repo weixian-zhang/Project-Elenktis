@@ -35,9 +35,9 @@ namespace Elenktis.Assessment
            }
         }
 
-        public async Task<T> GetPolicyAsync<T>() where T : Policy
+        public async Task<T> GetPolicyAsync<T>(AssessmentPlan plan) where T : Policy
         {
-            T policy = (T)Activator.CreateInstance(typeof(T));
+            T policy = (T)Activator.CreateInstance(typeof(T), plan);
 
             IEnumerable<PolicyKeyMeasureMap> kmvs = _keyMapper.MapPolicytoKeys(policy);
 

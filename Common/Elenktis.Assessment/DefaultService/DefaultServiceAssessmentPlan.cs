@@ -4,6 +4,8 @@ namespace Elenktis.Assessment.DefaultService
 {
     public class DefaultServiceAssessmentPlan : AssessmentPlan
     {
+        public DefaultServiceAssessmentPlan(TenantSubscription subscription) : base(subscription) {}
+        
         public CreateDefaultLogAnalyticsWorkspacePolicy
             CreateDefaultLogAnalyticsWorkspacePolicy { get; set; }
 

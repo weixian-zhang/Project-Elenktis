@@ -8,7 +8,7 @@ namespace Elenktis.Assessment
     {
         Task SetPolicyAsync<TPolicy>(TPolicy policy) where TPolicy : Policy;
 
-        Task<TPolicy> GetPolicyAsync<TPolicy>()  where TPolicy : Policy;
+        Task<TPolicy> GetPolicyAsync<TPolicy>(AssessmentPlan plan)  where TPolicy : Policy;
 
         void WatchPolicyChange<TPolicy>
             (Expression<Func<TPolicy,object>> policy, Action<string> onValueChanged)  where TPolicy : Policy;

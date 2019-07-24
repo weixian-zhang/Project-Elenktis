@@ -1,8 +1,14 @@
 namespace Elenktis.Assessment
 {
-    public abstract class AssessmentPlan 
+    public class AssessmentPlan 
     {
-        public TenantSubscription TenantSubscription { get; set; }
+        public AssessmentPlan(TenantSubscription subscription)
+        {
+            _subscription = subscription;
+        }
+
+        private TenantSubscription _subscription;
+        public TenantSubscription TenantSubscription { get {return _subscription; }  }
 
         
     }
