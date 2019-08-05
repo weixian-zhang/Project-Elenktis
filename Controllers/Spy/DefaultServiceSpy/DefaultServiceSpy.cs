@@ -29,13 +29,14 @@ using System.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Elenktis.Assessment;
 using TenantSubscription = Elenktis.Azure.TenantSubscription;
+using Elenktis.Message.DefaultServices;
 
 namespace Elenktis.Spy
 {
     public class DefaultServiceSpy
     {
         public DefaultServiceSpy
-            (IAzure azureManager, IPlanManager planManager)
+            (ISecretHydrator secretHydrator, IAzure azureManager, IPlanManager planManager)
         {
             //_secretHydrator = secretHydrator;
             _azureManager = azureManager;
@@ -90,18 +91,7 @@ namespace Elenktis.Spy
 
         private void HydrateSecrets()
         {
-            //_secrets = _secretHydrator.Hydrate<ControllerSecret>();
-
-            //_azcred =
-                //new AzSDKCredentials(_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
-
-            //testing only, will remove
-            _secrets = new ControllerSecret();
-            _secrets.TenantId = "fc418f16-5c93-437d-b743-05e9e2a04d93";
-            _secrets.ClientId = "442dcbee-62da-4462-b847-32a8003343f2";
-            _secrets.ClientSecret = "A4ATErF:/cbv*-EAr9TdJhMAtpt1Kku2";
-            _secrets.EtcdHost = "http://127.0.0.1";
-            _secrets.EtcdPort = 2379;
+            _secrets = _secretHydrator.Hydrate<ControllerSecret>();
         }
 
         private async Task AssessDefaultServicesAsync()
@@ -111,11 +101,6 @@ namespace Elenktis.Spy
 
             foreach (var sub in subscriptions)
             {
-                _planManager = new PlanManager(new Assessment.TenantSubscription(){
-                    SubscriptionId = sub.SubscriptionId,
-                    SubscriptionName = sub.DisplayName
-                });
-
                 await CheckASCStandardTier(sub);
 
                 //await CheckASCAutoProvisioningEnabled(sub);
@@ -126,8 +111,8 @@ namespace Elenktis.Spy
 
         private async Task CheckASCStandardTier(TenantSubscription subscription)
         {
-            if(!_planManager.GetDefaultServicePlan().ASCUpgradeStandardTierPolicy.ToAssess)
-                return;
+            if(! await ToAssessASCUpgradeStandardTier(subscription.SubscriptionId))
+            return;
 
             ISecurityCenterClient ascClient = new SecurityCenterClient(_azcred);
             ascClient.SubscriptionId = subscription.SubscriptionId;
@@ -136,20 +121,20 @@ namespace Elenktis.Spy
 
             
             //prepare command to send
-            // var ascPricingCmd = new UpgradeASCPricingsStandardCommand();
-            // ascPricingCmd.SubscriptionId = subscription.SubscriptionId;
+            var ascPricingCmd = new UpgradeASCPricingsStandardCommand();
+            ascPricingCmd.SubscriptionId = subscription.SubscriptionId;
 
-            // foreach (var p in pricings.Value)
-            // {
-            //     if (p.Name == "VirtualMachines" && p.PricingTier == "Free")
-            //         ascPricingCmd.IsVMASCPricingFree = true;
-            //     else if (p.Name == "SqlServers" && p.PricingTier == "Free")
-            //         ascPricingCmd.IsSQLASCPricingFree = true;
-            //     else if (p.Name == "AppServices" && p.PricingTier == "Free")
-            //         ascPricingCmd.IsAppServiceASCPricingFree = true;
-            //     else if (p.Name == "StorageAccounts" && p.PricingTier == "Free")
-            //         ascPricingCmd.IsStorageASCPricingFree = true;
-            // }
+            foreach (var p in pricings.Value)
+            {
+                if (p.Name == "VirtualMachines" && p.PricingTier == "Free")
+                    ascPricingCmd.IsVMASCPricingFree = true;
+                else if (p.Name == "SqlServers" && p.PricingTier == "Free")
+                    ascPricingCmd.IsSQLASCPricingFree = true;
+                else if (p.Name == "AppServices" && p.PricingTier == "Free")
+                    ascPricingCmd.IsAppServiceASCPricingFree = true;
+                else if (p.Name == "StorageAccounts" && p.PricingTier == "Free")
+                    ascPricingCmd.IsStorageASCPricingFree = true;
+            }
 
             //send command to upgrade
         }
@@ -191,6 +176,14 @@ namespace Elenktis.Spy
         //         }
         //     }
         // }
+
+        private async Task<bool> ToAssessASCUpgradeStandardTier(string subscriptionId)
+        {
+            var dsplan =
+                await _planManager.GetDefaultServicePlansAsync(subscriptionId);
+
+            return dsplan.ASCUpgradeStandardTierPolicy.ToAssess;
+        }
 
         private Logger _appLogger = null;
         private Logger _activityLogger = null;

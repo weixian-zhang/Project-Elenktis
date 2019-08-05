@@ -5,8 +5,12 @@ namespace Elenktis.Assessment
 {
     public interface IPolicyStoreKeyMapper
     {
-        IEnumerable<PolicyKeyMeasureMap> MapPolicytoKeys<T>(T policy) where T : Policy;
+        IEnumerable<PolicyKeyMeasureMap> GetKeyMeasureMap<T>
+            (string subscriptionId, T policy) where T : Policy;
 
-        string MapKeyFromMeasureProperty(PropertyInfo measure);
+        string CreatePolicyStoreKey
+            (string subscriptionId, string assessmentPlanName, string policyName, string measureName);
+
+        //string MapKeyFromMeasureProperty(PropertyInfo measure);
     }
 }

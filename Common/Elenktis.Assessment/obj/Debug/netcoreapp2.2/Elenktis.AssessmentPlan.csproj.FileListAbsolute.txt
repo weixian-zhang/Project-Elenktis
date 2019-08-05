@@ -1,6 +1,9 @@
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.AssessmentPlan.deps.json
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.AssessmentPlan.dll
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.AssessmentPlan.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Controllers\Elenktis.Recce\bin\output\Elenktis.AssessmentPlan.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Controllers\Elenktis.Recce\bin\output\Elenktis.AssessmentPlan.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Controllers\Elenktis.Recce\bin\output\Elenktis.AssessmentPlan.pdb
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\bin\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.deps.json
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\bin\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.dll
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\bin\Debug\netcoreapp2.2\Elenktis.AssessmentPlan.pdb

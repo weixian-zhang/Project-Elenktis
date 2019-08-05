@@ -13,13 +13,9 @@ namespace Elenktis.Spy {
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            //builder.Services.AddTransient<ISecretHydrator, AKVSecretHydrator>();
+            builder.Services.AddTransient<ISecretHydrator, AKVSecretHydrator>();
             builder.Services.AddTransient<IAzure, AzureManager>();
-            // builder.Services.AddTransient<IPlanManager>(sp => {
-            //     return new PlanManager()
-            // });
-
-            
+            builder.Services.AddTransient<IPlanManager, PlanManager>();  
         }
     }
 

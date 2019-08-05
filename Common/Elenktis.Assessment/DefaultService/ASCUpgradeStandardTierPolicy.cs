@@ -5,7 +5,7 @@ namespace Elenktis.Assessment.DefaultService
     [PolicyAssessmentPlan("DefaultService")]
     public class ASCUpgradeStandardTierPolicy : Policy
     {
-        public ASCUpgradeStandardTierPolicy(DefaultServiceAssessmentPlan plan) : base(plan)
+        public ASCUpgradeStandardTierPolicy(DefaultServicePlan plan) : base(plan)
         {
 
         }

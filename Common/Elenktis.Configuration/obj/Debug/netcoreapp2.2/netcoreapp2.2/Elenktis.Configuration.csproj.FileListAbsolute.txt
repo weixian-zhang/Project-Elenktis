@@ -1,6 +1,9 @@
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Configuration.deps.json
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Configuration.dll
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Configuration.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Controllers\Elenktis.Recce\bin\output\Elenktis.Configuration.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Controllers\Elenktis.Recce\bin\output\Elenktis.Configuration.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Controllers\Elenktis.Recce\bin\output\Elenktis.Configuration.pdb
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Configuration\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Configuration.deps.json
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Configuration\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Configuration.dll
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Configuration\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Configuration.pdb

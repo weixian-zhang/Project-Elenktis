@@ -5,8 +5,7 @@ namespace Elenktis.Assessment.DefaultService
     [PolicyAssessmentPlan("DefaultService")]
     public class CreateDefaultLogAnalyticsWorkspacePolicy : Policy
     {
-        public CreateDefaultLogAnalyticsWorkspacePolicy
-            (DefaultServiceAssessmentPlan plan) : base(plan)
+        public CreateDefaultLogAnalyticsWorkspacePolicy(DefaultServicePlan plan) : base(plan)
         {
 
         }

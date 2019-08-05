@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "restore": {
+    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\Elenktis.Message.csproj": {}
+  },
+  "projects": {
+    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\Elenktis.Message.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\Elenktis.Message.csproj",
+        "projectName": "Elenktis.Message",
+        "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\Elenktis.Message.csproj",
+        "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
+        "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Message\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\weixzha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NET.Sdk": {
+              "target": "Package",
+              "version": "[1.0.0-alpha-20161104-2, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

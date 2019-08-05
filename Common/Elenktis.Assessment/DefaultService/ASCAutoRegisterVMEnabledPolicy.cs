@@ -5,7 +5,7 @@ namespace Elenktis.Assessment.DefaultService
     [PolicyAssessmentPlan("DefaultService")]
     public class ASCAutoRegisterVMEnabledPolicy : Policy
     {
-        public ASCAutoRegisterVMEnabledPolicy(DefaultServiceAssessmentPlan plan) : base(plan)
+        public ASCAutoRegisterVMEnabledPolicy(DefaultServicePlan plan) : base(plan)
         {
 
         }

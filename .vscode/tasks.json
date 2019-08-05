@@ -28,6 +28,32 @@
                 "cwd": "${workspaceFolder}/Deployment"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Build Common-Assessment",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Common/Elenktis.Assessment"
+            }
+        },
+        {
+            "label": "Build Spy-DefaultSvcSpy",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controllers/Spy/DefaultServiceSpy"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Recce",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controllers/Elenktis.Recce"
+            },
+            "problemMatcher": []
         }
     ]
 }

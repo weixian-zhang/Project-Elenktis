@@ -2,8 +2,8 @@ using System;
 
 namespace Elenktis.Assessment.LogEnabler
 {
-    public class LogEnablerAssessmentPlan : AssessmentPlan
+    public class LogEnablerPlan : AssessmentPlan
     {
-         public LogEnablerAssessmentPlan(TenantSubscription subscription) : base(subscription) {}
+         public LogEnablerPlan(string subscriptionId) : base(subscriptionId) {}
     }
 }

@@ -10,63 +10,84 @@ using Etcdserverpb;
 using System.Linq.Expressions;
 using System.Reflection;
 
+using Elenktis.Configuration;
+
 namespace Elenktis.Assessment
 {
     public class EtcdPolicyStore : IPolicyStore
     {
         public EtcdPolicyStore
-            (string hostname, int port, IPolicyStoreKeyMapper keyMapper)
+            (PolicyStoreConnInfo storeConnInfo, IPolicyStoreKeyMapper keyMapper)
         {
-            _hostname = hostname;
-            _port = port;
-
-            _etcd = new EtcdClient(hostname, port); //($"{hostname}:{port.ToString()}");
-
-            _keyMapper = keyMapper; 
+            _keyMapper = keyMapper;
+            
+             _etcd = new EtcdClient(storeConnInfo.Hostname, storeConnInfo.Port);
         }
 
-        public async Task SetPolicyAsync<T>(T policy) where T : Policy
+        public async Task SetPolicyAsync<TAssessmentPlan>
+            (string subscriptionId, 
+             Expression<Action<Policy>> measure, object value) where TAssessmentPlan : AssessmentPlan
         {
-           IEnumerable<PolicyKeyMeasureMap> kmvs = _keyMapper.MapPolicytoKeys(policy);
+            string assessmentPlanName = typeof(TAssessmentPlan).Name;
 
-           foreach(var kmv in kmvs)
-           {
-               await _etcd.PutAsync(kmv.PolicyKey, kmv.MeasureValue);
-           }
+            var policyType = ((ParameterExpression)measure.Parameters[0]).Type;
+            string policyName = policyType.Name;
+
+            var measureProperty =
+                ((MemberExpression)measure.Body).Member as PropertyInfo;
+            
+            string measureName = measureProperty.Name;
+            
+            string etcKey = _keyMapper.CreatePolicyStoreKey(subscriptionId, assessmentPlanName,
+                policyName, measureName);
+
+            await _etcd.PutAsync(etcKey, value.ToString());
         }
 
-        public async Task<T> GetPolicyAsync<T>(AssessmentPlan plan) where T : Policy
+        public async Task<TPolicy> GetPolicyAsync<TPolicy,TAssessmentPlan>
+            (string subscriptionId) where TPolicy : Policy where TAssessmentPlan : AssessmentPlan
         {
-            T policy = (T)Activator.CreateInstance(typeof(T), plan);
+            TAssessmentPlan plan = (TAssessmentPlan)Activator.CreateInstance(typeof(TAssessmentPlan));
 
-            IEnumerable<PolicyKeyMeasureMap> kmvs = _keyMapper.MapPolicytoKeys(policy);
+            TPolicy policy = (TPolicy)Activator.CreateInstance(typeof(TPolicy), plan);
+
+            IEnumerable<PolicyKeyMeasureMap> kmvs =
+                _keyMapper.GetKeyMeasureMap(subscriptionId, policy);
 
             var props = policy.GetType().GetProperties();
 
             foreach(var kmv in kmvs)
             {
-                string policyMeasureValue = await _etcd.GetValAsync(kmv.PolicyKey);
+                string measureValue = await _etcd.GetValAsync(kmv.PolicyKey);
 
                  foreach(var prop in props)
                  {
+                     //e.g if(propertyName == ToAssess)
                      if(prop.IsPolicyMeasure() && prop.Name == kmv.MeasureName)
-                     {
-                         prop.SetValue(policy, policyMeasureValue);
-                     }
+                         prop.SetValue(policy, measureValue);
+
                  }
             }
 
             return policy;
         }
 
-        public void WatchPolicyChange<TPolicy>
-            (Expression<Func<TPolicy,object>> property, Action<string> onValueChanged)
+        public void WatchPolicyChange<TPolicy,TAssessmentPlan>
+            (string subscriptionId,
+                Expression<Func<Policy, object>> measure,
+                Action<string> onPolicyChanged)
                 where TPolicy : Policy
+                where TAssessmentPlan : AssessmentPlan
         {
-            
-            var measureProp = ((MemberExpression)property.Body).Member as PropertyInfo;
+            string planName = typeof(TAssessmentPlan).GetType().Name;
+            string policyName = typeof(TPolicy).GetType().Name;
 
-           string key = _keyMapper.MapKeyFromMeasureProperty(measureProp);
+            var measureProp = ((MemberExpression)measure.Body).Member as PropertyInfo;
+            string measureName = measureProp.Name;
+
+            string key =
+                _keyMapper.CreatePolicyStoreKey
+                    (subscriptionId, planName, policyName, measureName);
 
             WatchRequest request = new WatchRequest()
                 {
@@ -80,14 +101,14 @@ namespace Elenktis.Assessment
 
                     string value = resp.Events[0].Kv.Value.ToStringUtf8();
 
-                    onValueChanged(value);
-            } );
+                    onPolicyChanged(value);
+            });
         }
 
-        private string _hostname;
-        private int _port;
+        
+        private ControllerSecret _secrets;
         private EtcdClient _etcd;
-
         private IPolicyStoreKeyMapper _keyMapper;
+        private ISecretHydrator _secretHydrator;
     }
 }

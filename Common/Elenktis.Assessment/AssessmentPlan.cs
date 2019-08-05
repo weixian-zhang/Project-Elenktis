@@ -2,13 +2,13 @@ namespace Elenktis.Assessment
 {
     public class AssessmentPlan 
     {
-        public AssessmentPlan(TenantSubscription subscription)
+        public AssessmentPlan(string subscriptionId)
         {
-            _subscription = subscription;
+            _subscriptionId = subscriptionId;
         }
 
-        private TenantSubscription _subscription;
-        public TenantSubscription TenantSubscription { get {return _subscription; }  }
+        private string _subscriptionId;
+        public string TenantSubscriptionId { get {return _subscriptionId; }  }
 
         
     }
