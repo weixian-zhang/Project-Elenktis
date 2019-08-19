@@ -14,9 +14,5 @@
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.2.0\build\netcoreapp2.2\Microsoft.NETCore.App.props" Condition="Exists('C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.2.0\build\netcoreapp2.2\Microsoft.NETCore.App.props')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.net.sdk\1.0.0-alpha-20161104-2\build\Microsoft.NET.Sdk.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.sdk\1.0.0-alpha-20161104-2\build\Microsoft.NET.Sdk.props')" />
   </ImportGroup>
-  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgMicrosoft_NET_Sdk Condition=" '$(PkgMicrosoft_NET_Sdk)' == '' ">C:\Users\weixzha\.nuget\packages\microsoft.net.sdk\1.0.0-alpha-20161104-2</PkgMicrosoft_NET_Sdk>
-  </PropertyGroup>
 </Project>

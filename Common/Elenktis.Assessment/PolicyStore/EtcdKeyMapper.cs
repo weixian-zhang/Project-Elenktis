@@ -11,9 +11,10 @@ namespace Elenktis.Assessment
         public IEnumerable<PolicyKeyMeasureMap> GetKeyMeasureMap<T>
             (string subscriptionId, T policy) where T : Policy
         {
-           string assessmentPlanName = GetAssessmentPlanNameFromAttribute(policy);
            string policyName = GetPolicyName(policy);
            var measures = GetPolicyMeasures(policy); //e.g ToAssess, ToRemediate
+
+            string planName = GetPlanNameByAttribute<T>();
 
             var keyMeasureValues = new List<PolicyKeyMeasureMap>();
 
@@ -22,7 +23,7 @@ namespace Elenktis.Assessment
                 string measureName = tuple.Item1;
 
                 string key =
-                    GenerateEtcdKey(subscriptionId, assessmentPlanName, policyName, measureName);
+                    GenerateEtcdKey(subscriptionId, planName, policyName, measureName);
                 
                 string value = tuple.Item2;
 
@@ -43,49 +44,33 @@ namespace Elenktis.Assessment
            return GenerateEtcdKey(subscriptionId, assessmentPlanName, policyName, measureName);
         }
 
-        private string CreatePlanKeyPrefix(string subscriptionId, string assessmentPlan)
+        public string CreatePlanKey<TPlan>(string subscriptionId) where TPlan : AssessmentPlan
         {
-            return $"{subscriptionId}/plan/{assessmentPlan}/";
+            string planName = typeof(TPlan).Name;
+            
+            return $"sub/{subscriptionId}/plan/{planName}";
         }
 
         
         private string GenerateEtcdKey
-            (string subscriptionId, string assessmentPlanName, string policyName, string measureName)
+            (string subscriptionId, string planName, string policyName, string measureName)
         {
-            return $"{subscriptionId}/plan/{assessmentPlanName}/{policyName}/{measureName}";
+            return $"sub/{subscriptionId}/plan/{planName}/policy/{policyName}/measure/{measureName}";
         }
 
-        private string GetAssessmentPlanNameFromAttribute<T>(T policy)
+        public string GetPlanNameByAttribute<TPolicy>() where TPolicy : Policy
         {
             var configKeyAttr =
-            typeof(T).GetCustomAttributes(typeof(PolicyAssessmentPlanAttribute), false)
-                .FirstOrDefault() as PolicyAssessmentPlanAttribute;
+                typeof(TPolicy).GetCustomAttributes(typeof(PlanAttribute), false)
+                .FirstOrDefault() as PlanAttribute;
 
             if(configKeyAttr == null)
                 throw new ArgumentException("Missing ConfigStoreKeyAttribute on Policy");
 
-            return configKeyAttr.AssessmenPlanName.ToLowerInvariant();
+            return configKeyAttr.AssessmenPlanType.Name;
         }
 
-// public string MapKeyFromMeasureProperty(PropertyInfo measure)
-        // {
-        //     Type policyType = measure.ReflectedType;
-
-        //    string subscriptionId = GetSubscriptionId(policyType);
-        //    string assessmentPlanName = GetAssessmentPlanNameFromAttribute(policyType);
-        //    string policyName = GetPolicyName(policyType);
-        //    var measureName = measure.Name;
-
-        //    return GenerateEtcdKey(subscriptionId, assessmentPlanName, policyName, measureName);
-        // }
-
-        // private string GetSubscriptionId<T>(T policy)
-        // {
-        //    PropertyInfo prop = policy.GetType().GetProperty("AssessmentPlan");
-        //    var plan = (AssessmentPlan) prop.GetValue(policy);
-
-        //    return plan.TenantSubscription.SubscriptionId;
-        // }
+        #region helpers
 
         private string GetPolicyName<T>(T policy)
         {
@@ -124,5 +109,7 @@ namespace Elenktis.Assessment
 
             return actions;
         }
+
+        #endregion
     }
 }

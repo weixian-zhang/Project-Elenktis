@@ -114,11 +114,6 @@
           }
         }
       },
-      "Microsoft.NET.Sdk/1.0.0-alpha-20161104-2": {
-        "dependencies": {
-          "NuGet.Build.Tasks.Pack": "4.0.0-rc-2048"
-        }
-      },
       "Newtonsoft.Json/11.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -127,7 +122,6 @@
           }
         }
       },
-      "NuGet.Build.Tasks.Pack/4.0.0-rc-2048": {},
       "System.Interactive.Async/3.2.0": {
         "runtime": {
           "lib/netstandard2.0/System.Interactive.Async.dll": {
@@ -190,9 +184,6 @@
         }
       },
       "Elenktis.Configuration/1.0.0": {
-        "dependencies": {
-          "Microsoft.NET.Sdk": "1.0.0-alpha-20161104-2"
-        },
         "runtime": {
           "Elenktis.Configuration.dll": {}
         }
@@ -247,26 +238,12 @@
       "path": "microsoft.extensions.dependencyinjection.abstractions/2.2.0",
       "hashPath": "microsoft.extensions.dependencyinjection.abstractions.2.2.0.nupkg.sha512"
     },
-    "Microsoft.NET.Sdk/1.0.0-alpha-20161104-2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-GDnuUnllJt2/kFb5W5nljTiczMIdesfadksMliOKQBihwqpSMv7Ehw16ILcLWiIy9wQhgDMHSniMfHh+tnHq6w==",
-      "path": "microsoft.net.sdk/1.0.0-alpha-20161104-2",
-      "hashPath": "microsoft.net.sdk.1.0.0-alpha-20161104-2.nupkg.sha512"
-    },
     "Newtonsoft.Json/11.0.2": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
       "path": "newtonsoft.json/11.0.2",
       "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
-    },
-    "NuGet.Build.Tasks.Pack/4.0.0-rc-2048": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-n+ww0YXKxJKcW65Hy6mVHv/sr9y7HN6++zfN6OnN9InWHkB4CI52N8XyfLhjNv92y01zE4iHWvCDWZF0x5cfZA==",
-      "path": "nuget.build.tasks.pack/4.0.0-rc-2048",
-      "hashPath": "nuget.build.tasks.pack.4.0.0-rc-2048.nupkg.sha512"
     },
     "System.Interactive.Async/3.2.0": {
       "type": "package",

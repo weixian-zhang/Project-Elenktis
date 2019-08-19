@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "DockerBuild-DefaultSvcSpy",
+            "label": "docker build DefaultSvcSpy",
             "command": "docker build -f Dockerfile.debug ../../ -t acrcentralsvcdev.azurecr.io/defaultsvcspy:defaultsvcspy-v0.30",
             "type": "shell",
             "args": [],
@@ -12,7 +12,7 @@
             "problemMatcher": []
         },
         {
-            "label": "DeleteDeploymentAKS-DefaultSvcSpy",
+            "label": "kubectl DeleteDeployment DefaultSvcSpy",
             "command": "kubectl delete deployment deploy-spy-defaultsvc",
             "type": "shell",
             "options": {
@@ -21,7 +21,7 @@
             "problemMatcher": []
         },
         {
-            "label": "DeployAKS-DefaultSvcSpy",
+            "label": "kubectl Deploy DefaultSvcSpy",
             "command": "kubectl apply --validate=false -f defaultsvcspy-deployment.yaml",
             "type": "shell",
             "options": {
@@ -30,15 +30,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Build Common-Assessment",
-            "type": "shell",
-            "command": "dotnet build",
-            "options": {
-                "cwd": "${workspaceFolder}/Common/Elenktis.Assessment"
-            }
-        },
-        {
-            "label": "Build Spy-DefaultSvcSpy",
+            "label": "dotnet build DefaultSvcSpy",
             "type": "shell",
             "command": "dotnet build",
             "options": {
@@ -47,13 +39,41 @@
             "problemMatcher": []
         },
         {
-            "label": "Build Recce",
+            "label": "dotnet build Recce",
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Elenktis.Recce"
+                "cwd": "${workspaceFolder}/Controllers/Recce"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "dotnet build Assessment",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Common/Elenktis.Assessment"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "dotnet build Configuration",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Common/Elenktis.Configuration"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "func start recce",
+            "type": "shell",
+            "dependsOn": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controllers\\Recce/bin/Debug/netcoreapp2.2"
+            },
+            "command": "func start",
+            "problemMatcher": "$func-watch"
         }
     ]
 }

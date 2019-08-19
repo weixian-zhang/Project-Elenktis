@@ -6,7 +6,7 @@ namespace Elenktis.Azure
         {
         }
 
-        public IAzure AuthAndCreate(string tenantId, string clientId, string clientSecret)
+        public IAzure AuthAndCreateInstance(string tenantId, string clientId, string clientSecret)
         {
             var azCred = new AzSDKCredentials(tenantId, clientId, clientSecret);
 

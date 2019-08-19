@@ -104,18 +104,6 @@
           "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
-      "Microsoft.NET.Sdk/1.0.0-alpha-20161104-2": {
-        "type": "package",
-        "dependencies": {
-          "Nuget.Build.Tasks.Pack": "4.0.0-rc-2048"
-        },
-        "build": {
-          "build/_._": {}
-        },
-        "buildMultiTargeting": {
-          "buildCrossTargeting/_._": {}
-        }
-      },
       "Microsoft.NETCore.App/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -331,15 +319,6 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "NuGet.Build.Tasks.Pack/4.0.0-rc-2048": {
-        "type": "package",
-        "build": {
-          "build/_._": {}
-        },
-        "buildMultiTargeting": {
-          "buildCrossTargeting/_._": {}
-        }
-      },
       "System.Interactive.Async/3.2.0": {
         "type": "package",
         "compile": {
@@ -471,9 +450,6 @@
       "Elenktis.Configuration/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
-        "dependencies": {
-          "Microsoft.NET.Sdk": "1.0.0-alpha-20161104-2"
-        },
         "compile": {
           "bin/placeholder/Elenktis.Configuration.dll": {}
         },
@@ -601,78 +577,6 @@
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "microsoft.extensions.dependencyinjection.abstractions.2.2.0.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.abstractions.nuspec"
-      ]
-    },
-    "Microsoft.NET.Sdk/1.0.0-alpha-20161104-2": {
-      "sha512": "GDnuUnllJt2/kFb5W5nljTiczMIdesfadksMliOKQBihwqpSMv7Ehw16ILcLWiIy9wQhgDMHSniMfHh+tnHq6w==",
-      "type": "package",
-      "path": "microsoft.net.sdk/1.0.0-alpha-20161104-2",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/Microsoft.NET.DefaultOutputPaths.targets",
-        "build/Microsoft.NET.DisableStandardFrameworkResolution.targets",
-        "build/Microsoft.NET.GenerateAssemblyInfo.targets",
-        "build/Microsoft.NET.PreserveCompilationContext.targets",
-        "build/Microsoft.NET.Publish.targets",
-        "build/Microsoft.NET.RuntimeIdentifierInference.targets",
-        "build/Microsoft.NET.Sdk.BeforeCommon.targets",
-        "build/Microsoft.NET.Sdk.BeforeCommonCrossTargeting.targets",
-        "build/Microsoft.NET.Sdk.CSharp.props",
-        "build/Microsoft.NET.Sdk.CSharp.targets",
-        "build/Microsoft.NET.Sdk.Common.targets",
-        "build/Microsoft.NET.Sdk.VisualBasic.props",
-        "build/Microsoft.NET.Sdk.VisualBasic.targets",
-        "build/Microsoft.NET.Sdk.props",
-        "build/Microsoft.NET.Sdk.targets",
-        "build/Microsoft.NET.TargetFrameworkInference.targets",
-        "build/Microsoft.PackageDependencyResolution.targets",
-        "buildCrossTargeting/Microsoft.NET.Sdk.props",
-        "buildCrossTargeting/Microsoft.NET.Sdk.targets",
-        "microsoft.net.sdk.1.0.0-alpha-20161104-2.nupkg.sha512",
-        "microsoft.net.sdk.nuspec",
-        "tools/net46/Microsoft.DotNet.PlatformAbstractions.dll",
-        "tools/net46/Microsoft.Extensions.DependencyModel.dll",
-        "tools/net46/Microsoft.NET.Build.Tasks.dll",
-        "tools/net46/Newtonsoft.Json.dll",
-        "tools/net46/NuGet.Common.dll",
-        "tools/net46/NuGet.Configuration.dll",
-        "tools/net46/NuGet.DependencyResolver.Core.dll",
-        "tools/net46/NuGet.Frameworks.dll",
-        "tools/net46/NuGet.LibraryModel.dll",
-        "tools/net46/NuGet.Packaging.Core.Types.dll",
-        "tools/net46/NuGet.Packaging.Core.dll",
-        "tools/net46/NuGet.Packaging.dll",
-        "tools/net46/NuGet.ProjectModel.dll",
-        "tools/net46/NuGet.Protocol.Core.Types.dll",
-        "tools/net46/NuGet.Protocol.Core.v3.dll",
-        "tools/net46/NuGet.Repositories.dll",
-        "tools/net46/NuGet.RuntimeModel.dll",
-        "tools/net46/NuGet.Versioning.dll",
-        "tools/net46/System.Runtime.InteropServices.RuntimeInformation.dll",
-        "tools/net46/System.Security.Cryptography.Algorithms.dll",
-        "tools/net46/System.Security.Cryptography.Primitives.dll",
-        "tools/net46/System.Threading.Thread.dll",
-        "tools/netcoreapp1.0/Microsoft.DotNet.PlatformAbstractions.dll",
-        "tools/netcoreapp1.0/Microsoft.Extensions.DependencyModel.dll",
-        "tools/netcoreapp1.0/Microsoft.NET.Build.Tasks.dll",
-        "tools/netcoreapp1.0/Newtonsoft.Json.dll",
-        "tools/netcoreapp1.0/NuGet.Common.dll",
-        "tools/netcoreapp1.0/NuGet.Configuration.dll",
-        "tools/netcoreapp1.0/NuGet.DependencyResolver.Core.dll",
-        "tools/netcoreapp1.0/NuGet.Frameworks.dll",
-        "tools/netcoreapp1.0/NuGet.LibraryModel.dll",
-        "tools/netcoreapp1.0/NuGet.Packaging.Core.Types.dll",
-        "tools/netcoreapp1.0/NuGet.Packaging.Core.dll",
-        "tools/netcoreapp1.0/NuGet.Packaging.dll",
-        "tools/netcoreapp1.0/NuGet.ProjectModel.dll",
-        "tools/netcoreapp1.0/NuGet.Protocol.Core.Types.dll",
-        "tools/netcoreapp1.0/NuGet.Protocol.Core.v3.dll",
-        "tools/netcoreapp1.0/NuGet.Repositories.dll",
-        "tools/netcoreapp1.0/NuGet.RuntimeModel.dll",
-        "tools/netcoreapp1.0/NuGet.Versioning.dll",
-        "tools/netcoreapp1.0/System.Runtime.Serialization.Primitives.dll"
       ]
     },
     "Microsoft.NETCore.App/2.2.0": {
@@ -1172,58 +1076,6 @@
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "newtonsoft.json.11.0.2.nupkg.sha512",
         "newtonsoft.json.nuspec"
-      ]
-    },
-    "NuGet.Build.Tasks.Pack/4.0.0-rc-2048": {
-      "sha512": "n+ww0YXKxJKcW65Hy6mVHv/sr9y7HN6++zfN6OnN9InWHkB4CI52N8XyfLhjNv92y01zE4iHWvCDWZF0x5cfZA==",
-      "type": "package",
-      "path": "nuget.build.tasks.pack/4.0.0-rc-2048",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "CoreCLR/NuGet.Build.Tasks.Pack.dll",
-        "CoreCLR/NuGet.Client.dll",
-        "CoreCLR/NuGet.Commands.dll",
-        "CoreCLR/NuGet.Common.dll",
-        "CoreCLR/NuGet.Configuration.dll",
-        "CoreCLR/NuGet.ContentModel.dll",
-        "CoreCLR/NuGet.DependencyResolver.Core.dll",
-        "CoreCLR/NuGet.DependencyResolver.dll",
-        "CoreCLR/NuGet.Frameworks.dll",
-        "CoreCLR/NuGet.LibraryModel.dll",
-        "CoreCLR/NuGet.Packaging.Core.Types.dll",
-        "CoreCLR/NuGet.Packaging.Core.dll",
-        "CoreCLR/NuGet.Packaging.dll",
-        "CoreCLR/NuGet.ProjectModel.dll",
-        "CoreCLR/NuGet.Protocol.Core.Types.dll",
-        "CoreCLR/NuGet.Protocol.Core.v3.dll",
-        "CoreCLR/NuGet.Repositories.dll",
-        "CoreCLR/NuGet.RuntimeModel.dll",
-        "CoreCLR/NuGet.Versioning.dll",
-        "Desktop/Newtonsoft.Json.dll",
-        "Desktop/NuGet.Build.Tasks.Pack.dll",
-        "Desktop/NuGet.Client.dll",
-        "Desktop/NuGet.Commands.dll",
-        "Desktop/NuGet.Common.dll",
-        "Desktop/NuGet.Configuration.dll",
-        "Desktop/NuGet.ContentModel.dll",
-        "Desktop/NuGet.DependencyResolver.Core.dll",
-        "Desktop/NuGet.DependencyResolver.dll",
-        "Desktop/NuGet.Frameworks.dll",
-        "Desktop/NuGet.LibraryModel.dll",
-        "Desktop/NuGet.Packaging.Core.Types.dll",
-        "Desktop/NuGet.Packaging.Core.dll",
-        "Desktop/NuGet.Packaging.dll",
-        "Desktop/NuGet.ProjectModel.dll",
-        "Desktop/NuGet.Protocol.Core.Types.dll",
-        "Desktop/NuGet.Protocol.Core.v3.dll",
-        "Desktop/NuGet.Repositories.dll",
-        "Desktop/NuGet.RuntimeModel.dll",
-        "Desktop/NuGet.Versioning.dll",
-        "build/NuGet.Build.Tasks.Pack.targets",
-        "buildCrossTargeting/NuGet.Build.Tasks.Pack.targets",
-        "nuget.build.tasks.pack.4.0.0-rc-2048.nupkg.sha512",
-        "nuget.build.tasks.pack.nuspec"
       ]
     },
     "System.Interactive.Async/3.2.0": {
@@ -1853,9 +1705,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.AssessmentPlan.csproj",
-      "projectName": "Elenktis.AssessmentPlan",
-      "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.AssessmentPlan.csproj",
+      "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.Assessment.csproj",
+      "projectName": "Elenktis.Assessment",
+      "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.Assessment.csproj",
       "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
       "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\obj\\",
       "projectStyle": "PackageReference",

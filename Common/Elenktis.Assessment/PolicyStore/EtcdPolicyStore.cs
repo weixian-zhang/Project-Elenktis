@@ -24,32 +24,30 @@ namespace Elenktis.Assessment
              _etcd = new EtcdClient(storeConnInfo.Hostname, storeConnInfo.Port);
         }
 
-        public async Task SetPolicyAsync<TAssessmentPlan>
+        public async Task CreateOrSetPolicyAsync<TPolicy>
             (string subscriptionId, 
-             Expression<Action<Policy>> measure, object value) where TAssessmentPlan : AssessmentPlan
+             Expression<Func<TPolicy,object>> getMeasureExpr) where TPolicy : Policy
         {
-            string assessmentPlanName = typeof(TAssessmentPlan).Name;
-
-            var policyType = ((ParameterExpression)measure.Parameters[0]).Type;
+            var policyType = ((ParameterExpression)getMeasureExpr.Parameters[0]).Type;
             string policyName = policyType.Name;
 
-            var measureProperty =
-                ((MemberExpression)measure.Body).Member as PropertyInfo;
-            
-            string measureName = measureProperty.Name;
-            
-            string etcKey = _keyMapper.CreatePolicyStoreKey(subscriptionId, assessmentPlanName,
-                policyName, measureName);
+            string planName = _keyMapper.GetPlanNameByAttribute<TPolicy>();
 
-            await _etcd.PutAsync(etcKey, value.ToString());
+            string measureName = GetMemberName(getMeasureExpr);
+    
+            string measureValue = GetMemberValue(getMeasureExpr);
+            
+            string etcKey =
+                _keyMapper.CreatePolicyStoreKey
+                    (subscriptionId, planName, policyName, measureName);
+
+            await _etcd.PutAsync(etcKey, measureValue);
         }
 
-        public async Task<TPolicy> GetPolicyAsync<TPolicy,TAssessmentPlan>
-            (string subscriptionId) where TPolicy : Policy where TAssessmentPlan : AssessmentPlan
+        public async Task<TPolicy> GetPolicyAsync<TPolicy>
+            (string subscriptionId) where TPolicy : Policy
         {
-            TAssessmentPlan plan = (TAssessmentPlan)Activator.CreateInstance(typeof(TAssessmentPlan));
-
-            TPolicy policy = (TPolicy)Activator.CreateInstance(typeof(TPolicy), plan);
+            TPolicy policy = (TPolicy)Activator.CreateInstance(typeof(TPolicy));
 
             IEnumerable<PolicyKeyMeasureMap> kmvs =
                 _keyMapper.GetKeyMeasureMap(subscriptionId, policy);
@@ -72,18 +70,18 @@ namespace Elenktis.Assessment
             return policy;
         }
 
-        public void WatchPolicyChange<TPolicy,TAssessmentPlan>
-            (string subscriptionId,
-                Expression<Func<Policy, object>> measure,
-                Action<string> onPolicyChanged)
-                where TPolicy : Policy
-                where TAssessmentPlan : AssessmentPlan
+        public void OnPolicyChanged<TPolicy>
+            (   string subscriptionId,
+                Expression<Func<TPolicy, object>> measureToWatchChange,
+                Action<string> onPolicyChanged) where TPolicy : Policy
         {
-            string planName = typeof(TAssessmentPlan).GetType().Name;
-            string policyName = typeof(TPolicy).GetType().Name;
+            string policyName = _keyMapper.GetPlanNameByAttribute<TPolicy>();
+            
+            var measurePropInfo = ((MemberExpression)measureToWatchChange.Body).Member;
 
-            var measureProp = ((MemberExpression)measure.Body).Member as PropertyInfo;
-            string measureName = measureProp.Name;
+            string planName = _keyMapper.GetPlanNameByAttribute<TPolicy>();
+
+            string measureName = measurePropInfo.Name;
 
             string key =
                 _keyMapper.CreatePolicyStoreKey
@@ -105,7 +103,65 @@ namespace Elenktis.Assessment
             });
         }
 
-        
+        public async Task CreatePlanExistFlagAsync<TPlan>
+            (string subscriptionId) where TPlan : AssessmentPlan
+        {
+            string key =  _keyMapper.CreatePlanKey<TPlan>(subscriptionId);
+
+            await _etcd.PutAsync(key, "true");
+        }
+
+        public async Task<bool> IsPlanExistAsync<TPlan>(string subscriptionId) where TPlan : AssessmentPlan
+        {
+            string planExistFlagKey = _keyMapper.CreatePlanKey<TPlan>(subscriptionId);
+
+            RangeResponse etcdResp = await _etcd.GetAsync(planExistFlagKey);
+
+            if(etcdResp.Count == 0)
+                return false;
+            else
+                return true;
+        }
+
+        private string GetMemberName<TPolicy>
+            (Expression<Func<TPolicy, object>> expr) where TPolicy : Policy 
+            {
+                switch(expr.Body)
+                {
+                    case MemberExpression m:
+                        return m.Member.Name;
+                    case UnaryExpression u when u.Operand is BinaryExpression b:
+                        var memberExpr = (MemberExpression)b.Left;
+                        return memberExpr.Member.Name;
+                    default:
+                        throw new NotImplementedException(expr.GetType().ToString());
+                }
+            }
+
+        private string GetMemberValue<TPolicy> 
+            (Expression<Func<TPolicy, object>> expr) where TPolicy : Policy
+            {
+                MemberExpression memberExpr = null;
+
+                switch(expr.Body)
+                {
+                    case MemberExpression m:
+                        memberExpr = m;
+                        break;
+                    case UnaryExpression u when u.Operand is BinaryExpression b:
+                       return ((ConstantExpression)b.Right).Value.ToString();
+                    default:
+                        throw new NotImplementedException(expr.GetType().ToString());
+                }
+
+                var constExpr = (ConstantExpression)memberExpr.Expression;
+
+                string value =
+                    ((FieldInfo)memberExpr.Member).GetValue(constExpr.Value).ToString();
+
+                return value;
+            }
+
         private ControllerSecret _secrets;
         private EtcdClient _etcd;
         private IPolicyStoreKeyMapper _keyMapper;

@@ -1,8 +1,8 @@
 {
-    "azureFunctions.deploySubpath": "\\Informer\\MandateServiceInformer\\bin\\Debug\\netcoreapp2.1",
+    "azureFunctions.deploySubpath": "Controllers\\Recce/bin/Release/netcoreapp2.1/publish",
     "azureFunctions.projectLanguage": "C#",
     "azureFunctions.projectRuntime": "~2",
-    "debug.internalConsoleOptions": "openOnSessionStart",
+    "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "publish",
     "cloudcode.azureExplorerVisible": true,
     "docker.defaultRegistryPath": "acrcentralsvcdev.azurecr.io"

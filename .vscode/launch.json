@@ -15,7 +15,7 @@
       },
     "configurations": [
         {
-            "name": "Recce-Local",
+            "name": "local func",
             "type": "coreclr",
             "request": "attach",
             "processName": "func",
@@ -25,7 +25,6 @@
                 "engineLogging": true,
                 "exceptions": true
             }
-
         },
         {
             "name": "DefaultSvcSpy-Local",
@@ -38,11 +37,9 @@
                 "engineLogging": true,
                 "exceptions": true
             }
-
         },
-        //https://github.com/OmniSharp/omnisharp-vscode/issues/2488
         {
-            "name": "DefaultSvcSpy-AKS",
+            "name": "AKS DefaultSvcSpy",
             "type": "coreclr",
             "request": "attach",
             "processId": 1,
@@ -71,6 +68,12 @@
                 "engineLogging": true,
                 "exceptions": true
             }
+        },
+        {
+            "name": "Attach to .NET Functions",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:azureFunctions.pickProcess}"
         }
     ]
 }

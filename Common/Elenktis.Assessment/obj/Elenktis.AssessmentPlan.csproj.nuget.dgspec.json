@@ -114,10 +114,6 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
-            "Microsoft.NET.Sdk": {
-              "target": "Package",
-              "version": "[1.0.0-alpha-20161104-2, )"
-            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",

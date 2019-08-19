@@ -8,7 +8,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj",
-        "projectName": "Elenktis.Common.AzResourceManager",
+        "projectName": "Elenktis.Azure",
         "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj",
         "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
         "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Azure\\obj\\",
@@ -52,10 +52,6 @@
             "Microsoft.IdentityModel.Clients.ActiveDirectory": {
               "target": "Package",
               "version": "[5.1.0, )"
-            },
-            "Microsoft.NET.Sdk": {
-              "target": "Package",
-              "version": "[1.0.0-alpha-20161104-2, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -118,10 +114,6 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
-            "Microsoft.NET.Sdk": {
-              "target": "Package",
-              "version": "[1.0.0-alpha-20161104-2, )"
-            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",

@@ -10,7 +10,9 @@ namespace Elenktis.Assessment
 
         string CreatePolicyStoreKey
             (string subscriptionId, string assessmentPlanName, string policyName, string measureName);
-
-        //string MapKeyFromMeasureProperty(PropertyInfo measure);
+        
+        string CreatePlanKey<TPlan>(string subscriptionId) where TPlan : AssessmentPlan;
+        
+        string GetPlanNameByAttribute<TPolicy>() where TPolicy : Policy;
     }
 }

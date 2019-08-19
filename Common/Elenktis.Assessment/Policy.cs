@@ -2,14 +2,9 @@ namespace Elenktis.Assessment
 {
     public class Policy
     {
-        public Policy(AssessmentPlan plan)
+        public Policy()
         {
-            _assessmentPlan = plan;
         }
-
-        private AssessmentPlan _assessmentPlan;
-
-        public AssessmentPlan AssessmentPlan { get {return _assessmentPlan; } }
 
         [PolicyMeasure]
         public bool ToAssess { get; set; } = true;
@@ -18,6 +13,6 @@ namespace Elenktis.Assessment
         public bool ToRemediate { get; set; } = true;
 
         [PolicyMeasure()]
-        public bool ToNotify { get; set; }
+        public bool ToNotify { get; set; } = false;
     }
 }
