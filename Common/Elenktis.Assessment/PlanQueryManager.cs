@@ -102,7 +102,7 @@ namespace Elenktis.Assessment
 
         private void SetupDependencies()
         {
-            ISecretHydrator secretHydrator = new TestSecretHydrator();
+            ISecretHydrator secretHydrator = SecretHydratorFactory.Create();
 
             var secrets = secretHydrator.Hydrate<ControllerSecret>();
 
@@ -111,7 +111,7 @@ namespace Elenktis.Assessment
             _policyStore = new EtcdPolicyStore(new PolicyStoreConnInfo()
             {
                 Hostname = secrets.EtcdHost,
-                Port = secrets.EtcdPort
+                Port = Convert.ToInt32(secrets.EtcdPort)
             }, keyMapper);
         }
 

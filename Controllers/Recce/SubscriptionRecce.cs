@@ -11,11 +11,11 @@ namespace Elenktis.Recce
     public class SubscriptionRecce : ISubscriptionRecce
     {
         public SubscriptionRecce
-            (IAzure azure, IPlanCreationManager planManager, ISecretHydrator secretHydrator) 
+            (IAzure azure, IPlanCreationManager planManager) 
         {
             _azure = azure;
             _planManager = planManager;
-            _secretHydrator = secretHydrator;
+            _secretHydrator = SecretHydratorFactory.Create();
         }
             
     
@@ -27,14 +27,11 @@ namespace Elenktis.Recce
 
             foreach(var sub in subscriptions)
             {
-                bool defaultSvcPlanExist =
-                    await _planManager.IsPlanExistAsync<DefaultServicePlan>(sub.SubscriptionId);
-                
-                await _planManager.CreateDefaultServicePlansAsync(sub.SubscriptionId);
+                await _planManager.CreateDefaultServicePlansAsync(sub.SubscriptionId, false);
 
-                //must uncomment, above is for testing bypassing planexist checks
-                // if(!defaultSvcPlanExist)
-                //     await _planManager.CreateDefaultServicePlansAsync(sub.SubscriptionId);
+                await _planManager.CreateSecurityHygienePlanAsync(sub.SubscriptionId, false);
+
+                await _planManager.CreateLogEnablerPlanAsync(sub.SubscriptionId, false);
             }
         }
 

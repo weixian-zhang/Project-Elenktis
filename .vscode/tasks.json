@@ -70,7 +70,10 @@
             "type": "shell",
             "dependsOn": "build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers\\Recce/bin/Debug/netcoreapp2.2"
+                "cwd": "${workspaceFolder}/Controllers\\Recce/bin/Debug/netcoreapp2.2",
+                "env": {
+                    "env": "dev"
+                }
             },
             "command": "func start",
             "problemMatcher": "$func-watch"

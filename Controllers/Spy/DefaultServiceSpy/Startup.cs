@@ -15,7 +15,7 @@ namespace Elenktis.Spy {
         public void Configure(IWebJobsBuilder builder)
         {
 
-             builder.Services.AddTransient<ISecretHydrator, AKVSecretHydrator>();
+             builder.Services.AddTransient<ISecretHydrator, NetCoreSecretHydrator>();
              builder.Services.AddTransient<IAzure, AzureManager>();
              builder.Services.AddTransient<IPlanCreationManager, PlanCreationManager>();  
         }

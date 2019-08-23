@@ -17,5 +17,7 @@ namespace Elenktis.Assessment.DefaultService
         public ASCAutoRegisterVMEnabledPolicy ASCAutoRegisterVMEnabledPolicy { get; set; }
 
         public AssociateASCToDefaultLAWorkspacePolicy AssociateASCToDefaultLAWorkspacePolicy { get; set; }
+    
+        public EnableAzBackupOnVMPolicy EnableAzBackupOnVMPolicy { get; set; }
     }
 }

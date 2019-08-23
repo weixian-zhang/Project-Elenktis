@@ -16,6 +16,6 @@ namespace Elenktis.Configuration
 
         public string EtcdHost { get; set; }
 
-        public int EtcdPort { get; set; }
+        public string EtcdPort { get; set; }
     }
 }
