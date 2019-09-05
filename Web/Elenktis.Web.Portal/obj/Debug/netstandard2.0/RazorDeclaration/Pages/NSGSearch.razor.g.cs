@@ -53,7 +53,7 @@ using RestSharp;
 
 #line default
 #line hidden
-    [Microsoft.AspNetCore.Components.Layouts.LayoutAttribute(typeof(MainLayout))]
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/nsgsearch")]
     public class NSGSearch : Microsoft.AspNetCore.Components.ComponentBase
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Elenktis.Azure;
-using Elenktis.Configuration;
+using Elenktis.Secret;
 
 using Microsoft.Azure.Management.Compute;
 using Microsoft.Azure.Management.OperationalInsights;

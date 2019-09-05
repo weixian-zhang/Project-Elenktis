@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="5.5.2-develop.2038" />
-    <PackageReference Include="Microsoft.NET.Sdk" Version="1.0.0-alpha-20161104-2"/>
+    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="5.5.5" />
   </ItemGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\Elenktis.Secret\Elenktis.Secret.csproj" />
+  </ItemGroup>
 </Project>

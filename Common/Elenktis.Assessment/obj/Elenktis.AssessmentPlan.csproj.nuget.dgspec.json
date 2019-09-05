@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\Elenktis.Configuration.csproj": {
-                "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\Elenktis.Configuration.csproj"
+              "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
+                "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj"
               }
             }
           }
@@ -77,14 +77,14 @@
         }
       }
     },
-    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\Elenktis.Configuration.csproj": {
+    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\Elenktis.Configuration.csproj",
-        "projectName": "Elenktis.Configuration",
-        "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\Elenktis.Configuration.csproj",
+        "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
+        "projectName": "Elenktis.Secret",
+        "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
         "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
-        "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\obj\\",
+        "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

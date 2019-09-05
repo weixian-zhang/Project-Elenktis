@@ -53,7 +53,7 @@ using RestSharp;
 
 #line default
 #line hidden
-    [Microsoft.AspNetCore.Components.Layouts.LayoutAttribute(typeof(MainLayout))]
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     public class TagVMs : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

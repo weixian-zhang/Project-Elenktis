@@ -4,7 +4,7 @@ using Elenktis.Assessment.LogEnabler;
 using Elenktis.Assessment.SecurityHygiene;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
-using Elenktis.Configuration;
+using Elenktis.Secret;
 using System.Collections.Generic;
 
 namespace Elenktis.Assessment

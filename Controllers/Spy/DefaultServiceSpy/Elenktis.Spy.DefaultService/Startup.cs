@@ -4,7 +4,7 @@ using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
 using Elenktis.Azure;
-using Elenktis.Configuration;
+using Elenktis.Secret;
 using Elenktis.Assessment;
 
 [assembly: WebJobsStartup(typeof(Elenktis.Spy.Startup))]

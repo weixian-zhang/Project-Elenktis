@@ -57,11 +57,11 @@
             "problemMatcher": []
         },
         {
-            "label": "dotnet build Configuration",
+            "label": "dotnet build Secret",
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Common/Elenktis.Configuration"
+                "cwd": "${workspaceFolder}/Common/Elenktis.Secret"
             },
             "problemMatcher": []
         },

@@ -2,7 +2,7 @@ using System;
 
 using Elenktis.Azure;
 using Elenktis.Assessment;
-using Elenktis.Configuration;
+using Elenktis.Secret;
 using System.Threading.Tasks;
 using Elenktis.Assessment.DefaultService;
 

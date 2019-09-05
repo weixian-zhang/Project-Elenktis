@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Elenktis.Assessment;
 using Elenktis.Azure;
-using Elenktis.Configuration;
+using Elenktis.Secret;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;

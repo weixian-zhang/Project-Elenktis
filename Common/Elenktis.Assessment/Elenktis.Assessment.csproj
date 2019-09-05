@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Elenktis.Configuration\Elenktis.Configuration.csproj" />
+    <ProjectReference Include="..\Elenktis.Secret\Elenktis.Secret.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />

@@ -5,7 +5,7 @@ using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 
 using Elenktis.Assessment;
 using Elenktis.Azure;
-using Elenktis.Configuration;
+using Elenktis.Secret;
 
 [assembly: FunctionsStartup(typeof(Elenktis.Recce.Startup))]
 namespace Elenktis.Recce {

@@ -10,7 +10,7 @@ using Etcdserverpb;
 using System.Linq.Expressions;
 using System.Reflection;
 
-using Elenktis.Configuration;
+using Elenktis.Secret;
 
 namespace Elenktis.Assessment
 {

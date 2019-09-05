@@ -1761,7 +1761,7 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Elenktis.Configuration/1.0.0": {
+      "Elenktis.Secret/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
@@ -1770,10 +1770,10 @@
           "Microsoft.Extensions.Configuration.UserSecrets": "2.2.0"
         },
         "compile": {
-          "bin/placeholder/Elenktis.Configuration.dll": {}
+          "bin/placeholder/Elenktis.Secret.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Elenktis.Configuration.dll": {}
+          "bin/placeholder/Elenktis.Secret.dll": {}
         }
       }
     }
@@ -6019,15 +6019,15 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "Elenktis.Configuration/1.0.0": {
+    "Elenktis.Secret/1.0.0": {
       "type": "project",
-      "path": "../Elenktis.Configuration/Elenktis.Configuration.csproj",
-      "msbuildProject": "../Elenktis.Configuration/Elenktis.Configuration.csproj"
+      "path": "../Elenktis.Secret/Elenktis.Secret.csproj",
+      "msbuildProject": "../Elenktis.Secret/Elenktis.Secret.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
-      "Elenktis.Configuration >= 1.0.0",
+      "Elenktis.Secret >= 1.0.0",
       "Microsoft.Azure.Management.ResourceManager >= 2.0.0-preview",
       "Microsoft.IdentityModel.Clients.ActiveDirectory >= 5.1.0",
       "Microsoft.Rest.ClientRuntime >= 3.0.0"
@@ -6063,8 +6063,8 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\Elenktis.Configuration.csproj": {
-              "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\Elenktis.Configuration.csproj"
+            "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
+              "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj"
             }
           }
         }

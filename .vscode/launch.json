@@ -59,7 +59,7 @@
             },
             "sourceFileMap": {
                 "/src/Spy/DefaultServiceSpy": "${workspaceFolder}/Spy/DefaultServiceSpy",
-                "/src/Common/Elenktis.Configuration": "${workspaceFolder}/Common/Elenktis.Configuration",
+                "/src/Common/Elenktis.Secret": "${workspaceFolder}/Common/Elenktis.Secret",
                 "/src/Common/Elenktis.Assessment": "${workspaceFolder}/Common/Elenktis.Assessment"
             },
             "justMyCode": false,

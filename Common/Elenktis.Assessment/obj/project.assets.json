@@ -1504,7 +1504,7 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "Elenktis.Configuration/1.0.0": {
+      "Elenktis.Secret/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
@@ -1513,10 +1513,10 @@
           "Microsoft.Extensions.Configuration.UserSecrets": "2.2.0"
         },
         "compile": {
-          "bin/placeholder/Elenktis.Configuration.dll": {}
+          "bin/placeholder/Elenktis.Secret.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Elenktis.Configuration.dll": {}
+          "bin/placeholder/Elenktis.Secret.dll": {}
         }
       }
     }
@@ -5230,15 +5230,15 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "Elenktis.Configuration/1.0.0": {
+    "Elenktis.Secret/1.0.0": {
       "type": "project",
-      "path": "../Elenktis.Configuration/Elenktis.Configuration.csproj",
-      "msbuildProject": "../Elenktis.Configuration/Elenktis.Configuration.csproj"
+      "path": "../Elenktis.Secret/Elenktis.Secret.csproj",
+      "msbuildProject": "../Elenktis.Secret/Elenktis.Secret.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
-      "Elenktis.Configuration >= 1.0.0",
+      "Elenktis.Secret >= 1.0.0",
       "Microsoft.Extensions.DependencyInjection >= 2.2.0",
       "Newtonsoft.Json >= 11.0.2",
       "dotnet-etcd >= 2.3.1"
@@ -5274,8 +5274,8 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\Elenktis.Configuration.csproj": {
-              "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Configuration\\Elenktis.Configuration.csproj"
+            "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
+              "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj"
             }
           }
         }

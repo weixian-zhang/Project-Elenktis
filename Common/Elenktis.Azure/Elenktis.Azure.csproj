@@ -8,6 +8,6 @@
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.1.0"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Elenktis.Configuration\Elenktis.Configuration.csproj"/>
+    <ProjectReference Include="..\..\Common\Elenktis.Secret\Elenktis.Secret.csproj"/>
   </ItemGroup>
 </Project>

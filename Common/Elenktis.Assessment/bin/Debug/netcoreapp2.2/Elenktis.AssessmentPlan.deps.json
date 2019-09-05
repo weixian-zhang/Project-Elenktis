@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v2.2": {
       "Elenktis.AssessmentPlan/1.0.0": {
         "dependencies": {
-          "Elenktis.Configuration": "1.0.0",
+          "Elenktis.Secret": "1.0.0",
           "Microsoft.Extensions.DependencyInjection": "2.2.0",
           "Newtonsoft.Json": "11.0.2",
           "dotnet-etcd": "2.3.1"
@@ -183,9 +183,9 @@
           "System.Runtime.Handles": "4.0.1"
         }
       },
-      "Elenktis.Configuration/1.0.0": {
+      "Elenktis.Secret/1.0.0": {
         "runtime": {
-          "Elenktis.Configuration.dll": {}
+          "Elenktis.Secret.dll": {}
         }
       }
     }
@@ -322,7 +322,7 @@
       "path": "system.threading.threadpool/4.0.10",
       "hashPath": "system.threading.threadpool.4.0.10.nupkg.sha512"
     },
-    "Elenktis.Configuration/1.0.0": {
+    "Elenktis.Secret/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v2.2": {
       "Elenktis.Common.AzResourceManager/1.0.0": {
         "dependencies": {
-          "Elenktis.Configuration": "1.0.0",
+          "Elenktis.Secret": "1.0.0",
           "Microsoft.Azure.Management.ResourceManager": "2.0.0-preview",
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "5.1.0",
           "Microsoft.NET.Sdk": "2.2.101",
@@ -1054,7 +1054,7 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
-      "Elenktis.Configuration/1.0.0": {
+      "Elenktis.Secret/1.0.0": {
         "dependencies": {
           "Microsoft.Azure.KeyVault": "3.0.3",
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "5.1.0",
@@ -1062,7 +1062,7 @@
           "Serilog.Sinks.MongoDB": "4.0.0"
         },
         "runtime": {
-          "Elenktis.Configuration.dll": {}
+          "Elenktis.Secret.dll": {}
         }
       }
     }
@@ -1822,7 +1822,7 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
-    "Elenktis.Configuration/1.0.0": {
+    "Elenktis.Secret/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

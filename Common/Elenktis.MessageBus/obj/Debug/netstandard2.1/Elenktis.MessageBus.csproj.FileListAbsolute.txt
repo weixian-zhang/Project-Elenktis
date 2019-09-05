@@ -1,0 +1,11 @@
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netstandard2.1\Elenktis.MessageBus.csprojAssemblyReference.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netstandard2.1\Elenktis.MessageBus.AssemblyInfoInputs.cache
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netstandard2.1\Elenktis.MessageBus.AssemblyInfo.cs
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\bin\Debug\netstandard2.1\Elenktis.MessageBus.deps.json
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\bin\Debug\netstandard2.1\Elenktis.MessageBus.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\bin\Debug\netstandard2.1\Elenktis.MessageBus.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netstandard2.1\Elenktis.MessageBus.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netstandard2.1\Elenktis.MessageBus.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\bin\Debug\netstandard2.1\Elenktis.Secret.dll
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\bin\Debug\netstandard2.1\Elenktis.Secret.pdb
+c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netstandard2.1\Elenktis.MessageBus.csproj.CopyComplete

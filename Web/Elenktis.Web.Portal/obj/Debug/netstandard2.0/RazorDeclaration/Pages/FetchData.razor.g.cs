@@ -53,7 +53,7 @@ using RestSharp;
 
 #line default
 #line hidden
-    [Microsoft.AspNetCore.Components.Layouts.LayoutAttribute(typeof(MainLayout))]
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/fetchdata")]
     public class FetchData : Microsoft.AspNetCore.Components.ComponentBase
     {
