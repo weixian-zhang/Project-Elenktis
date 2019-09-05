@@ -36,7 +36,7 @@ namespace Elenktis.Assessment
                             changedValue.ToBool();
                     }));
 
-            _policyStore.OnPolicyChanged<ASCUpgradeStandardTierPolicy>
+            _policyStore.OnPolicyChanged<CheckASCIsStandardTierPolicy>
                 (   subscriptionId,
                     (p) => p.ToRemediate,
                     (changedValue => {

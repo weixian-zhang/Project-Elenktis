@@ -2,7 +2,6 @@ c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\bin\Deb
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.MessageBus.dll
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.MessageBus.pdb
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.MessageBus.csprojAssemblyReference.cache
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.MessageBus.csproj.CoreCompileInputs.cache
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.MessageBus.AssemblyInfoInputs.cache
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.MessageBus.AssemblyInfo.cs
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.MessageBus\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.MessageBus.dll

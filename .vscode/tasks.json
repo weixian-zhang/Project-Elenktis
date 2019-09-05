@@ -34,7 +34,7 @@
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Spy/DefaultServiceSpy"
+                "cwd": "${workspaceFolder}/Controllers/Spy/DefaultServiceSpy/Elenktis.Spy.DefaultService"
             },
             "problemMatcher": []
         },
@@ -43,7 +43,7 @@
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Recce"
+                "cwd": "${workspaceFolder}/Controllers/Recce/Elenktis.Recce"
             },
             "problemMatcher": []
         },
@@ -66,11 +66,47 @@
             "problemMatcher": []
         },
         {
+            "label": "dotnet build Message",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Common/Elenktis.Message"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "dotnet build MessageBus",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Common/Elenktis.MessageBus"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "dotnet build Azure",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Common/Elenktis.Azure"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "dotnet build Recce.Message",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controller/Recce/Elenktis.Recce.Message"
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "func start recce",
             "type": "shell",
             "dependsOn": "build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers\\Recce/bin/Debug/netcoreapp2.2",
+                "cwd": "${workspaceFolder}/Controllers/Recce/Elenktis.Recce/bin/Debug/netcoreapp2.2",
                 "env": {
                     "env": "dev"
                 }

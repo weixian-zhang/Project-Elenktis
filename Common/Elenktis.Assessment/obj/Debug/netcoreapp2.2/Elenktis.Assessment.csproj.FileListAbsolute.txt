@@ -7,7 +7,6 @@ c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\bin\Deb
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\bin\Debug\netcoreapp2.2\Elenktis.Configuration.dll
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\bin\Debug\netcoreapp2.2\Elenktis.Configuration.pdb
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.Assessment.csprojAssemblyReference.cache
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.Assessment.csproj.CoreCompileInputs.cache
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.Assessment.AssemblyInfoInputs.cache
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.Assessment.AssemblyInfo.cs
 c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Assessment\obj\Debug\netcoreapp2.2\Elenktis.Assessment.csproj.CopyComplete

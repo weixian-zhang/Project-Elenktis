@@ -12,7 +12,7 @@ namespace Elenktis.Assessment.DefaultService
 
         public CreateLAWorkspacePolicy CreateLAWorkspacePolicy { get; set; }
 
-        public ASCUpgradeStandardTierPolicy ASCUpgradeStandardTierPolicy { get; set; }
+        public CheckASCIsStandardTierPolicy ASCUpgradeStandardTierPolicy { get; set; }
 
         public ASCAutoRegisterVMEnabledPolicy ASCAutoRegisterVMEnabledPolicy { get; set; }
 

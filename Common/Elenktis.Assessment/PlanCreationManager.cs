@@ -77,10 +77,10 @@ namespace Elenktis.Assessment
                 <ASCAutoRegisterVMEnabledPolicy>(subscriptionId, p => p.ToRemediate == true);
 
             await _policyStore.CreateOrSetPolicyAsync
-                <ASCUpgradeStandardTierPolicy>(subscriptionId, p => p.ToAssess == true);
+                <CheckASCIsStandardTierPolicy>(subscriptionId, p => p.ToAssess == true);
             
             await _policyStore.CreateOrSetPolicyAsync
-                <ASCUpgradeStandardTierPolicy>(subscriptionId, p => p.ToRemediate == true);
+                <CheckASCIsStandardTierPolicy>(subscriptionId, p => p.ToRemediate == true);
 
             await _policyStore.CreateOrSetPolicyAsync
                 <AssociateASCToDefaultLAWorkspacePolicy>(subscriptionId, p => p.ToAssess == true);

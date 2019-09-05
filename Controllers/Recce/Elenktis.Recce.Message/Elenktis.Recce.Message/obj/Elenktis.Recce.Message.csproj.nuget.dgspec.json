@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "restore": {
+    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Controllers\\Recce\\Elenktis.Recce.Message\\Elenktis.Recce.Message\\Elenktis.Recce.Message.csproj": {}
+  },
+  "projects": {
+    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Controllers\\Recce\\Elenktis.Recce.Message\\Elenktis.Recce.Message\\Elenktis.Recce.Message.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Controllers\\Recce\\Elenktis.Recce.Message\\Elenktis.Recce.Message\\Elenktis.Recce.Message.csproj",
+        "projectName": "Elenktis.Recce.Message",
+        "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Controllers\\Recce\\Elenktis.Recce.Message\\Elenktis.Recce.Message\\Elenktis.Recce.Message.csproj",
+        "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
+        "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Controllers\\Recce\\Elenktis.Recce.Message\\Elenktis.Recce.Message\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\weixzha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          }
+        }
+      }
+    }
+  }
+}

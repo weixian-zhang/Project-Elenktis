@@ -1,7 +1,0 @@
-kind: ConfigMap 
-apiVersion: v1 
-metadata:
-  name: configmap-defaultsvcspy
-data:
-  # Configuration values can be set as key-value properties
-  etcdUrl: etcd-client:2379
