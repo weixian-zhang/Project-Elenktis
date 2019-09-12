@@ -60,7 +60,7 @@
             "sourceFileMap": {
                 "/src/Spy/DefaultServiceSpy": "${workspaceFolder}/Spy/DefaultServiceSpy",
                 "/src/Common/Elenktis.Secret": "${workspaceFolder}/Common/Elenktis.Secret",
-                "/src/Common/Elenktis.Assessment": "${workspaceFolder}/Common/Elenktis.Assessment"
+                "/src/Common/Elenktis.Policy": "${workspaceFolder}/Common/Elenktis.Policy"
             },
             "justMyCode": false,
             "requireExactSource": false,

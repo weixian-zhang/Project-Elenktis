@@ -1,10 +1,10 @@
 using System;
 
 using Elenktis.Azure;
-using Elenktis.Assessment;
+using Elenktis.Policy;
 using Elenktis.Secret;
 using System.Threading.Tasks;
-using Elenktis.Assessment.DefaultService;
+using Elenktis.Policy.DefaultService;
 
 namespace Elenktis.Recce
 {

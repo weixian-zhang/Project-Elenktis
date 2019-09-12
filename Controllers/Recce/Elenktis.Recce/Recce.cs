@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Elenktis.Assessment;
+using Elenktis.Policy;
 using Elenktis.Azure;
 using Elenktis.Secret;
 using Microsoft.Azure.WebJobs;

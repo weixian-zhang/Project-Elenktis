@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "docker build DefaultSvcSpy",
+            "label": "docker build Spy-DefaultSvc",
             "command": "docker build -f Dockerfile.debug ../../ -t acrcentralsvcdev.azurecr.io/defaultsvcspy:defaultsvcspy-v0.30",
             "type": "shell",
             "args": [],
@@ -12,7 +12,7 @@
             "problemMatcher": []
         },
         {
-            "label": "kubectl DeleteDeployment DefaultSvcSpy",
+            "label": "kubectl DeleteDeployment Spy-DefaultSvc",
             "command": "kubectl delete deployment deploy-spy-defaultsvc",
             "type": "shell",
             "options": {
@@ -21,7 +21,7 @@
             "problemMatcher": []
         },
         {
-            "label": "kubectl Deploy DefaultSvcSpy",
+            "label": "kubectl Deploy Spy-DefaultSvc",
             "command": "kubectl apply --validate=false -f defaultsvcspy-deployment.yaml",
             "type": "shell",
             "options": {
@@ -30,11 +30,20 @@
             "problemMatcher": []
         },
         {
-            "label": "dotnet build DefaultSvcSpy",
+            "label": "dotnet build Spy-DefaultSvc",
             "type": "shell",
             "command": "dotnet build",
             "options": {
                 "cwd": "${workspaceFolder}/Controllers/Spy/DefaultServiceSpy/Elenktis.Spy.DefaultService"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "dotnet build Fixer-DefaultSvc",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controllers/Fixer/Elenktis.Fixer.DefaultService"
             },
             "problemMatcher": []
         },
@@ -48,11 +57,11 @@
             "problemMatcher": []
         },
         {
-            "label": "dotnet build Assessment",
+            "label": "dotnet build Policy",
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Common/Elenktis.Assessment"
+                "cwd": "${workspaceFolder}/Common/Elenktis.Policy"
             },
             "problemMatcher": []
         },
@@ -62,6 +71,15 @@
             "command": "dotnet build",
             "options": {
                 "cwd": "${workspaceFolder}/Common/Elenktis.Secret"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "dotnet build Log",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Common/Elenktis.Log"
             },
             "problemMatcher": []
         },
@@ -106,7 +124,20 @@
             "type": "shell",
             "dependsOn": "build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Recce/Elenktis.Recce/bin/Debug/netcoreapp2.2",
+                "cwd": "${workspaceFolder}/Controllers/Recce/Elenktis.Recce/bin/Debug/netcoreapp2.1",
+                "env": {
+                    "env": "dev"
+                }
+            },
+            "command": "func start",
+            "problemMatcher": "$func-watch"
+        },
+        {
+            "label": "func start defaultservicefixer",
+            "type": "shell",
+            "dependsOn": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controllers/Fixer/Elenktis.Fixer.DefaultService/bin/debug/netcoreapp3.0",
                 "env": {
                     "env": "dev"
                 }

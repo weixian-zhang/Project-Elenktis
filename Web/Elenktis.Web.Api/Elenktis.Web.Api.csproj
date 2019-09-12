@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Elenktis.Assessment\Elenktis.AssessmentPlan.csproj" />
+    <ProjectReference Include="..\..\Common\Elenktis.Policy\Elenktis.Policy.csproj" />
   </ItemGroup>
 
 </Project>

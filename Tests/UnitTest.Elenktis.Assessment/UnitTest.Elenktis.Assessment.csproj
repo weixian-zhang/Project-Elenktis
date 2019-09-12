@@ -8,6 +8,6 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Elenktis.Assessment\Elenktis.Assessment.csproj"/>
+    <ProjectReference Include="..\..\Common\Elenktis.Policy\Elenktis.Policy.csproj"/>
   </ItemGroup>
 </Project>

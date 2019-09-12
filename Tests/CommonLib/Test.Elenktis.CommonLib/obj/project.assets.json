@@ -5862,11 +5862,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\CommonLib\\Test.Elenktis.CommonLib\\Test.Elenktis.CommonLib.csproj",
+      "projectUniqueName": "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\CommonLib\\Test.Elenktis.CommonLib\\Test.Elenktis.CommonLib.csproj",
       "projectName": "Test.Elenktis.CommonLib",
-      "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\CommonLib\\Test.Elenktis.CommonLib\\Test.Elenktis.CommonLib.csproj",
+      "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\CommonLib\\Test.Elenktis.CommonLib\\Test.Elenktis.CommonLib.csproj",
       "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
-      "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\CommonLib\\Test.Elenktis.CommonLib\\obj\\",
+      "outputPath": "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\CommonLib\\Test.Elenktis.CommonLib\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,0 +1,8 @@
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Log\bin\Debug\netstandard2.0\Elenktis.Log.deps.json
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Log\bin\Debug\netstandard2.0\Elenktis.Log.dll
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Log\bin\Debug\netstandard2.0\Elenktis.Log.pdb
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Log\obj\Debug\netstandard2.0\Elenktis.Log.csprojAssemblyReference.cache
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Log\obj\Debug\netstandard2.0\Elenktis.Log.AssemblyInfoInputs.cache
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Log\obj\Debug\netstandard2.0\Elenktis.Log.AssemblyInfo.cs
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Log\obj\Debug\netstandard2.0\Elenktis.Log.dll
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Log\obj\Debug\netstandard2.0\Elenktis.Log.pdb

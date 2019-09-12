@@ -1,9 +1,9 @@
 using System;
 using Xunit;
 
-using Elenktis.Assessment;
+using Elenktis.Policy;
 
-namespace UnitTest.Elenktis.Assessment
+namespace UnitTest.Elenktis.Policy
 {
     public class PlanManagerTest
     {

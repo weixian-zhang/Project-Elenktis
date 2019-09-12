@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj": {}
+    "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj": {}
   },
   "projects": {
-    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj": {
+    "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj",
+        "projectUniqueName": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj",
         "projectName": "Elenktis.Azure",
-        "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj",
+        "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Azure\\Elenktis.Azure.csproj",
         "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
-        "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Azure\\obj\\",
+        "outputPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Azure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -21,17 +21,17 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "netstandard2.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
+          "netstandard2.0": {
             "projectReferences": {
-              "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
-                "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj"
+              "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
+                "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj"
               }
             }
           }
@@ -43,7 +43,7 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
+        "netstandard2.0": {
           "dependencies": {
             "Microsoft.Azure.Management.ResourceManager": {
               "target": "Package",
@@ -56,6 +56,12 @@
             "Microsoft.Rest.ClientRuntime": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
             }
           },
           "imports": [
@@ -68,23 +74,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "NETStandard.Library": {
-              "privateAssets": "all"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
+    "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
+        "projectUniqueName": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
         "projectName": "Elenktis.Secret",
-        "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
+        "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
         "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
-        "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\obj\\",
+        "outputPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -94,14 +95,14 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "netstandard2.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
+          "netstandard2.0": {
             "projectReferences": {}
           }
         },
@@ -112,7 +113,7 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
+        "netstandard2.0": {
           "dependencies": {
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -125,6 +126,12 @@
             "Microsoft.Extensions.Configuration.UserSecrets": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
             }
           },
           "imports": [
@@ -137,11 +144,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "NETStandard.Library": {
-              "privateAssets": "all"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
         }
       }

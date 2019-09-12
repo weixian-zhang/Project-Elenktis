@@ -2241,7 +2241,7 @@
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
       },
-      "Elenktis.Assessment/1.0.0": {
+      "Elenktis.Policy/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
@@ -2251,10 +2251,10 @@
           "dotnet-etcd": "2.3.1"
         },
         "compile": {
-          "bin/placeholder/Elenktis.Assessment.dll": {}
+          "bin/placeholder/Elenktis.Policy.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Elenktis.Assessment.dll": {}
+          "bin/placeholder/Elenktis.Policy.dll": {}
         }
       },
       "Elenktis.Secret/1.0.0": {
@@ -7037,10 +7037,10 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "Elenktis.Assessment/1.0.0": {
+    "Elenktis.Policy/1.0.0": {
       "type": "project",
-      "path": "../../Common/Elenktis.Assessment/Elenktis.Assessment.csproj",
-      "msbuildProject": "../../Common/Elenktis.Assessment/Elenktis.Assessment.csproj"
+      "path": "../../Common/Elenktis.Policy/Elenktis.Policy.csproj",
+      "msbuildProject": "../../Common/Elenktis.Policy/Elenktis.Policy.csproj"
     },
     "Elenktis.Secret/1.0.0": {
       "type": "project",
@@ -7050,7 +7050,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
-      "Elenktis.Assessment >= 1.0.0",
+      "Elenktis.Policy >= 1.0.0",
       "xunit >= 2.4.0",
       "xunit.runner.visualstudio >= 2.4.0"
     ]
@@ -7062,11 +7062,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj",
+      "projectUniqueName": "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj",
       "projectName": "UnitTest.Elenktis.Assessment",
-      "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj",
+      "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj",
       "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
-      "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\obj\\",
+      "outputPath": "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -7085,8 +7085,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.Assessment.csproj": {
-              "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.Assessment.csproj"
+            "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Policy\\Elenktis.Policy.csproj": {
+              "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Policy\\Elenktis.Policy.csproj"
             }
           }
         }

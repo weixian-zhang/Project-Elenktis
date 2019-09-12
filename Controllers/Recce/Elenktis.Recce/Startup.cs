@@ -3,7 +3,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 
-using Elenktis.Assessment;
+using Elenktis.Policy;
 using Elenktis.Azure;
 using Elenktis.Secret;
 

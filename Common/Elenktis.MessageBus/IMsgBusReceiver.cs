@@ -1,9 +1,11 @@
 using System;
+using System.Threading.Tasks;
+using MassTransit;
 
 namespace Elenktis.MessageBus
 {
-    public interface IMsgBusReceiver
+    public interface IMsgBusReceiver<TConsumer> where TConsumer : class, IConsumer, new()
     {
-        T Receive<T>(string receiveFromQueueName);
+        void InitConsumer(string queueName);
     }
 }

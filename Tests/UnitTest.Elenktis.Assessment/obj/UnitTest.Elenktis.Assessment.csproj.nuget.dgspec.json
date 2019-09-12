@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj": {}
+    "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj": {}
   },
   "projects": {
-    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.Assessment.csproj": {
+    "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Policy\\Elenktis.Policy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.Assessment.csproj",
-        "projectName": "Elenktis.Assessment",
-        "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.Assessment.csproj",
+        "projectUniqueName": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Policy\\Elenktis.Policy.csproj",
+        "projectName": "Elenktis.Policy",
+        "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Policy\\Elenktis.Policy.csproj",
         "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
-        "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\obj\\",
+        "outputPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Policy\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
-                "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj"
+              "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
+                "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj"
               }
             }
           }
@@ -77,14 +77,14 @@
         }
       }
     },
-    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
+    "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
+        "projectUniqueName": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
         "projectName": "Elenktis.Secret",
-        "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
+        "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\Elenktis.Secret.csproj",
         "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
-        "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Secret\\obj\\",
+        "outputPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Secret\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -146,14 +146,14 @@
         }
       }
     },
-    "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj": {
+    "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj",
+        "projectUniqueName": "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj",
         "projectName": "UnitTest.Elenktis.Assessment",
-        "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj",
+        "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\UnitTest.Elenktis.Assessment.csproj",
         "packagesPath": "C:\\Users\\weixzha\\.nuget\\packages\\",
-        "outputPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\obj\\",
+        "outputPath": "c:\\Weixian\\Projects\\Project Elenktis\\Tests\\UnitTest.Elenktis.Assessment\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -172,8 +172,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.Assessment.csproj": {
-                "projectPath": "c:\\Weixian\\Projects\\Src\\POCs\\Project Elenktis\\Common\\Elenktis.Assessment\\Elenktis.Assessment.csproj"
+              "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Policy\\Elenktis.Policy.csproj": {
+                "projectPath": "c:\\Weixian\\Projects\\Project Elenktis\\Common\\Elenktis.Policy\\Elenktis.Policy.csproj"
               }
             }
           }

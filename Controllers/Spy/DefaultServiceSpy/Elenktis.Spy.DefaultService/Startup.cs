@@ -5,7 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Elenktis.Azure;
 using Elenktis.Secret;
-using Elenktis.Assessment;
+using Elenktis.Policy;
+using Elenktis.MessageBus;
 
 [assembly: WebJobsStartup(typeof(Elenktis.Spy.Startup))]
 namespace Elenktis.Spy {
@@ -14,10 +15,13 @@ namespace Elenktis.Spy {
     {
         public void Configure(IWebJobsBuilder builder)
         {
-
-             builder.Services.AddTransient<ISecretHydrator, NetCoreSecretHydrator>();
              builder.Services.AddTransient<IAzure, AzureManager>();
-             builder.Services.AddTransient<IPlanQueryManager, PlanQueryManager>();  
+             builder.Services.AddTransient<IPlanQueryManager, PlanQueryManager>(); 
+             builder.Services.AddTransient<IMsgBusSender>(sp =>
+                {
+                    return new AzSvcBusSender(SecretHydratorFactory.Create());
+                }
+             );
         }
     }
 

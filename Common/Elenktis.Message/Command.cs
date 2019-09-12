@@ -5,8 +5,10 @@ namespace Elenktis.Message
 {
     public abstract class Command
     {
-        public int TimeCreated { get; set; }
+        public DateTime TimeCreated { get; set; } = DateTime.Now;
 
-        public string SourceAppName { get; } = ""; //Assembly.GetCallingAssembly().GetName();
+        public string SourceApp { get; set; }
+
+        public string Action { get; set; }
     }
 }

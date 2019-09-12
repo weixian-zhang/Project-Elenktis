@@ -27,9 +27,13 @@ using Serilog.Core;
 using Serilog.Events;
 using System.Diagnostics;
 using Microsoft.Extensions.Configuration;
-using Elenktis.Assessment;
+using Elenktis.Policy;
 using TenantSubscription = Elenktis.Azure.TenantSubscription;
-using Elenktis.Assessment.DefaultService;
+using Elenktis.Policy.DefaultService;
+using Elenktis.Spy.DefaultService.Message;
+using Elenktis.Message;
+using Elenktis.MessageBus;
+using Newtonsoft.Json;
 
 namespace Elenktis.Spy
 {
@@ -38,7 +42,6 @@ namespace Elenktis.Spy
         public DefaultServiceSpy
             (ISecretHydrator secretHydrator, IAzure azureManager, IPlanQueryManager planManager)
         {
-            //_secretHydrator = secretHydrator;
             _azureManager = azureManager;
             _planQueryManager = planManager;
         }
@@ -49,9 +52,7 @@ namespace Elenktis.Spy
         {
             try
             {
-               HydrateSecrets();
-
-               InitLogger();
+               Init();
 
                await AssessDefaultServicesAsync();
             }
@@ -60,6 +61,13 @@ namespace Elenktis.Spy
                _appLogger.Error(ex, "exception thrown at Run()");
                throw;
             }
+        }
+
+        private void Init()
+        {
+            HydrateSecrets();
+
+            InitLogger();
         }
 
         private void InitLogger()
@@ -72,26 +80,28 @@ namespace Elenktis.Spy
             //     .WriteTo.Console()
             //     .CreateLogger();
 
-            Serilog.Debugging.SelfLog.Enable(Console.Error);
+            // Serilog.Debugging.SelfLog.Enable(Console.Error);
 
-            _appLogger = new LoggerConfiguration()
-               .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "AppLog",
-               period: TimeSpan.Zero,
-               restrictedToMinimumLevel: LogEventLevel.Verbose)
-               .WriteTo.Console()
-               .CreateLogger();
+            // _appLogger = new LoggerConfiguration()
+            //    .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "AppLog",
+            //    period: TimeSpan.Zero,
+            //    restrictedToMinimumLevel: LogEventLevel.Verbose)
+            //    .WriteTo.Console()
+            //    .CreateLogger();
 
-            _activityLogger = new LoggerConfiguration()
-               .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "ActivityLog",
-               period: TimeSpan.Zero,
-               restrictedToMinimumLevel: LogEventLevel.Verbose)
-               .WriteTo.Console()
-               .CreateLogger();
+            // _activityLogger = new LoggerConfiguration()
+            //    .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "ActivityLog",
+            //    period: TimeSpan.Zero,
+            //    restrictedToMinimumLevel: LogEventLevel.Verbose)
+            //    .WriteTo.Console()
+            //    .CreateLogger();
         }
 
         private void HydrateSecrets()
         {
-            _secrets = _secretHydrator.Hydrate<ControllerSecret>();
+            var hydrator = SecretHydratorFactory.Create();
+
+            _secrets = hydrator.Hydrate<ControllerSecret>();
 
             _azcred = new AzSDKCredentials
                 (_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
@@ -127,7 +137,15 @@ namespace Elenktis.Spy
 
             if(aps.AutoProvision == "Off")
             {
+                var comm = new EnableASCAutoRegisterVM()
+                {
+                    SourceApp = typeof(DefaultServiceSpy).ToString(),
+                    Action = DefaultServiceFixerAction.EnableASCAutoRegisterVM,
+                    AutoProvision = false,
+                };
+                
                 //send command to fixer
+                await _msgSender.SendAsync(_queue, JsonConvert.SerializeObject(comm));
             }
         }
 
@@ -201,13 +219,13 @@ namespace Elenktis.Spy
         //     }
         // }
 
+        private string _queue = "policyctl-defaultsvcfixer";
         private Logger _appLogger = null;
         private Logger _activityLogger = null;
         private AzSDKCredentials _azcred = null;
-        private ISecretHydrator _secretHydrator = null;
         private IAzure _azureManager = null;
         private ControllerSecret _secrets;
-
         private IPlanQueryManager _planQueryManager;
+        private IMsgBusSender _msgSender;
     }
 }

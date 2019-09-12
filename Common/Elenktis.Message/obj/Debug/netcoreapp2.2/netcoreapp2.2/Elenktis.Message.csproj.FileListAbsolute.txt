@@ -1,8 +1,0 @@
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Message\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Message.deps.json
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Message\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Message.dll
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Message\bin\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Message.pdb
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Message\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Message.csprojAssemblyReference.cache
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Message\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Message.AssemblyInfoInputs.cache
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Message\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Message.AssemblyInfo.cs
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Message\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Message.dll
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Common\Elenktis.Message\obj\Debug\netcoreapp2.2\netcoreapp2.2\Elenktis.Message.pdb

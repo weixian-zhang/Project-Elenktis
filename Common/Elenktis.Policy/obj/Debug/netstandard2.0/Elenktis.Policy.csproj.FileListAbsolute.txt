@@ -1,0 +1,11 @@
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\bin\Debug\netstandard2.0\Elenktis.Policy.deps.json
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\bin\Debug\netstandard2.0\Elenktis.Policy.dll
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\bin\Debug\netstandard2.0\Elenktis.Policy.pdb
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\bin\Debug\netstandard2.0\Elenktis.Secret.dll
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\bin\Debug\netstandard2.0\Elenktis.Secret.pdb
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\obj\Debug\netstandard2.0\Elenktis.Policy.csprojAssemblyReference.cache
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\obj\Debug\netstandard2.0\Elenktis.Policy.AssemblyInfoInputs.cache
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\obj\Debug\netstandard2.0\Elenktis.Policy.AssemblyInfo.cs
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\obj\Debug\netstandard2.0\Elenktis.Policy.csproj.CopyComplete
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\obj\Debug\netstandard2.0\Elenktis.Policy.dll
+c:\Weixian\Projects\Project Elenktis\Common\Elenktis.Policy\obj\Debug\netstandard2.0\Elenktis.Policy.pdb
