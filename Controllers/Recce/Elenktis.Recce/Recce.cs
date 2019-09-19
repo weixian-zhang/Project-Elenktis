@@ -17,7 +17,7 @@ namespace Elenktis.Recce
         } 
 
         [FunctionName("Recce")]
-        public async Task Run([TimerTrigger("*/5 * * * * *")]TimerInfo myTimer, ILogger log)
+        public async Task Run([TimerTrigger("*/15 * * * * *")]TimerInfo myTimer, ILogger log)
         {
            await _subRecce.StartAsync();
         }

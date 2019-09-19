@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Common\Elenktis.Message\Elenktis.Message.csproj" />
+    <ProjectReference Include="..\Elenktis.Message\Elenktis.Message.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

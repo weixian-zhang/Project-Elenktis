@@ -1,4 +1,6 @@
-namespace Elenktis.Message
+using System;
+
+namespace Elenktis.DefaultService.Message
 {
     public class DefaultServiceFixerAction
     {

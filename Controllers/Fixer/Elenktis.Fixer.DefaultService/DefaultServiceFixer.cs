@@ -18,7 +18,7 @@ namespace Elenktis.Fixer.DefaultService
 
         [FunctionName("DefaultServiceFixer")]
         public static void Run
-            ([TimerTrigger("*/5 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, Microsoft.Extensions.Logging.ILogger log)
+            ([TimerTrigger("*/10 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, Microsoft.Extensions.Logging.ILogger log)
         {
             
         }

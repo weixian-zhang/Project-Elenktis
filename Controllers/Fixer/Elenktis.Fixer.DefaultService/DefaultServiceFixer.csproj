@@ -26,7 +26,7 @@
   <ItemGroup>
      <ProjectReference Include="..\..\..\Common\Elenktis.Secret\Elenktis.Secret.csproj" />
      <ProjectReference Include="..\..\..\Common\Elenktis.Policy\Elenktis.Policy.csproj" />
-     <ProjectReference Include="..\..\..\Common\Elenktis.Message\Elenktis.Message.csproj" />
+
      <ProjectReference Include="..\..\..\Common\Elenktis.MessageBus\Elenktis.MessageBus.csproj" />
      <ProjectReference Include="..\..\..\Common\Elenktis.Azure\Elenktis.Azure.csproj" />
   </ItemGroup>
