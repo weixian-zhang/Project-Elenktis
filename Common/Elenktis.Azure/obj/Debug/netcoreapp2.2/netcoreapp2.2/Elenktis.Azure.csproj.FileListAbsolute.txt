@@ -1,6 +1,0 @@
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.AzResourceManager.deps.json
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.AzResourceManager.dll
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Spy\DefaultServiceSpy\bin\output\Elenktis.Common.AzResourceManager.pdb
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Controllers\Elenktis.Recce\bin\output\Elenktis.Common.AzResourceManager.deps.json
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Controllers\Elenktis.Recce\bin\output\Elenktis.Common.AzResourceManager.dll
-c:\Weixian\Projects\Src\POCs\Project Elenktis\Controllers\Elenktis.Recce\bin\output\Elenktis.Common.AzResourceManager.pdb
