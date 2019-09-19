@@ -53,7 +53,7 @@ namespace Elenktis.Policy
             else
             {
                 bool planExist =
-                    await _policyStore.IsPlanExistAsync<SecurityHygienePlan>(subscriptionId);
+                    await _policyStore.IsPlanExistAsync<LogEnablerPlan>(subscriptionId);
 
                  if(!planExist)
                      await CreateLEPInternalAsync(subscriptionId);
