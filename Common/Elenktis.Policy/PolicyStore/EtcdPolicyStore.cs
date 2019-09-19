@@ -70,6 +70,10 @@ namespace Elenktis.Policy
             return policy;
         }
 
+        public Task<IDictionary<string, string>> GetSubscriptions() {
+            return _etcd.GetRangeValAsync("sub");
+        }
+
         public void OnPolicyChanged<TPolicy>
             (   string subscriptionId,
                 Expression<Func<TPolicy, object>> measureToWatchChange,

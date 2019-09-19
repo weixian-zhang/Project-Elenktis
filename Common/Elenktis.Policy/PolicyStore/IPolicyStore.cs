@@ -18,6 +18,8 @@ namespace Elenktis.Policy
 
         Task<bool> IsPlanExistAsync<TPlan>(string subscriptionId)  where TPlan : AssessmentPlan;
 
+        Task<IDictionary<string, string>> GetSubscriptions();
+
         void OnPolicyChanged<TPolicy>
             (   string subscriptionId,
                 Expression<Func<TPolicy,object>> measureToWatchChange,
