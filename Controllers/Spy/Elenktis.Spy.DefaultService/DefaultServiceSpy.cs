@@ -1,38 +1,23 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Elenktis.Azure;
 using Elenktis.Secret;
 
 using Microsoft.Azure.Management.Compute;
 using Microsoft.Azure.Management.OperationalInsights;
-using Microsoft.Azure.Management.OperationalInsights.Models;
 using Microsoft.Azure.Management.ResourceManager;
-using Microsoft.Azure.Management.ResourceManager.Models;
 using Microsoft.Azure.Management.Security;
 using Microsoft.Azure.Management.Security.Models;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
-using Microsoft.Extensions.Logging;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 
-
-using Microsoft.Rest;
-using System.Threading;
-using Serilog;
 using Serilog.Core;
-using Serilog.Events;
-using System.Diagnostics;
-using Microsoft.Extensions.Configuration;
 using Elenktis.Policy;
-using TenantSubscription = Elenktis.Azure.TenantSubscription;
 using Elenktis.Policy.DefaultService;
-using Elenktis.MessageBus;
 using Newtonsoft.Json;
-using Elenktis.DefaultService.Message;
+using Elenktis.Message;
+using Elenktis.Message.DefaultService;
+using MassTransit;
+using MassTransit.Azure.ServiceBus.Core;
 
 namespace Elenktis.Spy
 {
@@ -47,7 +32,7 @@ namespace Elenktis.Spy
 
         [FunctionName("DefaultServiceSpy")]
         public async Task Run
-            ([TimerTrigger("*/10 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, Microsoft.Extensions.Logging.ILogger log)
+            ([TimerTrigger("*/20 * * * * *", RunOnStartup =true, UseMonitor =true)]TimerInfo timerInfo, Microsoft.Extensions.Logging.ILogger log)
         {
             try
             {
@@ -66,34 +51,13 @@ namespace Elenktis.Spy
         {
             HydrateSecrets();
 
-            InitLogger();
         }
 
-        private void InitLogger()
+        private void InitMsgBus()
         {
-            // _activityLogger = new LoggerConfiguration()
-            //     .WriteTo.Console()
-            //     .CreateLogger();
-
-            // _appLogger = new LoggerConfiguration()
-            //     .WriteTo.Console()
-            //     .CreateLogger();
-
-            // Serilog.Debugging.SelfLog.Enable(Console.Error);
-
-            // _appLogger = new LoggerConfiguration()
-            //    .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "AppLog",
-            //    period: TimeSpan.Zero,
-            //    restrictedToMinimumLevel: LogEventLevel.Verbose)
-            //    .WriteTo.Console()
-            //    .CreateLogger();
-
-            // _activityLogger = new LoggerConfiguration()
-            //    .WriteTo.MongoDB(_secrets.CosmosMongoDBConnectionString, collectionName: "ActivityLog",
-            //    period: TimeSpan.Zero,
-            //    restrictedToMinimumLevel: LogEventLevel.Verbose)
-            //    .WriteTo.Console()
-            //    .CreateLogger();
+            IBusControl _bus = Bus.Factory.CreateUsingAzureServiceBus(config => {
+                config.Host(_secrets.ServiceBusConnectionString, c => {});
+            }); 
         }
 
         private void HydrateSecrets()
@@ -108,7 +72,6 @@ namespace Elenktis.Spy
 
         private async Task AssessDefaultServicesAsync()
         {
-            
             var subscriptions =
                 await _azureManager.SubscriptionManager.GetAllSubscriptionsAsync();
 
@@ -125,6 +88,8 @@ namespace Elenktis.Spy
             }
         }
 
+        #region assess by policies
+
         private async Task CheckASCAutoRegisterVMEnabled
             (DefaultServicePlan dsp, string subscriptionId)
         {
@@ -136,25 +101,25 @@ namespace Elenktis.Spy
 
             if(aps.AutoProvision == "Off")
             {
-                var comm = new EnableASCAutoRegisterVM()
+                var comm = new EnableASCAutoRegisterVMCommand()
                 {
-                    SourceApp = typeof(DefaultServiceSpy).ToString(),
-                    Action = DefaultServiceFixerAction.EnableASCAutoRegisterVM,
+                    //Action = DefaultServiceFixerAction.EnableASCAutoRegisterVM,
                     AutoProvision = false,
                 };
                 
-                //send command to fixer
-                await _msgSender.SendAsync(_queue, JsonConvert.SerializeObject(comm));
+                //TODO: send command to Saga
+                //await _msgSender.SendAsync(_queue, JsonConvert.SerializeObject(comm));
             }
         }
 
-        private async Task AssociateASCToDefaultLAWorkspace
-            (DefaultServicePlan dsp, string subscriptionId)
-        {
-            ISecurityCenterClient asc = new SecurityCenterClient(_azcred);
-            //asc..GetAsync()
-            //todo: need to create default workspace and link asc to this workspace
-        }
+        // private async Task AssociateASCToDefaultLAWorkspace
+        //     (DefaultServicePlan dsp, string subscriptionId)
+        // {
+        //     ISecurityCenterClient asc = new SecurityCenterClient(_azcred);
+        //     //asc..GetAsync()
+        //     //todo: need to create default workspace and link asc to this workspace
+        // }
+
         private async Task CheckASCIsStandardTier(DefaultServicePlan dsp, string subscriptionId)
         {
             ISecurityCenterClient ascClient = new SecurityCenterClient(_azcred);
@@ -191,8 +156,6 @@ namespace Elenktis.Spy
             //send command to upgrade
         }
 
-        
-
         // private async Task CheckIaaSAntimalwareInstalledOnVM(TenantSubscription subscription)
         // {
         //     IComputeManagementClient cmc = new ComputeManagementClient(_sdkCred);
@@ -218,13 +181,13 @@ namespace Elenktis.Spy
         //     }
         // }
 
-        private string _queue = "policyctl-defaultsvcfixer";
+        #endregion
+        private string _queue = "policyctl.fixer.defaultservice";
         private Logger _appLogger = null;
         private Logger _activityLogger = null;
         private AzSDKCredentials _azcred = null;
         private IAzure _azureManager = null;
         private ControllerSecret _secrets;
         private IPlanQueryManager _planQueryManager;
-        private IMsgBusSender _msgSender;
     }
 }

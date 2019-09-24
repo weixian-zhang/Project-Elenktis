@@ -1,9 +1,9 @@
 ﻿using System;
 using Elenktis.Message;
 
-namespace Elenktis.DefaultService.Message
+namespace Elenktis.Message.DefaultService
 {
-    public class EnableASCAutoRegisterVM : Command
+    public class EnableASCAutoRegisterVMCommand : Command
     {
         public bool AutoProvision { get; set; }
     }

@@ -5,6 +5,8 @@ namespace Elenktis.Message
 {
     public abstract class ExecutionEvent
     {
+        public string SubscriptionId { get; set; }
+        
         public string ActionPerformed { get; set; }
 
         public DateTime TimeCreated { get; set; }
