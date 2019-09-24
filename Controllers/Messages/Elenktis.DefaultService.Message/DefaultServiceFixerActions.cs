@@ -1,6 +1,6 @@
 using System;
 
-namespace Elenktis.DefaultService.Message
+namespace Elenktis.Message.DefaultService
 {
     public class DefaultServiceFixerAction
     {

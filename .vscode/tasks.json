@@ -7,7 +7,7 @@
             "type": "shell",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/Spy/DefaultServiceSpy"
+                "cwd": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultService"
             },
             "problemMatcher": []
         },
@@ -34,7 +34,7 @@
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Spy/DefaultServiceSpy/Elenktis.Spy.DefaultService"
+                "cwd": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultService"
             },
             "problemMatcher": []
         },
@@ -43,7 +43,7 @@
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Fixer/Elenktis.Fixer.DefaultService"
+                "cwd": "${workspaceFolder}/Controllers/Fixer/Elenktis.Fixer.DefaultServiceFixer"
             },
             "problemMatcher": []
         },
@@ -133,11 +133,24 @@
             "problemMatcher": "$func-watch"
         },
         {
-            "label": "func start defaultservicefixer",
+            "label": "func start defaultservicespy",
             "type": "shell",
             "dependsOn": "build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Fixer/Elenktis.Fixer.DefaultService/bin/debug/netcoreapp3.0",
+                "cwd": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultService/bin/Debug/netcoreapp2.1",
+                "env": {
+                    "env": "dev"
+                }
+            },
+            "command": "func start",
+            "problemMatcher": "$func-watch"
+        },
+        {
+            "label": "run defaultservicefixer",
+            "type": "shell",
+            "dependsOn": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controllers/Fixer/Elenktis.Fixer.DefaultService/bin/debug/netcoreapp2.1",
                 "env": {
                     "env": "dev"
                 }
