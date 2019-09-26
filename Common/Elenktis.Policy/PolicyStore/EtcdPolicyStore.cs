@@ -112,7 +112,7 @@ namespace Elenktis.Policy
         {
             string key =  _keyMapper.CreatePlanKey<TPlan>(subscriptionId);
 
-            await _etcd.PutAsync(key, "true");
+            await _etcd.PutAsync(key, "True");
         }
 
         public async Task<bool> IsPlanExistAsync<TPlan>(string subscriptionId) where TPlan : AssessmentPlan
