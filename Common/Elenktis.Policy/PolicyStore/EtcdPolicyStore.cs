@@ -74,6 +74,10 @@ namespace Elenktis.Policy
             return _etcd.GetRangeValAsync("sub");
         }
 
+        public async Task UpdateSubscription(string key, bool enabled) {
+            await _etcd.PutAsync(key, enabled.ToString());
+        }
+
         public void OnPolicyChanged<TPolicy>
             (   string subscriptionId,
                 Expression<Func<TPolicy, object>> measureToWatchChange,

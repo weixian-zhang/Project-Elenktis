@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Etcdserverpb;
 
 namespace Elenktis.Policy
 {
@@ -19,6 +20,8 @@ namespace Elenktis.Policy
         Task<bool> IsPlanExistAsync<TPlan>(string subscriptionId)  where TPlan : AssessmentPlan;
 
         Task<IDictionary<string, string>> GetSubscriptions();
+
+        Task UpdateSubscription(string key, bool enabled);
 
         void OnPolicyChanged<TPolicy>
             (   string subscriptionId,

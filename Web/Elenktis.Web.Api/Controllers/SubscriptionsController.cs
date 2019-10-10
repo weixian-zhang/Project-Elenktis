@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 using Elenktis.Policy;
 using Elenktis.Secret;
 
-namespace Elenktis.Web.Api.Subscriptions
+namespace Elenktis.Web.Api
 {
     [ApiController]
     [Route("api/subscriptions")]
@@ -19,9 +17,60 @@ namespace Elenktis.Web.Api.Subscriptions
         }
 
         [HttpGet]
-        public IDictionary<string, string> GetSubscriptions()
+        public SubscriptionsModel GetSubscriptions()
         {
-            return _policyStore.GetSubscriptions().Result;
+            SubscriptionsModel subscriptions = new SubscriptionsModel();
+            IDictionary<string, string> policyStoreSubscriptions = _policyStore.GetSubscriptions().Result;
+            foreach(var sub in policyStoreSubscriptions)
+            {
+                string[] data = sub.Key.Split('/');
+                string subscriptionId = data[1];
+                string plan = data[3];
+                
+                if (subscriptions.Subscriptions.ContainsKey(subscriptionId) == false)
+                {
+                    subscriptions.Subscriptions.Add(subscriptionId, new Subscription());
+                }
+                
+                if (data.Length == 4)
+                {
+                    subscriptions.Subscriptions[subscriptionId].Plans[plan].Enabled = sub.Value.ToBool();
+                }
+
+                if (data.Length == 8) 
+                {
+                    string policy = data[5];
+                    string measure = data[7];
+
+                    if (subscriptions.Subscriptions[subscriptionId].Plans[plan].Policies.ContainsKey(policy) == false)
+                    {
+                        subscriptions.Subscriptions[subscriptionId].Plans[plan].Policies.Add(policy, new Policy()); 
+                    }
+
+                    subscriptions.Subscriptions[subscriptionId].Plans[plan].Policies[policy].Measures[measure].Enabled = sub.Value.ToBool();
+                }
+            }
+            return subscriptions;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateSubscription([FromBody] SubscriptionModel subscription)
+        {
+            if (ModelState.IsValid) {
+              if (string.IsNullOrEmpty(subscription.policy))
+              {
+                await _policyStore.UpdateSubscription($"sub/{subscription.subscription}/plan/{subscription.plan}", subscription.enabled);
+              }
+              else
+              {
+                await _policyStore.UpdateSubscription($"sub/{subscription.subscription}/plan/{subscription.plan}/policy/{subscription.policy}/measure/{subscription.measure}", subscription.enabled);
+              }
+              return Ok(subscription);
+            }
+            else 
+            {
+              return BadRequest(subscription);
+            }
         }
 
         private void SetupDependencies()
