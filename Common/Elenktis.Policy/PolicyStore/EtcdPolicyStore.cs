@@ -70,6 +70,14 @@ namespace Elenktis.Policy
             return policy;
         }
 
+        public Task<IDictionary<string, string>> GetSubscriptions() {
+            return _etcd.GetRangeValAsync("sub");
+        }
+
+        public async Task UpdateSubscription(string key, bool enabled) {
+            await _etcd.PutAsync(key, enabled.ToString());
+        }
+
         public void OnPolicyChanged<TPolicy>
             (   string subscriptionId,
                 Expression<Func<TPolicy, object>> measureToWatchChange,
@@ -116,7 +124,7 @@ namespace Elenktis.Policy
         {
             string key =  _keyMapper.CreatePlanKey<TPlan>(subscriptionId);
 
-            await _etcd.PutAsync(key, "true");
+            await _etcd.PutAsync(key, "True");
         }
 
         public async Task<bool> IsPlanExistAsync<TPlan>(string subscriptionId) where TPlan : AssessmentPlan

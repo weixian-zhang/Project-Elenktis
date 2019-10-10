@@ -1,11 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>942c83b7-bd6b-413e-aa7a-d8508d87de0f</UserSecretsId>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.7" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Elenktis.Policy\Elenktis.Policy.csproj" />
   </ItemGroup>
-
 </Project>
