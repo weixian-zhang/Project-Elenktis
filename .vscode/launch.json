@@ -27,6 +27,25 @@
             }
         },
         {
+            "name": "dotnet launch - Spy-DefaultService",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "dotnet build Spy-DefaultSvc",
+            "program": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultServiceSpy/bin/Debug/netcoreapp2.2/Elenktis.Spy.DefaultServiceSpy.dll",
+            "env": {
+                "env": "dev"
+            },
+            "cwd": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultServiceSpy",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "dotnet debug - Spy-DefaultService",
+            "type": "coreclr",
+            "request": "attach",
+            "processId":"${command:pickProcess}"
+        },
+        {
             "name": "AKS DefaultSvcSpy",
             "type": "coreclr",
             "request": "attach",

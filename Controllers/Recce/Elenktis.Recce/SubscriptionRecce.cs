@@ -5,6 +5,7 @@ using Elenktis.Policy;
 using Elenktis.Secret;
 using System.Threading.Tasks;
 using Elenktis.Policy.DefaultService;
+using System.Reflection;
 
 namespace Elenktis.Recce
 {
@@ -13,7 +14,6 @@ namespace Elenktis.Recce
         public SubscriptionRecce
             (IAzure azure, IPlanCreationManager planManager) 
         {
-            _azure = azure;
             _planManager = planManager;
             _secretHydrator = SecretHydratorFactory.Create();
         }
@@ -38,8 +38,8 @@ namespace Elenktis.Recce
         private void Init()
         {
             _secrets = _secretHydrator.Hydrate<ControllerSecret>();
-            
-            _azure = _azure.AuthAndCreateInstance
+
+            _azure = AzureRMFactory.AuthAndCreateInstance
                 (_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
         }
 

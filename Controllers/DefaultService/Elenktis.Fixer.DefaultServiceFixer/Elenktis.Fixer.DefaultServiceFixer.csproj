@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>1126c1a5-3b46-4762-a85b-d1c0b7d8890d</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Elenktis.Secret\Elenktis.Secret.csproj"/>
+    <ProjectReference Include="..\..\..\Common\Elenktis.MessageBus\Elenktis.MessageBus.csproj"/>
+    <ProjectReference Include="..\..\..\Common\Elenktis.Policy\Elenktis.Policy.csproj"/>
+    <ProjectReference Include="..\..\..\Common\Elenktis.Azure\Elenktis.Azure.csproj"/>
+    <ProjectReference Include="..\..\Spy\Elenktis.DefaultService.Message\Elenktis.DefaultService.Message.csproj"/>
+    <ProjectReference Include="..\..\Messages\Elenktis.Message\Elenktis.Message.csproj"/>
+    <ProjectReference Include="..\..\Messages\Elenktis.Message.DefaultService\Elenktis.Message.DefaultService.csproj"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.2.1"/>
+    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="3.4.0"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0"/>
+    <PackageReference Include="NServiceBus" Version="7.1.10"/>
+    <PackageReference Include="Microsoft.Azure.Management.ResourceManager" Version="2.0.0-preview"/>
+    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="3.0.0"/>
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.1.0"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0"/>
+    <PackageReference Include="NServiceBus.Storage.MongoDB" Version="2.0.0-beta0012"/>
+  </ItemGroup>
+</Project>

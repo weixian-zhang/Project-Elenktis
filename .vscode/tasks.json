@@ -7,7 +7,7 @@
             "type": "shell",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultService"
+                "cwd": "${workspaceFolder}/Controllers/DefaultServce/Elenktis.Spy.DefaultService"
             },
             "problemMatcher": []
         },
@@ -34,7 +34,7 @@
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultService"
+                "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Spy.DefaultServiceSpy"
             },
             "problemMatcher": []
         },
@@ -111,11 +111,11 @@
             "problemMatcher": []
         },
         {
-            "label": "dotnet build Recce.Message",
+            "label": "dotnet build Chassis-EventLogger",
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controller/Recce/Elenktis.Recce.Message"
+                "cwd": "${workspaceFolder}/Controllers/ChassisFramework/Elenktis.Chassis.EventLogger"
             },
             "problemMatcher": []
         },
@@ -125,19 +125,6 @@
             "dependsOn": "build",
             "options": {
                 "cwd": "${workspaceFolder}/Controllers/Recce/Elenktis.Recce/bin/Debug/netcoreapp2.1",
-                "env": {
-                    "env": "dev"
-                }
-            },
-            "command": "func start",
-            "problemMatcher": "$func-watch"
-        },
-        {
-            "label": "func start defaultservicespy",
-            "type": "shell",
-            "dependsOn": "build",
-            "options": {
-                "cwd": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultService/bin/Debug/netcoreapp2.1",
                 "env": {
                     "env": "dev"
                 }

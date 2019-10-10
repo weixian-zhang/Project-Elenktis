@@ -16,6 +16,10 @@ namespace Elenktis.Secret
         const string AKVVolumeMountPath = "/akv"; //path must match flexvolume mountpath
         public static IConfigurationRoot Configuration { get; set; }
 
+        public NetCoreSecretHydrator()
+        {
+        }
+
         public T Hydrate<T>() where T : class
         {
             T configObject = (T)Activator.CreateInstance(typeof(T));
@@ -25,7 +29,7 @@ namespace Elenktis.Secret
 
             //get from ASP.NET Core Secret Manager
             var builder = new ConfigurationBuilder();
-            builder.AddUserSecrets<NetCoreSecretHydrator>();
+            builder.AddUserSecrets(Assembly.GetCallingAssembly());
             Configuration = builder.Build();
 
             int i = 0;
@@ -42,6 +46,6 @@ namespace Elenktis.Secret
             return configObject;
         }
 
-        public bool UsePropertyNameAsSecretName { get; set; }
+        private Assembly _assembly;
     }
 }

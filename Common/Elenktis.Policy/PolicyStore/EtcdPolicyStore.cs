@@ -77,11 +77,11 @@ namespace Elenktis.Policy
         {
             string policyName = _keyMapper.GetPlanNameByAttribute<TPolicy>();
             
-            var measurePropInfo = ((MemberExpression)measureToWatchChange.Body).Member;
+            var unaryExp = (UnaryExpression)measureToWatchChange.Body;
+
+            var measureName = ((MemberExpression)unaryExp.Operand).Member.Name;
 
             string planName = _keyMapper.GetPlanNameByAttribute<TPolicy>();
-
-            string measureName = measurePropInfo.Name;
 
             string key =
                 _keyMapper.CreatePolicyStoreKey
@@ -95,13 +95,21 @@ namespace Elenktis.Policy
                     }
                 };
 
-            _etcd.Watch(request, (resp) =>{
+            _etcd.Watch(request, (resp) => {
 
-                    string value = resp.Events[0].Kv.Value.ToStringUtf8();
+                if (resp.Events.Count == 0)
+                {
+                    Console.WriteLine(resp);
+                }
+                else
+                {
+                    string value = resp.Events[0].Kv.Key.ToStringUtf8();
 
                     onPolicyChanged(value);
+                }
             });
         }
+
 
         public async Task CreatePlanExistFlagAsync<TPlan>
             (string subscriptionId) where TPlan : AssessmentPlan
