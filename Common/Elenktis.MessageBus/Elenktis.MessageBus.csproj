@@ -3,7 +3,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="5.5.5" />
+    <PackageReference Include="NServiceBus" Version="7.1.10" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.2.1" />
+    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="3.4.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Elenktis.Secret\Elenktis.Secret.csproj" />

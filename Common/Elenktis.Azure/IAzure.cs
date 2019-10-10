@@ -1,9 +1,13 @@
+using Microsoft.Azure.Management.Security;
+
 namespace Elenktis.Azure
 {
     public interface IAzure
     {
+        void SetSubscriptionId(string subscriptionId);
+
         ISubscriptionManager SubscriptionManager { get; set; }
 
-        IAzure AuthAndCreateInstance(string tenantId, string clientId, string clientSecret);
+        ISecurityCenterClient SecurityCenterClient { get; set; }
     }
 }
