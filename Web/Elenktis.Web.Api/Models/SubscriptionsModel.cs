@@ -20,7 +20,6 @@ namespace Elenktis.Web.Api
             Plans.Add("LogEnablerPlan", new Plan());
             Plans.Add("SecurityHygienePlan", new Plan());
         }
-        // public bool Enabled { get; set; }
         public Dictionary<string, Plan> Plans { get; set; }
     }
 
