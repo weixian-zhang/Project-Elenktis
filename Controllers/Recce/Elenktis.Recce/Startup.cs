@@ -15,7 +15,6 @@ namespace Elenktis.Recce {
         public override void Configure(IFunctionsHostBuilder  builder)
         {
             builder.Services.AddTransient<ISubscriptionRecce, SubscriptionRecce>();
-            builder.Services.AddTransient<IAzure, AzureManager>();
             builder.Services.AddTransient<IPlanCreationManager, PlanCreationManager>();  
         }
     }

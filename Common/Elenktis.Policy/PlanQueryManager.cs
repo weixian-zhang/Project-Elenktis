@@ -11,8 +11,10 @@ namespace Elenktis.Policy
 {
     public sealed class PlanQueryManager : IPlanQueryManager
     {
-        public PlanQueryManager() 
+        public PlanQueryManager(PolicySecret secrets) 
         { 
+            _secrets = secrets;
+
             SetupDependencies();
         }
 
@@ -102,19 +104,16 @@ namespace Elenktis.Policy
 
         private void SetupDependencies()
         {
-            ISecretHydrator secretHydrator = SecretHydratorFactory.Create();
-
-            var secrets = secretHydrator.Hydrate<ControllerSecret>();
-
             IPolicyStoreKeyMapper keyMapper = new EtcdKeyMapper();
 
             _policyStore = new EtcdPolicyStore(new PolicyStoreConnInfo()
             {
-                Hostname = secrets.EtcdHost,
-                Port = Convert.ToInt32(secrets.EtcdPort)
+                Hostname = _secrets.EtcdHost,
+                Port = Convert.ToInt32(_secrets.EtcdPort)
             }, keyMapper);
         }
 
+        private PolicySecret _secrets;
         private IPolicyStore _policyStore;
         private DefaultServicePlan _defaultServicePlan;
         private SecurityHygienePlan _securityHygienePlan;
