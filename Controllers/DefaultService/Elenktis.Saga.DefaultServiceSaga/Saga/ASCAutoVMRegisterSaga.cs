@@ -1,11 +1,12 @@
 // using System.Threading.Tasks;
+// using Elenktis.Message;
 // using Elenktis.Message.DefaultService;
 // using Elenktis.Policy;
 // using NServiceBus;
 
 // namespace Elenktis.Saga.DefaultServiceSaga
 // {
-//     public class ASCAutoVMRegisterSaga : Saga,
+//     public class ASCAutoVMRegisterSaga : Saga<SagaTrackingData>,
 //         IAmStartedByMessages<EnableASCAutoRegisterVMCommand>,
 //         IHandleMessages<EnableASCAutoRegisterVMAck>
 //     {

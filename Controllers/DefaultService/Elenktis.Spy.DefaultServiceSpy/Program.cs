@@ -22,18 +22,10 @@ namespace Elenktis.Spy.DefaultServiceSpy
 
             var builder = new HostBuilder()
                 .ConfigureServices((hostContext, services) => {
-            
-                    services.AddTransient<ISpyService>(sp => {
-
-                        IPlanQueryManager manager = new PlanQueryManager(new PolicySecret()
-                        {
-                            EtcdHost = _secrets.EtcdHost,
-                            EtcdPort = _secrets.EtcdPort
-                        });
-                            
-                        return new SpyService(_endpointInstance, manager, _secrets);
+                    services.AddHostedService<MessageBusListenerService>();
+                    services.AddHostedService<HealthReportService>(sp =>{
+                        return new HealthReportService(_endpointInstance);
                     });
-                    services.AddHostedService<ScheduledBasedBackgroundService>();
                 });
 
             await builder.RunConsoleAsync();
@@ -47,6 +39,7 @@ namespace Elenktis.Spy.DefaultServiceSpy
                 (QueueDirectory.Spy.DefaultService, _secrets.ServiceBusConnectionString);
             
             busConfig.RegisterComponents(config => {
+
                 config.ConfigureComponent<IPlanQueryManager>(cf => 
                 {
                     return new PlanQueryManager(new PolicySecret()
@@ -67,6 +60,7 @@ namespace Elenktis.Spy.DefaultServiceSpy
             
             _endpointInstance = await Endpoint.Start(busConfig);
         }
+
         private static IEndpointInstance _endpointInstance;
 
         private static DSSpySecret _secrets;

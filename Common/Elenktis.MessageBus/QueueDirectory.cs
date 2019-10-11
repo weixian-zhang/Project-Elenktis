@@ -6,19 +6,7 @@ namespace Elenktis.MessageBus
 
         public static class Saga
         {
-             public const string DefaultService = "pc.core.saga.ds";
-
-            // public static class Workflow
-            // {
-            //     public static class DefaultService
-            //     {
-            //         public const string AssessASCAutoRegisterVMEnabledAck =
-            //             "pc.core.spy.ds.ack.assess-asc-auto-register-vm-enabled";
-
-            //         public const string FixASCAutoRegisterVMEnabledAck =
-            //             "pc.core.fixer.ds.ack.fix-asc-auto-register-vm-enabled";
-            //     }
-            // }   
+              public const string DefaultService = "pc.core.saga.ds";
         }
 
         public static class Spy
@@ -38,6 +26,8 @@ namespace Elenktis.MessageBus
             public const string AppEvent = "pc.core.eventlogger.controllerevent";
 
             public const string MessageAudit = "pc.core.eventlogger.controllermsgaudit";
+
+            public const string ControllerHealth = "pc.core.eventlogger.controller.health";
         }
 
         public static class Notifier

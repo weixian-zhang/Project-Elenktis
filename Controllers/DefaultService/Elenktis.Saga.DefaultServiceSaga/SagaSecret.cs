@@ -1,8 +1,8 @@
-namespace Elenktis.Spy.DefaultServiceSpy
+namespace Elenktis.Saga.DefaultServiceSaga
 {
-    public class DSSpySecret
+    public class SagaSecret
     {
-        public string SagaLogCosmosMongoDBConnectionString { get; set; }
+        public string DSSagaCosmosMongoDBConnectionString { get; set; }
 
         public string ClientId { get; set; }
 

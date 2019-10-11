@@ -1,8 +1,15 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Elenktis.Azure;
+using Elenktis.Message;
 using Elenktis.Message.DefaultService;
+using Elenktis.MessageBus;
 using Elenktis.Policy;
+using Elenktis.Policy.DefaultService;
+using Microsoft.Azure.Management.Security;
 using Microsoft.Azure.Management.Security.Models;
+using Newtonsoft.Json;
 using NServiceBus;
 
 namespace Elenktis.Spy.DefaultServiceSpy
@@ -17,27 +24,48 @@ namespace Elenktis.Spy.DefaultServiceSpy
 
         public async Task Handle(AssessASCAutoRegisterVM message, IMessageHandlerContext context)
         {
-            // var asc = _azure.SecurityCenterClient;
+            try
+            {
+                var plan = await _planManager.GetDefaultServicePlansAsync(message.SubscriptionId);
 
-            // AutoProvisioningSetting  aps =
-            //     await asc.AutoProvisioningSettings.GetAsync("default");
+                var ack = new AssessASCAutoRegisterVMAck()
+                    {
+                        SubscriptionId = message.SubscriptionId,
+                        Policy = plan.ASCAutoRegisterVMEnabledPolicy.AsPolicyKeyString(
+                                message.SubscriptionId, p => p.ToAssess),
+                        PolicyValue = plan.ASCAutoRegisterVMEnabledPolicy
+                            .AsPolicyValueString(plan.ASCAutoRegisterVMEnabledPolicy, (p => p.ToAssess)),
+                    };
 
-            // if(aps.AutoProvision == "Off")
-            // {
-            //     var comm = new EnableASCAutoRegisterVMCommand()
-            //     {
-            //         //Action = DefaultServiceFixerAction.EnableASCAutoRegisterVM,
-            //         AutoProvision = false,
-            //     };
-                
-            //     //TODO: send command to Saga
-            //     await _bus.Send(QueueDirectory.Fixer.DefaultServiceSaga.StartSagaQueue
-            //     , JsonConvert.SerializeObject(comm));
-            // }
-            // else
-            // {
-            //     //todo log activity to cosmos
-            // }
+                if(!plan.ASCAutoRegisterVMEnabledPolicy.ToAssess)
+                {
+                    ack.Activities = "Policy ASCAutoRegisterVMEnabledPolicy.ToAssess is set to off, skipping assessment";
+
+                    await context.Send(QueueDirectory.Saga.DefaultService, ack);
+
+                    return;
+                }
+                else
+                {
+
+                    var asc = _azure.SecurityCenterClient;
+
+                    AutoProvisioningSetting  aps =
+                        await asc.AutoProvisioningSettings.GetAsync("default");
+
+                    if(aps.AutoProvision == "Off")
+                    {
+                        ack.ToFix = true;
+                        ack.Activities.Append("AutoProvision is Off, set flag to ToFix");
+                    }
+
+                    await context.Send(QueueDirectory.Saga.DefaultService, ack);
+                }
+            }
+            catch(Exception ex)
+            {
+                await context.Send(QueueDirectory.EventLogger.Error, new ErrorEvent(ex));
+            }
         }
 
         private IPlanQueryManager _planManager;

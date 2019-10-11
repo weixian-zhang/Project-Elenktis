@@ -9,5 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Elenktis.Secret\Elenktis.Secret.csproj" />
+    <ProjectReference Include="..\..\Controllers\Messages\Elenktis.Message\Elenktis.Message.csproj" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Elenktis.Message;
 using NServiceBus;
 
 namespace Elenktis.MessageBus
@@ -16,7 +17,12 @@ namespace Elenktis.MessageBus
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
             transport.ConnectionString(msgBusConnString);
 
-            return endpointConfiguration;
+            var routes = transport.Routing();
+            //default routes for error and health
+            routes.RouteToEndpoint(typeof(ErrorEvent), QueueDirectory.EventLogger.Error);
+            routes.RouteToEndpoint(typeof(HealthEvent), QueueDirectory.EventLogger.ControllerHealth);
+           
+           return endpointConfiguration;
         }
 
         public static EndpointConfiguration Create
@@ -32,6 +38,9 @@ namespace Elenktis.MessageBus
             transport.ConnectionString(msgBusConnString);
 
             routes = transport.Routing();
+            //default routes for error and health
+            routes.RouteToEndpoint(typeof(ErrorEvent), QueueDirectory.EventLogger.Error);
+            routes.RouteToEndpoint(typeof(HealthEvent), QueueDirectory.EventLogger.ControllerHealth);
 
             return endpointConfiguration;
         }

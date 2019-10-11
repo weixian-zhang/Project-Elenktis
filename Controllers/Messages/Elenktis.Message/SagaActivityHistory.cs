@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Elenktis.Message
 {
@@ -10,6 +11,6 @@ namespace Elenktis.Message
 
         public virtual DateTime ActivityEndTime { get; set; }
 
-        public virtual AffectedResourceProperty[] AffectedResourceProperties { get; set; }
+        public string Activities { get; set; }
     }
 }

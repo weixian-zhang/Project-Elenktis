@@ -8,14 +8,11 @@ using NServiceBus;
 
 namespace Elenktis.Spy.DefaultServiceSpy
 {
-    public class ScheduledBasedBackgroundService : BackgroundService
+    public class MessageBusListenerService : BackgroundService
     {
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while(!stoppingToken.IsCancellationRequested)
-            {
-                await Task.Delay(Timeout.Infinite, stoppingToken);
-            }
+            await Task.Delay(Timeout.Infinite, stoppingToken);
         }
     }
 }

@@ -3,7 +3,7 @@ using NServiceBus;
 
 namespace Elenktis.Message
 {
-    public class SagaAuditData : ContainSagaData
+    public class SagaTrackingData : ContainSagaData
     {
         public virtual string CorrelationId { get; set; }
 

@@ -1,9 +1,14 @@
+using System.Collections.Generic;
 using NServiceBus;
 
 namespace Elenktis.Message
 {
     public abstract class FixAckCommand  : IMessage
     {
+        public bool ToFix { get; set; }
+
+        public bool Remediated { get; set; }
+
         public string SubscriptionId { get; set; }
 
         public string Policy { get; set; }
@@ -16,6 +21,6 @@ namespace Elenktis.Message
 
         public bool IncurCost { get; set; }
 
-        public AffectedResourceProperty[] AffectedResourceProperties { get; set; }
+        public string Activities { get; set; }
     }
 }

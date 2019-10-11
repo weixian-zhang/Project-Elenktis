@@ -9,15 +9,18 @@ using Elenktis.Message;
 
 namespace Elenktis.Fixer.DefaultServiceFixer
 {
-    public class MessageBusBackgroundService : BackgroundService
+    public class MessageBusListenerService : BackgroundService
     {
-        public MessageBusBackgroundService(IPlanQueryManager planQueryManager)
+        public MessageBusListenerService()
         {
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            throw new System.NotImplementedException();
+           while(!stoppingToken.IsCancellationRequested)
+           {
+               await Task.Delay(Timeout.Infinite, stoppingToken);
+           }
         }
 
         

@@ -43,7 +43,7 @@
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Fixer/Elenktis.Fixer.DefaultServiceFixer"
+                "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Fixer.DefaultServiceFixer"
             },
             "problemMatcher": []
         },
@@ -88,7 +88,7 @@
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Common/Elenktis.Message"
+                "cwd": "${workspaceFolder}/Controllers/Messages/Elenktis.Message"
             },
             "problemMatcher": []
         },
@@ -125,19 +125,6 @@
             "dependsOn": "build",
             "options": {
                 "cwd": "${workspaceFolder}/Controllers/Recce/Elenktis.Recce/bin/Debug/netcoreapp2.1",
-                "env": {
-                    "env": "dev"
-                }
-            },
-            "command": "func start",
-            "problemMatcher": "$func-watch"
-        },
-        {
-            "label": "run defaultservicefixer",
-            "type": "shell",
-            "dependsOn": "build",
-            "options": {
-                "cwd": "${workspaceFolder}/Controllers/Fixer/Elenktis.Fixer.DefaultService/bin/debug/netcoreapp2.1",
                 "env": {
                     "env": "dev"
                 }
