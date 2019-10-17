@@ -11,7 +11,7 @@ namespace Elenktis.MessageBus
         {
             var endpointConfiguration = new EndpointConfiguration(queueName);
             endpointConfiguration.SendFailedMessagesTo(QueueDirectory.EventLogger.Error);
-            endpointConfiguration.AuditProcessedMessagesTo(QueueDirectory.EventLogger.MessageAudit);
+            endpointConfiguration.AuditProcessedMessagesTo(QueueDirectory.EventLogger.SagaAudit);
             endpointConfiguration.EnableInstallers();
             
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
@@ -31,7 +31,7 @@ namespace Elenktis.MessageBus
         {
             var endpointConfiguration = new EndpointConfiguration(queueName);
             endpointConfiguration.SendFailedMessagesTo(QueueDirectory.EventLogger.Error);
-            endpointConfiguration.AuditProcessedMessagesTo(QueueDirectory.EventLogger.MessageAudit);
+            endpointConfiguration.AuditProcessedMessagesTo(QueueDirectory.EventLogger.SagaAudit);
             endpointConfiguration.EnableInstallers();
             
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();

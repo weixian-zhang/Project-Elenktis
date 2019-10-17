@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 namespace Elenktis.Message
@@ -10,6 +11,11 @@ namespace Elenktis.Message
             strBuilder.Append(textToAppend);
             strBuilder.AppendLine();
             return strBuilder.ToString();
+        }
+
+        public static string GenNewCorrelationId()
+        {
+            return Guid.NewGuid().ToString();
         }
     }
 }

@@ -17,15 +17,15 @@ namespace Elenktis.Saga.DefaultServiceSaga
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var timer = new Timer
-                (ReportHealth, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+                (ReportHealth, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }
 
-        private void ReportHealth(object state)
+        private async void ReportHealth(object state)
         {
 
-            _bus.Send(new HealthEvent()
+            await _bus.Send(new HealthEvent()
             {
                 Controller = ControllerUri.DefaultServiceSpy
             });

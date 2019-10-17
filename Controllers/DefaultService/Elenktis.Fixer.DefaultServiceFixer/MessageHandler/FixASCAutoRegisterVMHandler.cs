@@ -29,20 +29,12 @@ namespace Elenktis.Spy.DefaultServiceSpy
 
             var ack = new FixASCAutoRegisterVMAck()
             {
-                SubscriptionId = message.SubscriptionId,
-                AffectedResourceId = _azure.SecurityCenterClient.BaseUri.ToString(),
-                AffectedResourceType = "AzureSecurityCenter",
-                IncurCost = true,
-                ToFix = message.ToFix,
-                Policy = dsp.ASCAutoRegisterVMEnabledPolicy
-                    .AsPolicyKeyString(message.SubscriptionId, p => p.ToRemediate),
-                PolicyValue = dsp.ASCAutoRegisterVMEnabledPolicy
-                    .AsPolicyValueString(dsp.ASCAutoRegisterVMEnabledPolicy, p => p.ToRemediate)
+                CorrelationId = message.CorrelationId
             };
 
             if(!dsp.ASCAutoRegisterVMEnabledPolicy.ToRemediate)
             {
-                ack.Activities = "Policy ASCAutoRegisterVMEnabledPolicy.ToRemediate: is false, no action taken";
+                ack.ActivityPerformed = "Policy ASCAutoRegisterVMEnabledPolicy.ToRemediate: is false, no action taken";
                 await context.Send(QueueDirectory.Saga.DefaultService, ack);
                 return;    
             }
@@ -51,7 +43,9 @@ namespace Elenktis.Spy.DefaultServiceSpy
 
             await asc.AutoProvisioningSettings.CreateAsync("pc-default", "On");
 
-            ack.Activities = "Policy ASCAutoRegisterVMEnabledPolicy.ToRemediate: AutoProvisioningSettings set to 'On'";
+            ack.Remediated = true;
+            ack.ActivityPerformed = "Policy ASCAutoRegisterVMEnabledPolicy.ToRemediate: AutoProvisioningSettings set to 'On'";
+            
             await context.Send(QueueDirectory.Saga.DefaultService, ack);
         }
     

@@ -26,11 +26,10 @@ namespace Elenktis.Spy.DefaultServiceSpy
 
         private void ReportHealth(object state)
         {
-
             _bus.Send(new HealthEvent()
             {
                 Controller = ControllerUri.DefaultServiceSpy
-            });
+            }).GetAwaiter().GetResult();
         }
 
         private Timer _timer;

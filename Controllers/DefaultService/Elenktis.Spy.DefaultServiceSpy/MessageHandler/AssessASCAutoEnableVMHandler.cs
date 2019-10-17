@@ -28,18 +28,20 @@ namespace Elenktis.Spy.DefaultServiceSpy
             {
                 var plan = await _planManager.GetDefaultServicePlansAsync(message.SubscriptionId);
 
-                var ack = new AssessASCAutoRegisterVMAck()
-                    {
-                        SubscriptionId = message.SubscriptionId,
-                        Policy = plan.ASCAutoRegisterVMEnabledPolicy.AsPolicyKeyString(
-                                message.SubscriptionId, p => p.ToAssess),
-                        PolicyValue = plan.ASCAutoRegisterVMEnabledPolicy
-                            .AsPolicyValueString(plan.ASCAutoRegisterVMEnabledPolicy, (p => p.ToAssess)),
-                    };
+                string policy = plan.ASCAutoRegisterVMEnabledPolicy
+                                .AsPolicyKeyString(message.SubscriptionId, p => p.ToAssess);
+                
+                string policyValue = plan.ASCAutoRegisterVMEnabledPolicy
+                              .AsPolicyValueString(plan.ASCAutoRegisterVMEnabledPolicy, (p => p.ToAssess));
+               
+                var ack = new AssessASCAutoRegisterVMAck();
+                ack.SetAcknowledge
+                    (policy, policyValue, "AzureSecurityCenter", "AzureSecurityCenter", true);
 
                 if(!plan.ASCAutoRegisterVMEnabledPolicy.ToAssess)
                 {
-                    ack.Activities = "Policy ASCAutoRegisterVMEnabledPolicy.ToAssess is set to off, skipping assessment";
+                    ack.AddActivity
+                        ("Policy ASCAutoRegisterVMEnabledPolicy.ToAssess is set to off, skip assessment");
 
                     await context.Send(QueueDirectory.Saga.DefaultService, ack);
 
@@ -47,7 +49,6 @@ namespace Elenktis.Spy.DefaultServiceSpy
                 }
                 else
                 {
-
                     var asc = _azure.SecurityCenterClient;
 
                     AutoProvisioningSetting  aps =
@@ -55,8 +56,8 @@ namespace Elenktis.Spy.DefaultServiceSpy
 
                     if(aps.AutoProvision == "Off")
                     {
-                        ack.ToFix = true;
-                        ack.Activities.Append("AutoProvision is Off, set flag to ToFix");
+                        ack.SetToFix();
+                        ack.AddActivity("AutoProvision is Off, set flag to ToFix");
                     }
 
                     await context.Send(QueueDirectory.Saga.DefaultService, ack);
