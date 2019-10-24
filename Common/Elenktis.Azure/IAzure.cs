@@ -4,7 +4,7 @@ namespace Elenktis.Azure
 {
     public interface IAzure
     {
-        void SetSubscriptionId(string subscriptionId);
+        void SetCurrentSubscriptionId(string subscriptionId);
 
         ISubscriptionManager SubscriptionManager { get; set; }
 

@@ -35,7 +35,9 @@ namespace Elenktis.Fixer.DefaultServiceFixer
             _secrets = SecretHydratorFactory.Create().Hydrate<DSFixerSecret>();
 
             EndpointConfiguration busConfig = ASBConfigFactory.Create
-                (QueueDirectory.Spy.DefaultService, _secrets.ServiceBusConnectionString);
+                (QueueDirectory.Fixer.DefaultService,
+                 _secrets.ServiceBusConnectionString,
+                 ControllerUri.DefaultServiceFixer);
             
             busConfig.RegisterComponents(config => {
 

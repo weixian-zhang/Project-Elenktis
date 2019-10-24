@@ -27,23 +27,43 @@
             }
         },
         {
-            "name": "dotnet launch - Spy-DefaultService",
+            "name": "Debug Spy-DefaultService",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "dotnet build Spy-DefaultSvc",
-            "program": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultServiceSpy/bin/Debug/netcoreapp2.2/Elenktis.Spy.DefaultServiceSpy.dll",
+            "program": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Spy.DefaultServiceSpy/bin/Debug/netcoreapp2.2/Elenktis.Spy.DefaultServiceSpy.dll",
             "env": {
                 "env": "dev"
             },
-            "cwd": "${workspaceFolder}/Controllers/Spy/Elenktis.Spy.DefaultServiceSpy",
+            "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Spy.DefaultServiceSpy",
             "stopAtEntry": false,
             "console": "internalConsole"
         },
         {
-            "name": "dotnet debug - Spy-DefaultService",
+            "name": "Debug Fixer-DefaultService",
             "type": "coreclr",
-            "request": "attach",
-            "processId":"${command:pickProcess}"
+            "request": "launch",
+            "preLaunchTask": "dotnet build Fixer-DefaultSvc",
+            "program": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Fixer.DefaultServiceFixer/bin/Debug/netcoreapp2.2/Elenktis.Fixer.DefaultServiceFixer.dll",
+            "env": {
+                "env": "dev"
+            },
+            "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Fixer.DefaultServiceFixer",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "Debug Saga-DefaultService",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "dotnet build Saga-DefaultSvc",
+            "program": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Saga.DefaultServiceSaga/bin/Debug/netcoreapp2.2/Elenktis.Saga.DefaultServiceSaga.dll",
+            "env": {
+                "env": "dev"
+            },
+            "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Saga.DefaultServiceSaga",
+            "stopAtEntry": false,
+            "console": "internalConsole"
         },
         {
             "name": "AKS DefaultSvcSpy",

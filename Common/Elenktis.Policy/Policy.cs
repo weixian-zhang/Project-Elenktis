@@ -6,7 +6,7 @@ namespace Elenktis.Policy
         {
         }
 
-        [PolicyMeasure]
+        [PolicyMeasure()]
         public bool ToAssess { get; set; } = true;
 
         [PolicyMeasure()]

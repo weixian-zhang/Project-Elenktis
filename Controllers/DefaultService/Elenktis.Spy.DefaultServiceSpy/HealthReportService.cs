@@ -19,18 +19,18 @@ namespace Elenktis.Spy.DefaultServiceSpy
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var timer = new Timer
-                (ReportHealth, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+                (ReportHealth, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }
 
         private void ReportHealth(object state)
         {
-
-            _bus.Send(new HealthEvent()
-            {
-                Controller = ControllerUri.DefaultServiceSpy
-            });
+            //todo: think about health report whether to expose API or send health events
+            // _bus.Send( new HealthEvent()
+            // {
+            //     Controller = ControllerUri.DefaultServiceSpy
+            // }).GetAwaiter().GetResult();
         }
 
         private Timer _timer;

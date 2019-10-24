@@ -26,28 +26,37 @@ namespace Elenktis.Spy.DefaultServiceSpy
         {
             try
             {
+                DateTime cmdReceivedTime = DateTime.Now;
+
+                _azure.SetCurrentSubscriptionId(message.SubscriptionId);
+
                 var plan = await _planManager.GetDefaultServicePlansAsync(message.SubscriptionId);
 
-                var ack = new AssessASCAutoRegisterVMAck()
-                    {
-                        SubscriptionId = message.SubscriptionId,
-                        Policy = plan.ASCAutoRegisterVMEnabledPolicy.AsPolicyKeyString(
-                                message.SubscriptionId, p => p.ToAssess),
-                        PolicyValue = plan.ASCAutoRegisterVMEnabledPolicy
-                            .AsPolicyValueString(plan.ASCAutoRegisterVMEnabledPolicy, (p => p.ToAssess)),
-                    };
+                string policy =
+                    plan.ASCAutoRegisterVMEnabledPolicy.AsString(message.SubscriptionId, p => p.ToAssess);
+                
+                string policyValue =
+                    plan.ASCAutoRegisterVMEnabledPolicy.AsValueString
+                        (plan.ASCAutoRegisterVMEnabledPolicy, (p => p.ToAssess));
+               
+                var ack = new AssessASCAutoRegisterVMAck();
+                ack.SetAcknowledge
+                    (message.SubscriptionId, message.CorrelationId, policy, policyValue,
+                     "AzureSecurityCenter", "AzureSecurityCenter", true, cmdReceivedTime);
 
                 if(!plan.ASCAutoRegisterVMEnabledPolicy.ToAssess)
                 {
-                    ack.Activities = "Policy ASCAutoRegisterVMEnabledPolicy.ToAssess is set to off, skipping assessment";
+                    ack.AddActivity
+                        ("Policy ASCAutoRegisterVMEnabledPolicy.ToAssess is set to off, skip assessment");
 
-                    await context.Send(QueueDirectory.Saga.DefaultService, ack);
+                    var options = new ReplyOptions();
+                    options.RouteReplyTo(QueueDirectory.Saga.DefaultService);
+                    await context.Reply(ack, options);
 
                     return;
                 }
                 else
                 {
-
                     var asc = _azure.SecurityCenterClient;
 
                     AutoProvisioningSetting  aps =
@@ -55,16 +64,23 @@ namespace Elenktis.Spy.DefaultServiceSpy
 
                     if(aps.AutoProvision == "Off")
                     {
-                        ack.ToFix = true;
-                        ack.Activities.Append("AutoProvision is Off, set flag to ToFix");
+                        ack.SetToFix();
+                        ack.AddActivity("AutoProvision is Off, set flag to ToFix");
                     }
+                    else
+                        ack.AddActivity("no action");
 
-                    await context.Send(QueueDirectory.Saga.DefaultService, ack);
+                    
+                    var options = new ReplyOptions();
+                    options.RouteReplyTo(QueueDirectory.Saga.DefaultService);
+                    await context.Reply(ack, options);
+                    //await context.Send(QueueDirectory.Saga.DefaultService, ack);
                 }
             }
             catch(Exception ex)
             {
-                await context.Send(QueueDirectory.EventLogger.Error, new ErrorEvent(ex));
+                await context.Send(QueueDirectory.EventLogger.Error,
+                    new ErrorEvent(ex, ControllerUri.DefaultServiceSpy));
             }
         }
 

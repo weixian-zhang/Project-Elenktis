@@ -8,18 +8,19 @@ namespace Elenktis.Policy
 {
     public static class PolicyExtension
     {
-        public static string AsPolicyKeyString
+        public static string AsString
             (this Policy policy, string subscriptionId,
             Expression<Func<Policy, object>> expr)
         {
-            var memExpr =  expr.Body as MemberExpression;
-            string measureName =  memExpr.Member.Name;
+            var unaryExpr =  expr.Body as UnaryExpression;
+            var memberExpr = unaryExpr.Operand as MemberExpression;
 
-            Type derivedPolicyType = memExpr.Member.ReflectedType;
+            string measureName = memberExpr.Member.Name;
 
-            string policyName = derivedPolicyType.Name;
+            Type policyType = policy.GetType();
+            string policyName = policyType.Name;
             
-            var assessmentPlan = (PlanAttribute) derivedPolicyType
+            var assessmentPlan = (PlanAttribute)policyType
                 .GetCustomAttributes(typeof(PlanAttribute), false).FirstOrDefault();
             
             string planName = assessmentPlan.AssessmenPlanType.Name;
@@ -30,14 +31,16 @@ namespace Elenktis.Policy
                 (subscriptionId, planName, policyName,  measureName);
         }
 
-        public static string AsPolicyValueString
-            (this Policy policy,
-             Policy policyObject, Expression<Func<Policy, object>> expr)
+        public static string AsValueString
+            (this Policy policy, Policy policyObject, Expression<Func<Policy, object>> expr)
         {
-            var memExpr = expr.Body as MemberExpression;
-            string measureName = memExpr.Member.Name;
+            var unaryExpr =  expr.Body as UnaryExpression;
+            var memberExpr = unaryExpr.Operand as MemberExpression;
 
-            PropertyDescriptorCollection propDescs = TypeDescriptor.GetProperties(policyObject);
+            string measureName = memberExpr.Member.Name;
+
+            PropertyDescriptorCollection propDescs =
+                TypeDescriptor.GetProperties(policyObject);
             
             string measureValue = "";
 
@@ -51,6 +54,30 @@ namespace Elenktis.Policy
             }
 
             return measureValue;
+        }
+    
+        public static string Name(this Policy policy)
+        {
+            return policy.GetType().Name;
+        }
+
+        public static bool IsPolicyMeasure(this PropertyInfo property)
+        {
+            var policyMeasureAttr = property.GetCustomAttribute(typeof(PolicyMeasureAttribute));
+            if(policyMeasureAttr != null)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool ToBool(this string value)
+        {
+            if(value.ToLowerInvariant() == "true")
+                return true;
+            else if(value.ToLowerInvariant() == "false")
+                return false;
+            
+            return true;
         }
     }
 }

@@ -36,7 +36,10 @@ namespace Elenktis.Spy.DefaultServiceSpy
             _secrets = SecretHydratorFactory.Create().Hydrate<DSSpySecret>();
 
             EndpointConfiguration busConfig = ASBConfigFactory.Create
-                (QueueDirectory.Spy.DefaultService, _secrets.ServiceBusConnectionString);
+                (QueueDirectory.Spy.DefaultService,
+                 _secrets.ServiceBusConnectionString,
+                 ControllerUri.DefaultServiceSpy
+                 );
             
             busConfig.RegisterComponents(config => {
 

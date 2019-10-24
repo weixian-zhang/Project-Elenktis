@@ -24,35 +24,40 @@ namespace Elenktis.Spy.DefaultServiceSpy
 
         public async Task Handle(FixASCAutoRegisterVM message, IMessageHandlerContext context)
         {
-            var dsp =
-                await _planManager.GetDefaultServicePlansAsync(message.SubscriptionId);
+            try{
+                _azure.SetCurrentSubscriptionId(message.SubscriptionId);
+                
+                var dsp =
+                    await _planManager.GetDefaultServicePlansAsync(message.SubscriptionId);
 
-            var ack = new FixASCAutoRegisterVMAck()
-            {
-                SubscriptionId = message.SubscriptionId,
-                AffectedResourceId = _azure.SecurityCenterClient.BaseUri.ToString(),
-                AffectedResourceType = "AzureSecurityCenter",
-                IncurCost = true,
-                ToFix = message.ToFix,
-                Policy = dsp.ASCAutoRegisterVMEnabledPolicy
-                    .AsPolicyKeyString(message.SubscriptionId, p => p.ToRemediate),
-                PolicyValue = dsp.ASCAutoRegisterVMEnabledPolicy
-                    .AsPolicyValueString(dsp.ASCAutoRegisterVMEnabledPolicy, p => p.ToRemediate)
-            };
+                var ack = new FixASCAutoRegisterVMAck();
+                ack.SetAcknowledge
+                    (message.SubscriptionId, message.CorrelationId, DateTime.Now);
 
-            if(!dsp.ASCAutoRegisterVMEnabledPolicy.ToRemediate)
-            {
-                ack.Activities = "Policy ASCAutoRegisterVMEnabledPolicy.ToRemediate: is false, no action taken";
-                await context.Send(QueueDirectory.Saga.DefaultService, ack);
-                return;    
+                if(!dsp.ASCAutoRegisterVMEnabledPolicy.ToRemediate)
+                {
+                    ack.AddActivity
+                        ("Policy ASCAutoRegisterVMEnabledPolicy.ToRemediate: is false, no action taken");
+                    await context.Send(QueueDirectory.Saga.DefaultService, ack);
+                    return;    
+                }
+
+                var asc = _azure.SecurityCenterClient;
+
+                await asc.AutoProvisioningSettings.CreateAsync("default", "On");
+
+                ack.Remediated = true;
+                ack.AddActivity
+                    ("Policy ASCAutoRegisterVMEnabledPolicy.ToRemediate: AutoProvisioningSettings set to 'On'");
+                
+                var options = new ReplyOptions();
+                options.RouteReplyTo(QueueDirectory.Saga.DefaultService);
+                await context.Reply(ack, options);
             }
-
-            var asc = _azure.SecurityCenterClient;
-
-            await asc.AutoProvisioningSettings.CreateAsync("pc-default", "On");
-
-            ack.Activities = "Policy ASCAutoRegisterVMEnabledPolicy.ToRemediate: AutoProvisioningSettings set to 'On'";
-            await context.Send(QueueDirectory.Saga.DefaultService, ack);
+            catch(Exception ex)
+            {
+                await context.Send(new ErrorEvent(ex, ControllerUri.DefaultServiceFixer));
+            }
         }
     
 

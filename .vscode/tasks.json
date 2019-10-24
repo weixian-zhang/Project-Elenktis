@@ -48,6 +48,15 @@
             "problemMatcher": []
         },
         {
+            "label": "dotnet build Saga-DefaultSvc",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Saga.DefaultServiceSaga"
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "dotnet build Recce",
             "type": "shell",
             "command": "dotnet build",

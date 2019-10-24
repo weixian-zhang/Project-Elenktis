@@ -8,7 +8,7 @@ namespace Elenktis.Azure
 
         public ISecurityCenterClient SecurityCenterClient { get; set;}
 
-        public void SetSubscriptionId(string subscriptionId)
+        public void SetCurrentSubscriptionId(string subscriptionId)
         {
             _currentSubscriptionId = subscriptionId;
 

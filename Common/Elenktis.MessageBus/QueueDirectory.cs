@@ -21,11 +21,11 @@ namespace Elenktis.MessageBus
 
         public static class EventLogger
         {
-            public const string Error = "pc.core.eventlogger.controllererror";
+            public const string Error = "pc.core.eventlogger.controller.error";
 
-            public const string AppEvent = "pc.core.eventlogger.controllerevent";
+            public const string AppEvent = "pc.core.eventlogger.controller.event";
 
-            public const string MessageAudit = "pc.core.eventlogger.controllermsgaudit";
+            public const string SagaAudit = "pc.core.eventlogger.controller.sagaaudit";
 
             public const string ControllerHealth = "pc.core.eventlogger.controller.health";
         }
