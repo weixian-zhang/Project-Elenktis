@@ -57,11 +57,31 @@
             "problemMatcher": []
         },
         {
-            "label": "dotnet build Recce",
+            "label": "dotnet build Seeder",
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/Recce/Elenktis.Recce"
+                "cwd": "${workspaceFolder}/Controllers/ChasisFramework/Elenktis.Chassis.Seeder"
+                
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "dotnet build EventLogger",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controllers/ChasisFramework/Elenktis.Chassis.EventLogger"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "dotnet build Notifer",
+            "type": "shell",
+            "command": "dotnet build",
+            "options": {
+            "label": "dotnet build Notifer",
+            "cwd": "${workspaceFolder}/Controllers/ChasisFramework/Elenktis.Chassis.Notifier"
             },
             "problemMatcher": []
         },
