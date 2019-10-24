@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Elenktis.Message
+namespace Elenktis.Saga.DefaultServiceSaga
 {
     public class SagaStage
     {
-        public virtual string StageName { get; set; }
+        public string Controller { get; set; }
 
         public virtual DateTime TimeSentFromSaga { get; set; }
 

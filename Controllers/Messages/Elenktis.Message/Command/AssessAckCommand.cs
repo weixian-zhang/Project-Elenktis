@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using NServiceBus;
 
 namespace Elenktis.Message
@@ -7,7 +8,7 @@ namespace Elenktis.Message
     {
         public string CorrelationId { get; set; }
 
-        public DateTime TimeCommandReceivedAtHandler { get; set; }
+        public DateTime TimeReceivedAtHandler { get; set; }
 
         public bool ToFix { get; set; } = false;
 
@@ -27,18 +28,26 @@ namespace Elenktis.Message
 
         public void AddActivity(string activity)
         {
-            ActivityPerformed.Append(activity);
+            var strBuilder = new StringBuilder(ActivityPerformed);
+            strBuilder.Append(activity);
+            strBuilder.AppendLine();
+            ActivityPerformed += strBuilder.ToString();
         }
 
         public void SetAcknowledge
-            (string policy, string policyValue, string affectedResourceType,
-            string affectedResourceId, bool incurCost)
+            (string subscriptionId, string correlationId,
+             string policy, string policyValue, string affectedResourceType,
+             string affectedResourceId, bool incurCost,
+             DateTime timeReceivedAtHandler)
         {
+            SubscriptionId = subscriptionId;
+            CorrelationId = correlationId;
             Policy = policy;
             PolicyValue = policyValue;
             AffectedResourceType = affectedResourceType;
             AffectedResourceId = affectedResourceId;
             IncurCost = incurCost;
+            TimeReceivedAtHandler = timeReceivedAtHandler;
         }
 
         public void SetToFix()

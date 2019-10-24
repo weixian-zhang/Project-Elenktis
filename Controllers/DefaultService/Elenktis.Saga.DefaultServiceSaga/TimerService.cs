@@ -21,7 +21,7 @@ namespace Elenktis.Saga.DefaultServiceSaga
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var timer = new Timer
-                (StartSaga, null, TimeSpan.Zero, TimeSpan.FromSeconds(30));
+                (StartSaga, null, TimeSpan.Zero, TimeSpan.FromSeconds(240));
 
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }

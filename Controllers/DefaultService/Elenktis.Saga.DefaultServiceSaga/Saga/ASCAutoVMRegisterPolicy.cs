@@ -9,7 +9,7 @@ using NServiceBus;
 
 namespace Elenktis.Saga.DefaultServiceSaga
 {
-    public class ASCAutoVMRegisterPolicy : Saga<ASCAutoVMRegisterPolicySagaData>,
+    public class ASCAutoVMRegisterPolicy : Saga<SagaTrackingData>,
         IAmStartedByMessages<AssessASCAutoRegisterVM>,
         IHandleMessages<AssessASCAutoRegisterVMAck>,
         IHandleMessages<FixASCAutoRegisterVMAck>
@@ -21,8 +21,9 @@ namespace Elenktis.Saga.DefaultServiceSaga
         }
 
         protected override void ConfigureHowToFindSaga
-            (SagaPropertyMapper<ASCAutoVMRegisterPolicySagaData> mapper)
+            (SagaPropertyMapper<SagaTrackingData> mapper)
         {
+        
            mapper.ConfigureMapping<AssessASCAutoRegisterVM>
            (msg => msg.CorrelationId).ToSaga(sagaData => sagaData.CorrelationId);
            
@@ -36,60 +37,66 @@ namespace Elenktis.Saga.DefaultServiceSaga
         //saga starter
         public async Task Handle(AssessASCAutoRegisterVM message, IMessageHandlerContext context)
         {
-            Data.SagaName = "ASCAutoVMRegisterPolicy";
-            Data.CorrelationId = message.CorrelationId;
-            Data.SubscriptionId = message.SubscriptionId;
-            Data.SagaStarterTimeInit = DateTime.Now;
+            Data.SetSagaOnStart(message.SubscriptionId, ControllerUri.DefaultServiceSaga,
+                "ASCAutoVMRegisterPolicy", message.CorrelationId, DateTime.Now);
 
-            Data.CreateNewStage("AssessASCAutoRegisterVM");
+            Data.CreateNewStage(ControllerUri.DefaultServiceSpy);
 
             await context.Send(QueueDirectory.Spy.DefaultService, message);
         }
 
         public async Task Handle(AssessASCAutoRegisterVMAck message, IMessageHandlerContext context)
         {
-            var stage = Data.Stage("AssessASCAutoRegisterVM");
-            stage.TimeReceiveAtHandler = message.TimeCommandReceivedAtHandler;
-            stage.TimeAckReceiveAtSaga = DateTime.Now;
-            Data.IncurCost = message.IncurCost;
-            Data.Policy = message.Policy;
-            Data.PolicyValue = message.PolicyValue;
-            Data.ToFix = message.ToFix;
-            Data.ResourceId = message.AffectedResourceId;
-            Data.ResourceType = message.AffectedResourceType;
-            
-            Data.CreateNewStage("FixASCAutoRegisterVM");
+            try
+            {
 
-            if(message.ToFix)
-            {
-                await context.Send
-                    (QueueDirectory.Fixer.DefaultService, new FixASCAutoRegisterVM(){
-                     CorrelationId = Data.CorrelationId,
-                     SubscriptionId = Data.SubscriptionId
-                });
+                var stage = Data.FindStage(ControllerUri.DefaultServiceSpy);
+                stage.TimeReceiveAtHandler = message.TimeReceivedAtHandler;
+                stage.TimeAckReceiveAtSaga = DateTime.Now;
+                
+                Data.SetSagaOnAssessCommandAck
+                    (message.IncurCost, message.PolicyValue, message.PolicyValue,
+                    message.AffectedResourceId, message.AffectedResourceType, message.ToFix);
+                
+                if(message.ToFix)
+                {
+                    Data.CreateNewStage(ControllerUri.DefaultServiceFixer);
+
+                    await context.Send
+                        (QueueDirectory.Fixer.DefaultService, new FixASCAutoRegisterVM(){
+                        CorrelationId = Data.CorrelationId,
+                        SubscriptionId = Data.SubscriptionId
+                    });
+                }
+                else
+                {
+                    //send to EventLogger
+                    await context.Send(QueueDirectory.EventLogger.SagaAudit, Data);
+                    MarkAsComplete();
+                }
             }
-            else
+            catch(Exception ex)
             {
-                //send to EventLogger
-                await context.Send(QueueDirectory.EventLogger.SagaAudit, Data);
-                MarkAsComplete();
+
             }
         }
 
         public async Task Handle(FixASCAutoRegisterVMAck message, IMessageHandlerContext context)
         {
-            var stage = Data.Stage("FixASCAutoRegisterVM");
-            stage.ActivityPerformed = message.ActivityPerformed;
-            Data.Remediated = message.Remediated;
+            try
+            {
+                var stage = Data.FindStage(ControllerUri.DefaultServiceFixer);
+                stage.ActivityPerformed = message.ActivityPerformed;
+                Data.Remediated = message.Remediated;
 
-            await context.Send(QueueDirectory.EventLogger.SagaAudit, Data);
-            MarkAsComplete();
-        }
-
-        protected override void ConfigureHowToFindSaga
-            (IConfigureHowToFindSagaWithMessage sagaMessageFindingConfiguration)
-        {
-            throw new System.NotImplementedException();
+                await context.Send(QueueDirectory.EventLogger.SagaAudit, Data);
+                MarkAsComplete();
+            }
+            catch(Exception ex)
+            {
+                await context.Send(QueueDirectory.EventLogger.Error,
+                    new ErrorEvent(ex, ControllerUri.DefaultServiceSaga));
+            }
         }
 
         private IAzure _azure;

@@ -2,7 +2,7 @@ namespace Elenktis.Saga.DefaultServiceSaga
 {
     public class SagaSecret
     {
-        public string DSSagaCosmosMongoDBConnectionString { get; set; }
+        public string DSSagaSqlConnectionString { get; set; }
 
         public string ClientId { get; set; }
 

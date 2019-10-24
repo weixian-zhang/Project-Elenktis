@@ -7,12 +7,15 @@ namespace Elenktis.Message
 {
     public static class ControllerUri
     {
-        public const string DefaultServiceSpy = "controllers.spy.defaultservice";
-        public const string DefaultServiceFixer = "controllers.fixer.defaultservice";
-        public const string SecurityHygieneSpy = "controllers.spy.securityhygiene";
-        public const string SecurityHygieneFixer = "controllers.fixer.securityhygiene";
-        public const string LogEnableSpy = "controllers.spy.logenable";
-        public const string LogEnableFixer = "controllers.fixer.logenable";
-        public const string BlobAVScanController = "controllers.fixer.blobavscan";
+        public const string DefaultServiceSpy = "spy.defaultservice";
+        public const string DefaultServiceFixer = "fixer.defaultservice";
+        public const string DefaultServiceSaga = "saga.defaultservice";
+        public const string SecurityHygieneSpy = "spy.securityhygiene";
+        public const string SecurityHygieneFixer = "fixer.securityhygiene";
+        public const string SecurityHygieneSaga = "saga.securityhygiene";
+        public const string LogEnableSpy = "spy.logenable";
+        public const string LogEnableFixer = "fixer.logenable";
+        public const string LogEnableSaga = "saga.logenable";
+        public const string BlobAVScanController = "fixer.blobavscan";
     }
 }

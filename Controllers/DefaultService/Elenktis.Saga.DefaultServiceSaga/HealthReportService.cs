@@ -25,10 +25,10 @@ namespace Elenktis.Saga.DefaultServiceSaga
         private async void ReportHealth(object state)
         {
 
-            await _bus.Send(new HealthEvent()
-            {
-                Controller = ControllerUri.DefaultServiceSpy
-            });
+            // await _bus.Send(new HealthEvent()
+            // {
+            //     Controller = ControllerUri.DefaultServiceSpy
+            // });
         }
 
         private Timer _timer;

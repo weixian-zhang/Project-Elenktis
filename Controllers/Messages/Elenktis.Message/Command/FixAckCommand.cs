@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using NServiceBus;
 
 namespace Elenktis.Message
@@ -7,7 +8,9 @@ namespace Elenktis.Message
     {
         public string CorrelationId { get; set; }
 
-        public DateTime TimeCommandReceivedAtHandler { get; set; }
+        public string SubscriptionId { get; set; }
+
+        public DateTime TimeReceivedAtHandler { get; set; }
         
 
         public bool Remediated { get; set; }
@@ -16,7 +19,18 @@ namespace Elenktis.Message
 
         public void AddActivity(string activity)
         {
-            ActivityPerformed.Append(activity);
+            var strBuilder = new StringBuilder(ActivityPerformed);
+            strBuilder.Append(activity);
+            strBuilder.AppendLine();
+            ActivityPerformed += strBuilder.ToString();
+        }
+
+        public void SetAcknowledge
+            (string subscriptionId, string correlationId, DateTime timeReceived)
+        {
+            SubscriptionId = subscriptionId;
+            CorrelationId = correlationId;
+            TimeReceivedAtHandler = timeReceived;
         }
         
         public void SetRemediated()

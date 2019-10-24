@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Elenktis.Message;
 using Elenktis.Azure;
 using Elenktis.MessageBus;
 using Elenktis.Policy;
@@ -39,9 +40,11 @@ namespace Elenktis.Saga.DefaultServiceSaga
             _secrets = SecretHydratorFactory.Create().Hydrate<SagaSecret>();
 
             var epc = ASBConfigFactory.Create
-                (QueueDirectory.Saga.DefaultService, _secrets.ServiceBusConnectionString);
-            epc.UsePersistence<MongoPersistence>();
-
+                        (QueueDirectory.Saga.DefaultService,
+                        _secrets.ServiceBusConnectionString,
+                        ControllerUri.DefaultServiceSaga,
+                        _secrets.DSSagaSqlConnectionString);
+            
             epc.RegisterComponents(config => {
                 
                 config.ConfigureComponent<IAzure>(c => {
@@ -65,7 +68,7 @@ namespace Elenktis.Saga.DefaultServiceSaga
                     await context.Stop();
                 });
 
-            await Endpoint.Start(epc);
+            _bus = await Endpoint.Start(epc);
         }
 
         private static SagaSecret _secrets;
