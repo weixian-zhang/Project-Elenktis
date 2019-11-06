@@ -66,6 +66,19 @@
             "console": "internalConsole"
         },
         {
+            "name": "Debug EventLogger",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "dotnet build EventLogger",
+            "program": "${workspaceFolder}/Controllers/ChassisFramework/Elenktis.Chassis.EventLogger/bin/Debug/netcoreapp2.2/Elenktis.Chassis.EventLogger.dll",
+            "env": {
+                "env": "dev"
+            },
+            "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Saga.DefaultServiceSaga",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
             "name": "AKS DefaultSvcSpy",
             "type": "coreclr",
             "request": "attach",

@@ -4,7 +4,7 @@ using NServiceBus;
 
 namespace Elenktis.Message.DefaultService
 {
-    public class FixASCAutoRegisterVM : FixCommand
+    public class FixASCAutoRegisterVM : FixCommand, ICommand
     {
     }
 }

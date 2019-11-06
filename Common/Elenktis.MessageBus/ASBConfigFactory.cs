@@ -15,7 +15,6 @@ namespace Elenktis.MessageBus
         {
             var endpointConfiguration = new EndpointConfiguration(queueName);
             endpointConfiguration.SendFailedMessagesTo(QueueDirectory.EventLogger.Error);
-            //endpointConfiguration.AuditProcessedMessagesTo(QueueDirectory.EventLogger.SagaAudit);
             endpointConfiguration.EnableInstallers();
 
             var recoverability = endpointConfiguration.Recoverability();
@@ -41,7 +40,7 @@ namespace Elenktis.MessageBus
             var routes = transport.Routing();
             //default routes for error and health
             routes.RouteToEndpoint(typeof(ErrorEvent), QueueDirectory.EventLogger.Error);
-            routes.RouteToEndpoint(typeof(HealthEvent), QueueDirectory.EventLogger.ControllerHealth);
+            routes.RouteToEndpoint(typeof(AppEvent), QueueDirectory.EventLogger.AppEvent);
            
            return endpointConfiguration;
         }
@@ -85,45 +84,10 @@ namespace Elenktis.MessageBus
             transport.ConnectionString(msgBusConnString);
 
             var routes = transport.Routing();
-            //default routes for error and health
             routes.RouteToEndpoint(typeof(ErrorEvent), QueueDirectory.EventLogger.Error);
-            routes.RouteToEndpoint(typeof(HealthEvent), QueueDirectory.EventLogger.ControllerHealth);
+            routes.RouteToEndpoint(typeof(AppEvent), QueueDirectory.EventLogger.AppEvent);
            
            return endpointConfiguration;
         }
-
-        // public static EndpointConfiguration Create
-        //     (string queueName, string msgBusConnString, string controllerName,
-        //      out RoutingSettings<AzureServiceBusTransport> routes)
-        // {
-        //     var endpointConfiguration = new EndpointConfiguration(queueName);
-        //     endpointConfiguration.SendFailedMessagesTo(QueueDirectory.EventLogger.Error);
-        //     endpointConfiguration.AuditProcessedMessagesTo(QueueDirectory.EventLogger.SagaAudit);
-        //     endpointConfiguration.EnableInstallers();
-
-        //     var recoverability = endpointConfiguration.Recoverability();
-        //     recoverability.Failed(settings => {
-        //         settings.HeaderCustomization(headers => {
-        //             headers.Add("controller", controllerName);
-        //         });
-        //     });
-
-        //     var settings = new JsonSerializerSettings
-        //     {
-        //         Formatting = Formatting.Indented
-        //     };
-        //     var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        //     serialization.Settings(settings);
-            
-        //     var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        //     transport.ConnectionString(msgBusConnString);
-
-        //     routes = transport.Routing();
-        //     //default routes for error and health
-        //     routes.RouteToEndpoint(typeof(ErrorEvent), QueueDirectory.EventLogger.Error);
-        //     routes.RouteToEndpoint(typeof(HealthEvent), QueueDirectory.EventLogger.ControllerHealth);
-
-        //     return endpointConfiguration;
-        // }
     }
 }

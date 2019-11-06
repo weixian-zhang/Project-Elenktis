@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using Elenktis.Azure;
+using Elenktis.Chassis.EventLogger.Event;
 using Elenktis.Message;
 using Elenktis.Message.DefaultService;
 using Elenktis.MessageBus;
@@ -9,19 +11,21 @@ using NServiceBus;
 
 namespace Elenktis.Saga.DefaultServiceSaga
 {
-    public class ASCAutoVMRegisterPolicy : Saga<SagaTrackingData>,
+    public class ASCAutoVMRegisterPolicy : Saga<DSSagaTrackingData>,
         IAmStartedByMessages<AssessASCAutoRegisterVM>,
         IHandleMessages<AssessASCAutoRegisterVMAck>,
         IHandleMessages<FixASCAutoRegisterVMAck>
     {
-        public ASCAutoVMRegisterPolicy(IAzure azure, IPlanQueryManager planManager)
+        public ASCAutoVMRegisterPolicy
+            (IAzure azure, IPlanQueryManager planManager, IMapper msgMapper)
         {
             _azure = azure;
             _planManager = planManager;
+            _msgMapper = msgMapper;
         }
 
         protected override void ConfigureHowToFindSaga
-            (SagaPropertyMapper<SagaTrackingData> mapper)
+            (SagaPropertyMapper<DSSagaTrackingData> mapper)
         {
         
            mapper.ConfigureMapping<AssessASCAutoRegisterVM>
@@ -49,7 +53,6 @@ namespace Elenktis.Saga.DefaultServiceSaga
         {
             try
             {
-
                 var stage = Data.FindStage(ControllerUri.DefaultServiceSpy);
                 stage.TimeReceiveAtHandler = message.TimeReceivedAtHandler;
                 stage.TimeAckReceiveAtSaga = DateTime.Now;
@@ -70,14 +73,24 @@ namespace Elenktis.Saga.DefaultServiceSaga
                 }
                 else
                 {
-                    //send to EventLogger
-                    await context.Send(QueueDirectory.EventLogger.SagaAudit, Data);
+                    var stdEvent =
+                        _msgMapper.Map<DSSagaTrackingData, SagaTrackingData>(Data);
+
+                    //EventLogger subscribing
+                    await context.Send(new AppEvent()
+                        {
+                             Controller = ControllerUri.DefaultServiceSaga,
+                             Message = stdEvent
+                        });
+
                     MarkAsComplete();
                 }
             }
             catch(Exception ex)
             {
-
+                 //EventLogger subscribing
+                await context.Send
+                    (new ErrorEvent(ex, ControllerUri.DefaultServiceSaga));
             }
         }
 
@@ -89,18 +102,29 @@ namespace Elenktis.Saga.DefaultServiceSaga
                 stage.ActivityPerformed = message.ActivityPerformed;
                 Data.Remediated = message.Remediated;
 
-                await context.Send(QueueDirectory.EventLogger.SagaAudit, Data);
+                var stdEvent =
+                    _msgMapper.Map<DSSagaTrackingData, SagaTrackingData>(Data);
+
+                    //EventLogger subscribing
+                await context.Send(new AppEvent()
+                    {
+                            Controller = ControllerUri.DefaultServiceSaga,
+                            Message = stdEvent
+                    });
+                    
                 MarkAsComplete();
             }
             catch(Exception ex)
             {
-                await context.Send(QueueDirectory.EventLogger.Error,
-                    new ErrorEvent(ex, ControllerUri.DefaultServiceSaga));
+                //EventLogger subscribing
+                await context.Send
+                    (new ErrorEvent(ex, ControllerUri.DefaultServiceSaga));
             }
         }
 
         private IAzure _azure;
         private IPlanQueryManager _planManager;
+        private IMapper _msgMapper;
         
     }
 } 

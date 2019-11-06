@@ -5,7 +5,7 @@ using NServiceBus;
 
 namespace Elenktis.Message
 {
-    public class ErrorEvent : IEvent
+    public class ErrorEvent : IMessage
     {
         public ErrorEvent(Exception ex, string controller)
         {

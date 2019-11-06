@@ -25,9 +25,6 @@ namespace Elenktis.MessageBus
 
             public const string AppEvent = "pc.core.eventlogger.controller.event";
 
-            public const string SagaAudit = "pc.core.eventlogger.controller.sagaaudit";
-
-            public const string ControllerHealth = "pc.core.eventlogger.controller.health";
         }
 
         public static class Notifier

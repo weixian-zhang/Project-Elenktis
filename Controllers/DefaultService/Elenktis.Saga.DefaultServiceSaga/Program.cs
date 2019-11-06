@@ -8,6 +8,7 @@ using Elenktis.Secret;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using AutoMapper;
 
 namespace Elenktis.Saga.DefaultServiceSaga
 {
@@ -21,9 +22,6 @@ namespace Elenktis.Saga.DefaultServiceSaga
                 .ConfigureServices((hostContext, services) => {
                     services.AddSingleton<IEndpointInstance>(_bus);
 
-                    services.AddHostedService<HealthReportService>(sp =>{
-                        return new HealthReportService(_bus);
-                    });
                     services.AddHostedService<TimerService>(sp =>{
                         var azure = AzureRMFactory.AuthAndCreateInstance
                          (_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
@@ -39,6 +37,8 @@ namespace Elenktis.Saga.DefaultServiceSaga
         {
             _secrets = SecretHydratorFactory.Create().Hydrate<SagaSecret>();
 
+            IMapper msgMapper = MessageMapper.CreateMapper();
+
             var epc = ASBConfigFactory.Create
                         (QueueDirectory.Saga.DefaultService,
                         _secrets.ServiceBusConnectionString,
@@ -50,6 +50,10 @@ namespace Elenktis.Saga.DefaultServiceSaga
                 config.ConfigureComponent<IAzure>(c => {
                     return AzureRMFactory.AuthAndCreateInstance
                         (_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);  
+                }, DependencyLifecycle.SingleInstance);
+
+                config.ConfigureComponent<IMapper>(c => {
+                    return msgMapper;
                 }, DependencyLifecycle.SingleInstance);
 
                 config.ConfigureComponent<IPlanQueryManager>(c => {

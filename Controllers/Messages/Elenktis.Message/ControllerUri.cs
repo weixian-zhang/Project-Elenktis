@@ -16,6 +16,9 @@ namespace Elenktis.Message
         public const string LogEnableSpy = "spy.logenable";
         public const string LogEnableFixer = "fixer.logenable";
         public const string LogEnableSaga = "saga.logenable";
-        public const string BlobAVScanController = "fixer.blobavscan";
+        public const string BlobAVScan = "fixer.blobavscan";
+
+        public const string EventLogger = "chassis.eventlogger";
+        public const string Notifier = "chassis.notifier";
     }
 }

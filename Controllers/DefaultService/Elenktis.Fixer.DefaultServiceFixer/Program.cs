@@ -22,9 +22,6 @@ namespace Elenktis.Fixer.DefaultServiceFixer
             var builder = new HostBuilder()
                 .ConfigureServices((hostContext, services) => {
                     services.AddHostedService<MessageBusListenerService>();
-                    services.AddHostedService<HealthReportService>(sp =>{
-                        return new HealthReportService(_endpointInstance);
-                    });
                 });
 
             await builder.RunConsoleAsync();

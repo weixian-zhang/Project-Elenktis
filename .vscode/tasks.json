@@ -71,7 +71,7 @@
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/ChasisFramework/Elenktis.Chassis.EventLogger"
+                "cwd": "${workspaceFolder}/Controllers/ChassisFramework/Elenktis.Chassis.EventLogger"
             },
             "problemMatcher": []
         },
@@ -81,7 +81,7 @@
             "command": "dotnet build",
             "options": {
             "label": "dotnet build Notifer",
-            "cwd": "${workspaceFolder}/Controllers/ChasisFramework/Elenktis.Chassis.Notifier"
+            "cwd": "${workspaceFolder}/Controllers/ChassisFramework/Elenktis.Chassis.Notifier"
             },
             "problemMatcher": []
         },

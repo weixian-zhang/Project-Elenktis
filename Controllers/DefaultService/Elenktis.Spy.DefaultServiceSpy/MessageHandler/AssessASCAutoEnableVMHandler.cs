@@ -49,9 +49,7 @@ namespace Elenktis.Spy.DefaultServiceSpy
                     ack.AddActivity
                         ("Policy ASCAutoRegisterVMEnabledPolicy.ToAssess is set to off, skip assessment");
 
-                    var options = new ReplyOptions();
-                    options.RouteReplyTo(QueueDirectory.Saga.DefaultService);
-                    await context.Reply(ack, options);
+                    await context.Send(QueueDirectory.Saga.DefaultService, ack);
 
                     return;
                 }
@@ -70,11 +68,7 @@ namespace Elenktis.Spy.DefaultServiceSpy
                     else
                         ack.AddActivity("no action");
 
-                    
-                    var options = new ReplyOptions();
-                    options.RouteReplyTo(QueueDirectory.Saga.DefaultService);
-                    await context.Reply(ack, options);
-                    //await context.Send(QueueDirectory.Saga.DefaultService, ack);
+                    await context.Send(QueueDirectory.Saga.DefaultService, ack);
                 }
             }
             catch(Exception ex)
