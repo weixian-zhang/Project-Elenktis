@@ -1,13 +1,10 @@
-using System;
+
 using System.Threading.Tasks;
-using Elenktis.Policy;
-using Elenktis.Azure;
-using Elenktis.Secret;
+
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
-namespace Elenktis.Recce
+namespace Elenktis.Chassis.Seeder
 {
     public class Recce
     {

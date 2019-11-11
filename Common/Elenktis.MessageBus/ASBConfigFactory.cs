@@ -1,7 +1,6 @@
 using System;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
-using Elenktis.Message;
+using Elenktis.Chassis.EventLogger.Event;
 using Newtonsoft.Json;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
@@ -40,7 +39,7 @@ namespace Elenktis.MessageBus
             var routes = transport.Routing();
             //default routes for error and health
             routes.RouteToEndpoint(typeof(ErrorEvent), QueueDirectory.EventLogger.Error);
-            routes.RouteToEndpoint(typeof(AppEvent), QueueDirectory.EventLogger.AppEvent);
+            //routes.RouteToEndpoint(typeof(AppEvent), QueueDirectory.EventLogger.AppEvent);
            
            return endpointConfiguration;
         }
@@ -85,7 +84,7 @@ namespace Elenktis.MessageBus
 
             var routes = transport.Routing();
             routes.RouteToEndpoint(typeof(ErrorEvent), QueueDirectory.EventLogger.Error);
-            routes.RouteToEndpoint(typeof(AppEvent), QueueDirectory.EventLogger.AppEvent);
+            //routes.RouteToEndpoint(typeof(AppEvent), QueueDirectory.EventLogger.AppEvent);
            
            return endpointConfiguration;
         }

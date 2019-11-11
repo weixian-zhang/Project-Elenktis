@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Elenktis.Recce
+namespace Elenktis.Chassis.Seeder
 {
     public interface ISubscriptionRecce
     {

@@ -14,9 +14,9 @@ using NServiceBus;
 
 namespace Elenktis.Spy.DefaultServiceSpy
 {
-    class Program
+    public class Program
     {
-        async static Task Main(string[] args)
+        public async static Task Main(string[] args)
         {
             await InitAsync();
 

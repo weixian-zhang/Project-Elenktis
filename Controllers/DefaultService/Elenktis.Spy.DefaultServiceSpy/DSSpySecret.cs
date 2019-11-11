@@ -15,5 +15,7 @@ namespace Elenktis.Spy.DefaultServiceSpy
         public string EtcdHost { get; set; }
 
         public string EtcdPort { get; set; }
+
+        public int ExecutionFrequencyInMinutes { get; set; }
     }
 }

@@ -9,10 +9,8 @@ namespace Elenktis.Secret
         {
             string env = Environment.GetEnvironmentVariable("env");
             
-            if(env.ToLowerInvariant() == "dev")
-            {
+            if(string.IsNullOrEmpty(env) || env.ToLowerInvariant() == "dev")
                 return new NetCoreSecretHydrator();
-            }
             else
                 return new KubeFlexVolumeSecretHydrator();
         }

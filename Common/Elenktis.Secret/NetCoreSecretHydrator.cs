@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -23,7 +24,7 @@ namespace Elenktis.Secret
         public T Hydrate<T>() where T : class
         {
             T configObject = (T)Activator.CreateInstance(typeof(T));
-            var configObjectProps = configObject.GetType().GetProperties().ToArray();
+            //var configObjectProps = configObject.GetType().GetProperties().ToArray();
 
             PropertyInfo[] configTypeProperties = typeof(T).GetProperties();
 
@@ -32,16 +33,28 @@ namespace Elenktis.Secret
             builder.AddUserSecrets(Assembly.GetCallingAssembly());
             Configuration = builder.Build();
 
-            int i = 0;
-
-            foreach (var prop in configTypeProperties)
+            foreach(var config in Configuration.AsEnumerable())
             {
-                string secret = Configuration[prop.Name];
-
-                configObjectProps[i].SetValue(configObject, secret);
-
-                i++;
+                var secretProp = configTypeProperties.FirstOrDefault(p => p.Name == config.Key);
+                
+                if(config.Value.GetType() == typeof(int))
+                    secretProp.SetValue(configObject, Convert.ToInt32(config.Value));
+                else if(config.Value.GetType() == typeof(bool))
+                    secretProp.SetValue(configObject, Convert.ToBoolean(config.Value));
+                else
+                    secretProp.SetValue(configObject, config.Value);
             }
+
+            
+
+            // foreach (var prop in configTypeProperties)
+            // {
+            //     object secret = Configuration[prop.Name];
+
+            //     configObjectProps[i].SetValue(configObject, secret);
+
+            //     i++;
+            // }
 
             return configObject;
         }

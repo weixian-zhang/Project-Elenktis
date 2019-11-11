@@ -20,7 +20,7 @@ namespace Elenktis.Saga.DefaultServiceSaga
             //NServiceBus disallow SagaData to be in different assembly.
             //this is an alternate option to map data to SagaTrackingData for EventLogger
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<DSSagaTrackingData, SagaTrackingData>();
+                cfg.CreateMap<DSSagaTrackingData, DSSagaEvent>();
                 cfg.CreateMap<SagaStage, Elenktis.Chassis.EventLogger.Event.SagaStage>();
             });
 

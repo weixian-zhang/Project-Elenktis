@@ -26,7 +26,7 @@ namespace Elenktis.Saga.DefaultServiceSaga
                         var azure = AzureRMFactory.AuthAndCreateInstance
                          (_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
 
-                        return new TimerService(_bus, azure);
+                        return new TimerService(_bus, azure, _secrets);
                     });
                 });
 

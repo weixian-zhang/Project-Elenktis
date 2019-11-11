@@ -12,16 +12,19 @@ namespace Elenktis.Saga.DefaultServiceSaga
 {
     public class TimerService : BackgroundService
     {
-        public TimerService(IEndpointInstance bus, IAzure azure)
+        public TimerService(IEndpointInstance bus, IAzure azure, SagaSecret secret)
         {
             _bus = bus;
             _azure = azure;
+            _secret = secret;
         }
 
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var timer = new Timer
-                (StartSaga, null, TimeSpan.Zero, TimeSpan.FromSeconds(240));
+                (StartSaga, null, TimeSpan.Zero,
+                 TimeSpan.FromMinutes
+                    (Convert.ToDouble(_secret.ExecutionFrequencyInMinutes)));
 
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }
@@ -43,5 +46,6 @@ namespace Elenktis.Saga.DefaultServiceSaga
         private Timer _timer;
         private IEndpointInstance _bus;
         private IAzure _azure;
+        private SagaSecret _secret;
     }
 }

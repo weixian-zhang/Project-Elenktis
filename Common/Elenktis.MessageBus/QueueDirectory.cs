@@ -23,7 +23,7 @@ namespace Elenktis.MessageBus
         {
             public const string Error = "pc.core.eventlogger.controller.error";
 
-            public const string AppEvent = "pc.core.eventlogger.controller.event";
+            public const string DSSagaEvent = "pc.core.eventlogger.controller.event";
 
         }
 

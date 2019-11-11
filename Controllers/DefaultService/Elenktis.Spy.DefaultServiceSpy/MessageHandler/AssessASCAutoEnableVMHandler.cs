@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Elenktis.Azure;
+using Elenktis.Chassis.EventLogger.Event;
 using Elenktis.Message;
 using Elenktis.Message.DefaultService;
 using Elenktis.MessageBus;

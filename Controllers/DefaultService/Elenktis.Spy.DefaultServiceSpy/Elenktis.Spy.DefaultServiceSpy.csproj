@@ -13,6 +13,7 @@
     <ProjectReference Include="..\..\Spy\Elenktis.DefaultService.Message\Elenktis.DefaultService.Message.csproj" />
     <ProjectReference Include="..\..\Messages\Elenktis.Message\Elenktis.Message.csproj" />
     <ProjectReference Include="..\..\Messages\Elenktis.Message.DefaultService\Elenktis.Message.DefaultService.csproj" />
+    <ProjectReference Include="..\..\ChassisFramework\Elenktis.Chassis.EventLogger.Event\Elenktis.Chassis.EventLogger.Event.csproj" />
     
   </ItemGroup>
   <ItemGroup>

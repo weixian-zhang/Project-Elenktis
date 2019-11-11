@@ -169,8 +169,7 @@ namespace Elenktis.Policy
 
                 return value;
             }
-
-        private ControllerSecret _secrets;
+            
         private EtcdClient _etcd;
         private IPolicyStoreKeyMapper _keyMapper;
         private ISecretHydrator _secretHydrator;

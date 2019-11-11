@@ -15,5 +15,7 @@ namespace Elenktis.Saga.DefaultServiceSaga
         public string EtcdHost { get; set; }
 
         public string EtcdPort { get; set; }
+
+        public string ExecutionFrequencyInMinutes { get; set; }
     }
 }

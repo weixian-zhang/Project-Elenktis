@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Elenktis.Message;
-using Elenktis.MessageBus;
+using Elenktis.Chassis.EventLogger;
+using Elenktis.Chassis.EventLogger.Event;
 using MongoDB.Driver;
 using NServiceBus;
 
@@ -19,14 +18,17 @@ namespace Elenktis.Spy.DefaultServiceSpy
         {
             try
             {
-                
+                var errorCollection =  _db.GetCollection<ErrorEvent>(_collection);
+
+                await errorCollection.InsertOneAsync(message);
             }
             catch(Exception ex)
             {
          
             }
         }
-    
+
+        private const string _collection = "pccore-error";
 
         private IMongoDatabase _db;
     }

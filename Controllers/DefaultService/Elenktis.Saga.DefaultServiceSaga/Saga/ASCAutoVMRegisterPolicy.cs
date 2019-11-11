@@ -27,7 +27,6 @@ namespace Elenktis.Saga.DefaultServiceSaga
         protected override void ConfigureHowToFindSaga
             (SagaPropertyMapper<DSSagaTrackingData> mapper)
         {
-        
            mapper.ConfigureMapping<AssessASCAutoRegisterVM>
            (msg => msg.CorrelationId).ToSaga(sagaData => sagaData.CorrelationId);
            
@@ -74,14 +73,10 @@ namespace Elenktis.Saga.DefaultServiceSaga
                 else
                 {
                     var stdEvent =
-                        _msgMapper.Map<DSSagaTrackingData, SagaTrackingData>(Data);
+                        _msgMapper.Map<DSSagaTrackingData, DSSagaEvent>(Data);
 
                     //EventLogger subscribing
-                    await context.Send(new AppEvent()
-                        {
-                             Controller = ControllerUri.DefaultServiceSaga,
-                             Message = stdEvent
-                        });
+                    await context.Send(QueueDirectory.EventLogger.DSSagaEvent, stdEvent);
 
                     MarkAsComplete();
                 }
@@ -103,14 +98,10 @@ namespace Elenktis.Saga.DefaultServiceSaga
                 Data.Remediated = message.Remediated;
 
                 var stdEvent =
-                    _msgMapper.Map<DSSagaTrackingData, SagaTrackingData>(Data);
+                        _msgMapper.Map<DSSagaTrackingData, DSSagaEvent>(Data);
 
-                    //EventLogger subscribing
-                await context.Send(new AppEvent()
-                    {
-                            Controller = ControllerUri.DefaultServiceSaga,
-                            Message = stdEvent
-                    });
+                //EventLogger subscribing
+                await context.Send(QueueDirectory.EventLogger.DSSagaEvent, stdEvent);
                     
                 MarkAsComplete();
             }

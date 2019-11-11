@@ -7,8 +7,8 @@ using Elenktis.Policy;
 using Elenktis.Azure;
 using Elenktis.Secret;
 
-[assembly: FunctionsStartup(typeof(Elenktis.Recce.Startup))]
-namespace Elenktis.Recce {
+[assembly: FunctionsStartup(typeof(Elenktis.Chassis.Seeder.Startup))]
+namespace Elenktis.Chassis.Seeder {
 
     public class Startup : FunctionsStartup
     {
