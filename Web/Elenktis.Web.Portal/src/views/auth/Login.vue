@@ -1,8 +1,5 @@
 <template>
   <div class="login">
-    <div class="navbar-banner">
-      <div class="navbar-banner-text">Swift Policy Controller</div>
-    </div>
     <div class="container login-container">
       <div class="row justify-content-md-center">
         <div class="col-md-auto">
