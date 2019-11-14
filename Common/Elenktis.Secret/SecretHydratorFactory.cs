@@ -12,7 +12,7 @@ namespace Elenktis.Secret
             if(string.IsNullOrEmpty(env) || env.ToLowerInvariant() == "dev")
                 return new NetCoreSecretHydrator();
             else
-                return new KubeFlexVolumeSecretHydrator();
+                return new EnvironmentVariableSecretHydrator();
         }
 
         public static ISecretHydrator Create(bool fromEnvironmentVariable)

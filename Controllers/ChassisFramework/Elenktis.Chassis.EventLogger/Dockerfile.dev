@@ -3,15 +3,19 @@ FROM microsoft/dotnet:2.2-sdk as build-env
 WORKDIR /app
  
 # Copy the project file and restore the dependencies
-COPY *.csproj ./
-RUN dotnet restore
+COPY Controllers/Messages/Elenktis.Message elenktis/
+COPY Common/Elenktis.MessageBus elenktis/
+COPY Common/Elenktis.Secret elenktis/
+COPY Controllers/ChassisFramework/Elenktis.Chassis.EventLogger.Event elenktis/
+#COPY Elenktis.Chassis.EventLogger.csproj ./
+#RUN dotnet restore
  
 # Copy the remaining source files and build the application
-COPY . ./
-RUN dotnet publish -c Debug -o /app/out
+#COPY . ./
+#RUN dotnet publish -c Debug -o /app/out
  
 # Build the runtime image
-FROM microsoft/dotnet:2.2-runtime
-WORKDIR /app
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "Elenktis.Chassis.EventLogger.dll"]
+#FROM microsoft/dotnet:2.2-runtime
+#WORKDIR /app
+#COPY --from=build-env /app/out .
+#ENTRYPOINT ["dotnet", "Elenktis.Chassis.EventLogger.dll"]
