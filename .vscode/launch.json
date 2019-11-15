@@ -14,17 +14,12 @@
         "MDA": "6ECE07A9-0EDE-45C4-8296-818D8FC401D4"
       },
     "configurations": [
+        
         {
-            "name": "local func",
+            "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",
-            "processName": "func",
-            "justMyCode": false,
-            "requireExactSource": false,
-            "logging": {
-                "engineLogging": true,
-                "exceptions": true
-            }
+            "processId": "${command:pickProcess}"
         },
         {
             "name": "Debug Spy-DefaultService",

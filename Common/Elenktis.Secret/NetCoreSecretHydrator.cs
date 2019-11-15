@@ -24,7 +24,6 @@ namespace Elenktis.Secret
         public T Hydrate<T>() where T : class
         {
             T configObject = (T)Activator.CreateInstance(typeof(T));
-            //var configObjectProps = configObject.GetType().GetProperties().ToArray();
 
             PropertyInfo[] configTypeProperties = typeof(T).GetProperties();
 
@@ -37,6 +36,9 @@ namespace Elenktis.Secret
             {
                 var secretProp = configTypeProperties.FirstOrDefault(p => p.Name == config.Key);
                 
+                if(secretProp == null)
+                    continue;
+
                 if(config.Value.GetType() == typeof(int))
                     secretProp.SetValue(configObject, Convert.ToInt32(config.Value));
                 else if(config.Value.GetType() == typeof(bool))
@@ -44,17 +46,6 @@ namespace Elenktis.Secret
                 else
                     secretProp.SetValue(configObject, config.Value);
             }
-
-            
-
-            // foreach (var prop in configTypeProperties)
-            // {
-            //     object secret = Configuration[prop.Name];
-
-            //     configObjectProps[i].SetValue(configObject, secret);
-
-            //     i++;
-            // }
 
             return configObject;
         }

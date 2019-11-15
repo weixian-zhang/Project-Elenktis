@@ -8,12 +8,8 @@ namespace Elenktis.Chassis.Seeder
 
         public string TenantId { get; set; }
 
-        public string ServiceBusConnectionString { get; set; }
-
         public string EtcdHost { get; set; }
 
         public string EtcdPort { get; set; }
-
-        public string ExecutionFrequencyInMinutes { get; set; }
     }
 }

@@ -12,10 +12,10 @@ namespace Elenktis.Chassis.Seeder
     public class SubscriptionRecce : ISubscriptionRecce
     {
         public SubscriptionRecce
-            (IAzure azure, IPlanCreationManager planManager) 
+            (IAzure azure, IPlanCreationManager planManager, SeederSecret secrets) 
         {
             _planManager = planManager;
-            _secretHydrator = SecretHydratorFactory.Create();
+            _secrets = secrets;
         }
             
     
@@ -37,8 +37,6 @@ namespace Elenktis.Chassis.Seeder
 
         private void Init()
         {
-            _secrets = _secretHydrator.Hydrate<SeederSecret>();
-
             _azure = AzureRMFactory.AuthAndCreateInstance
                 (_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
         }

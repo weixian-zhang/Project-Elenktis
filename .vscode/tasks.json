@@ -2,6 +2,19 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "func start Seeder",
+            "type": "shell",
+            "dependsOn": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/Controllers/ChassisFramework/Elenktis.Chassis.Seeder",
+                "env": {
+                    "env": "dev"
+                }
+            },
+            "command": "func start --build",
+            "problemMatcher": "$func-watch"
+        },
+        {
             "label": "docker build Spy-DefaultSvc",
             "command": "docker build -f Dockerfile.debug ../../ -t acrcentralsvcdev.azurecr.io/defaultsvcspy:defaultsvcspy-v0.30",
             "type": "shell",
@@ -147,19 +160,6 @@
                 "cwd": "${workspaceFolder}/Controllers/ChassisFramework/Elenktis.Chassis.EventLogger"
             },
             "problemMatcher": []
-        },
-        {
-            "label": "func start recce",
-            "type": "shell",
-            "dependsOn": "build",
-            "options": {
-                "cwd": "${workspaceFolder}/Controllers/Recce/Elenktis.Recce/bin/Debug/netcoreapp2.1",
-                "env": {
-                    "env": "dev"
-                }
-            },
-            "command": "func start",
-            "problemMatcher": "$func-watch"
         }
     ]
 }

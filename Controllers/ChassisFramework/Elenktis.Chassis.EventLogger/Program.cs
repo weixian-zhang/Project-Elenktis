@@ -41,11 +41,11 @@ namespace Elenktis.Chassis.EventLogger
 
                 var logDb = InitMongoDb();
 
-                var eventBusConfig = ASBConfigFactory.Create
+                var dsSagaConfig = ASBConfigFactory.Create
                     (QueueDirectory.EventLogger.DSSagaEvent,
                     _secrets.ServiceBusConnectionString, ControllerUri.EventLogger);
 
-                eventBusConfig.RegisterComponents(config => {
+                dsSagaConfig.RegisterComponents(config => {
                     config.ConfigureComponent<IMongoDatabase>(compFac => {
                         return logDb;
                     }, DependencyLifecycle.SingleInstance);
@@ -59,9 +59,7 @@ namespace Elenktis.Chassis.EventLogger
                     (QueueDirectory.EventLogger.Error,
                     _secrets.ServiceBusConnectionString, ControllerUri.EventLogger);
 
-                await Endpoint.Start(eventBusConfig);
-
-                await Endpoint.Start(errorBusConfig);
+                await Endpoint.Start(dsSagaConfig);
             }
             catch(Exception ex)
             {
