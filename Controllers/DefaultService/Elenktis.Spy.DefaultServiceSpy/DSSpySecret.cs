@@ -2,8 +2,6 @@ namespace Elenktis.Spy.DefaultServiceSpy
 {
     public class DSSpySecret
     {
-        public string DSSpyCosmosMongoDBConnectionString { get; set; }
-
         public string ClientId { get; set; }
 
         public string ClientSecret { get; set; }

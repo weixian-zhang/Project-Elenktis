@@ -1,5 +1,0 @@
-﻿2019-11-06 16:30:48.057 INFO  DefaultFactory Logging to 'c:\Weixian\Projects\Project Elenktis\Controllers\DefaultService\Elenktis.Spy.DefaultServiceSpy\out\' with level Info
-2019-11-06 16:30:48.285 INFO  NServiceBus.LicenseManager No valid license could be found. Falling back to trial license with start date '2019-10-03'.
-
-2019-11-06 16:30:48.288 WARN  NServiceBus.LicenseManager Trial for the Particular Service Platform has expired.
-2019-11-06 16:30:48.330 WARN  NServiceBus.LicenseManager To extend your trial license, visit: https://particular.net/license/nservicebus?v=7.1.10&t=0&p=windows

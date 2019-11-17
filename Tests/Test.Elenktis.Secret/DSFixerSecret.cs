@@ -1,7 +1,9 @@
-namespace Elenktis.Fixer.DefaultServiceFixer
+namespace Test.Elenktis.Secret
 {
     public class DSFixerSecret
     {
+        public string DSFixerCosmosMongoDBConnectionString { get; set; }
+
         public string ClientId { get; set; }
 
         public string ClientSecret { get; set; }

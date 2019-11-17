@@ -5,5 +5,7 @@
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "publish",
     "cloudcode.azureExplorerVisible": true,
-    "docker.defaultRegistryPath": "acrcentralsvcdev.azurecr.io"
+    "docker.defaultRegistryPath": "acrcentralsvcdev.azurecr.io",
+    "dotnet-test-explorer.showCodeLens": true,
+    "dotnet-test-explorer.testProjectPath": "Tests/Test.Elenktis.Secret"
 }

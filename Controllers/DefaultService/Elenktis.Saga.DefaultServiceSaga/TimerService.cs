@@ -24,7 +24,7 @@ namespace Elenktis.Saga.DefaultServiceSaga
             var timer = new Timer
                 (StartSaga, null, TimeSpan.Zero,
                  TimeSpan.FromMinutes
-                    (Convert.ToDouble(_secret.ExecutionFrequencyInMinutes)));
+                    (Convert.ToDouble(10)));
 
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }

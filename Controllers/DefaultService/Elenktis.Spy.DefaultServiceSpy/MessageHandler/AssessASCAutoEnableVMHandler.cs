@@ -74,8 +74,9 @@ namespace Elenktis.Spy.DefaultServiceSpy
             }
             catch(Exception ex)
             {
-                await context.Send(QueueDirectory.EventLogger.Error,
-                    new ErrorEvent(ex, ControllerUri.DefaultServiceSpy));
+                //TODO: LogicalAddress to EK
+                // await context.Send(QueueDirectory.EventLogger.Error,
+                //     new ErrorEvent(ex, ControllerUri.DefaultServiceSpy));
             }
         }
 

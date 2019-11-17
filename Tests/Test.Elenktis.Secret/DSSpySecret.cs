@@ -1,6 +1,6 @@
-namespace Elenktis.Fixer.DefaultServiceFixer
+namespace Test.Elenktis.Secret
 {
-    public class DSFixerSecret
+    public class DSSpySecret
     {
         public string ClientId { get; set; }
 
