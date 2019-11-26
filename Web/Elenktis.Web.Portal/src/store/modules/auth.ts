@@ -9,7 +9,7 @@ class AuthModule extends VuexModule {
 
   // Getters
   get isAuthenticated() {
-    return this.authenticated;
+    return Vue.prototype.$msal.isAuthenticated();
   }
 
   // Mutations

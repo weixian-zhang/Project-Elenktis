@@ -1,5 +1,5 @@
 <template>
-  <b-navbar class="portal-navbar py-0">
+  <b-navbar class="portal-navbar py-0" v-bind:sticky=true>
     <b-navbar-brand href="#">Swift Policy Controller</b-navbar-brand>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
