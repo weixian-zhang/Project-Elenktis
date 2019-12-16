@@ -43,11 +43,11 @@
             "problemMatcher": []
         },
         {
-            "label": "dotnet build Spy-DefaultSvc",
+            "label": "dotnet build Message-DefaultSvc",
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Spy.DefaultServiceSpy"
+                "cwd": "${workspaceFolder}/Controllers/Messages/Elenktis.Message.DefaultService"
             },
             "problemMatcher": []
         },
@@ -56,16 +56,16 @@
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Fixer.DefaultServiceFixer"
+                "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Fixer.DefaultService"
             },
             "problemMatcher": []
         },
         {
-            "label": "dotnet build Saga-DefaultSvc",
+            "label": "dotnet build Triggerer-DefaultSvc",
             "type": "shell",
             "command": "dotnet build",
             "options": {
-                "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Saga.DefaultServiceSaga"
+                "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Triggerer.DefaultService"
             },
             "problemMatcher": []
         },

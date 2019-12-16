@@ -45,7 +45,7 @@ namespace Test.Elenktis.Secret
             var hydrator = SecretHydratorFactory.Create();
 
             var secrets = hydrator.Hydrate<DSSpySecret>();
-
+            
             Assert.StartsWith("1550", secrets.ClientId);
             Assert.StartsWith("Amdw", secrets.ClientSecret);
             Assert.StartsWith("fc41", secrets.TenantId);

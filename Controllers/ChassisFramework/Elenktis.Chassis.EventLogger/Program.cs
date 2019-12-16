@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
 using NServiceBus;
+using Serilog;
 
 namespace Elenktis.Chassis.EventLogger
 {
@@ -30,13 +31,16 @@ namespace Elenktis.Chassis.EventLogger
             }
             catch(Exception ex)
             {
-                
+                Log.Error(ex, ex.Message);
             }
         }
 
         private static async Task Init()
         {
-            try{
+            try
+            {
+                InitLogger();
+
                 _secrets = SecretHydratorFactory.Create().Hydrate<EventLoggerSecret>();
 
                 var logDb = InitMongoDb();
@@ -45,6 +49,11 @@ namespace Elenktis.Chassis.EventLogger
                     (QueueDirectory.EventLogger.DSSagaEvent,
                     _secrets.ServiceBusConnectionString, ControllerUri.EventLogger);
 
+                dsSagaConfig.DefineCriticalErrorAction(context => {
+                    Log.Error(context.Exception, context.Error);
+                    return Task.FromResult(1);
+                });
+
                 dsSagaConfig.RegisterComponents(config => {
                     config.ConfigureComponent<IMongoDatabase>(compFac => {
                         return logDb;
@@ -52,6 +61,10 @@ namespace Elenktis.Chassis.EventLogger
 
                     config.ConfigureComponent<LogStrategist>(compFac => {
                         return new LogStrategist(logDb);
+                    },DependencyLifecycle.SingleInstance);
+
+                    config.ConfigureComponent<ILogger>(compFac => {
+                        return Log.Logger;
                     },DependencyLifecycle.SingleInstance);
                 });
                 
@@ -63,33 +76,38 @@ namespace Elenktis.Chassis.EventLogger
             }
             catch(Exception ex)
             {
-
+                Log.Logger.Error(ex, ex.Message);
             }
         }
 
         private static IMongoDatabase InitMongoDb()
         {
-             var mongoClientSettings = new MongoClientSettings()
+            try
             {
-                Server = new MongoServerAddress(_secrets.MongoHost, 10255),
-                Credential =
-                    MongoCredential.CreateCredential
-                        ("pccore-eventlogger-dev-mongo",
-                         _secrets.MongoUsername,
-                         _secrets.MongoPassword),
-                UseTls = true,
-                ReplicaSetName = "globaldb"
-            };
+                string connectionString = _secrets.EventLoggerCosmosMongoDBConnectionString;
+               
+                MongoClientSettings settings = MongoClientSettings.FromUrl(
+                new MongoUrl(connectionString)
+                );
+                settings.SslSettings = 
+                new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+                var mongoClient = new MongoClient(settings);
 
-            string connectionString = _secrets.EventLoggerCosmosMongoDBConnectionString;
-            MongoClientSettings settings =
-                MongoClientSettings.FromUrl(new MongoUrl(connectionString));
+                return mongoClient.GetDatabase("pccore-eventlogger-dev-mongo");
+            }
+            catch(Exception ex)
+            {
+                Log.Logger.Error(ex, ex.Message);
+                throw ex;
+            }
+        }
 
-            settings.SslSettings = 
-            new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
-            var mongoClient = new MongoClient(mongoClientSettings);
-
-            return mongoClient.GetDatabase("pccore-eventlogger-dev-mongo");
+        private static void InitLogger()
+        {
+            Log.Logger = new LoggerConfiguration()
+                    .WriteTo
+                        .Console()
+                    .CreateLogger();
         }
 
         private static EventLoggerSecret _secrets;

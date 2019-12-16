@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-chassis-eventlogger
+  namespace: pc
+  labels:
+    controller: deployment-chassis-eventlogger
+    controllerType: chassis
+    con: cel
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      controller: deployment-chassis-eventlogger
+      controllerType: chassis
+      con: cel
+  template:
+    metadata:
+      labels:
+        controller: deployment-chassis-eventlogger
+        controllerType: chassis
+        con: cel
+    spec:
+      containers:
+      - name: chassis-eventlogger
+        image: acrcentralsvcdev.azurecr.io/chassis:eventlogger-0.0.9
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "200Mi"
+            cpu: "500m"
+        env: 
+        - name: ClientId
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: ClientId
+        - name: ClientSecret
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: ClientSecret
+        - name: EventLoggerCosmosMongoDBConnectionString
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: EventLoggerCosmosMongoDBConnectionString
+        - name: EtcdHost
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: EtcdHost
+        - name: EtcdPort
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: EtcdPort
+        - name: ServiceBusConnectionString
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: ServiceBusConnectionString
+        - name: TenantId
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: TenantId
+        - name: MongoHost
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: MongoHost
+        - name: MongoUsername
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: MongoUsername
+        - name: MongoPassword
+          valueFrom:
+              secretKeyRef:
+                name: secret-pccore
+                key: MongoPassword
+        - name: env
+          valueFrom:
+              configMapKeyRef:
+                key: env
+                name: configmap-pc-envvars
+      imagePullSecrets:
+      - name: acr-cred
+

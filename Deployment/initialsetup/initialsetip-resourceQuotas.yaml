@@ -1,0 +1,13 @@
+#affects whole namespace
+apiVersion: v1
+Kind: ResourceQuota
+metadata:
+  name: resourcequota-pc-dev
+spec:
+  hard:
+    requests.cpu: 3250mi #pc-dev 2 nodes = 4vcores
+    requests.memory: 10000Mib  #pc-dev 2 nodes = 14Gb
+    limits.cpu: 3500mi #pc-dev 2 nodes = 4vcores
+    limits.memory: 12000Mib  #pc-dev 2 nodes = 14Gb
+    
+    

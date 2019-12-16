@@ -1,4 +1,4 @@
-namespace Elenktis.Message
+namespace Elenktis.Message.DefaultService
 {
     public static class ControllerUri
     {

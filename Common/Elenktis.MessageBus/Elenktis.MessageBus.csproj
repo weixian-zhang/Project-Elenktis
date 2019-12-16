@@ -3,14 +3,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.1.10" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.2.1" />
-    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="3.4.0" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.6.1" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.2.0" />
+    
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Elenktis.Secret\Elenktis.Secret.csproj" />
-    <ProjectReference Include="..\..\Controllers\ChassisFramework\Elenktis.Chassis.EventLogger.Event\Elenktis.Chassis.EventLogger.Event.csproj" />
+    <ProjectReference Include="..\Elenktis.Secret\Elenktis.Secret.csproj"/>
+    <ProjectReference Include="..\..\Controllers\ChassisFramework\Elenktis.Chassis.EventLogger.Event\Elenktis.Chassis.EventLogger.Event.csproj"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="5.5.6"/>
   </ItemGroup>
 </Project>

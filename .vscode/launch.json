@@ -14,50 +14,29 @@
         "MDA": "6ECE07A9-0EDE-45C4-8296-818D8FC401D4"
       },
     "configurations": [
-        
-        {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickProcess}"
-        },
-        
-        {
-            "name": "Debug Spy-DefaultService",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "dotnet build Spy-DefaultSvc",
-            "program": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Spy.DefaultServiceSpy/bin/Debug/netcoreapp2.2/Elenktis.Spy.DefaultServiceSpy.dll",
-            "env": {
-                "env": "dev"
-            },
-            "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Spy.DefaultServiceSpy",
-            "stopAtEntry": false,
-            "console": "internalConsole"
-        },
         {
             "name": "Debug Fixer-DefaultService",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "dotnet build Fixer-DefaultSvc",
-            "program": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Fixer.DefaultServiceFixer/bin/Debug/netcoreapp2.2/Elenktis.Fixer.DefaultServiceFixer.dll",
+            "program": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Fixer.DefaultService/bin/Debug/netcoreapp2.2/Elenktis.Fixer.DefaultService.dll",
             "env": {
                 "env": "dev"
             },
-            "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Fixer.DefaultServiceFixer",
+            "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Fixer.DefaultService",
             "stopAtEntry": false,
             "console": "internalConsole"
         },
         {
-            "name": "Debug Saga-DefaultService",
+            "name": "Debug Triggerer-DefaultService",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "dotnet build Saga-DefaultSvc",
-            "program": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Saga.DefaultServiceSaga/bin/Debug/netcoreapp2.2/Elenktis.Saga.DefaultServiceSaga.dll",
+            "preLaunchTask": "dotnet build Triggerer-DefaultSvc",
+            "program": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Triggerer.DefaultService/bin/Debug/netcoreapp2.2/Elenktis.Triggerer.DefaultService.dll",
             "env": {
                 "env": "dev"
             },
-            "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Saga.DefaultServiceSaga",
+            "cwd": "${workspaceFolder}/Controllers/DefaultService/Elenktis.Triggerer.DefaultService",
             "stopAtEntry": false,
             "console": "internalConsole"
         },

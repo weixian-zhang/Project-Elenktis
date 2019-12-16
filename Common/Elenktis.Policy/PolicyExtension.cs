@@ -8,6 +8,7 @@ namespace Elenktis.Policy
 {
     public static class PolicyExtension
     {
+        ///Gets the full URI of policy name
         public static string AsString
             (this Policy policy, string subscriptionId,
             Expression<Func<Policy, object>> expr)

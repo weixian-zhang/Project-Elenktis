@@ -3,7 +3,6 @@
     <ProjectReference Include="..\Elenktis.Message\Elenktis.Message.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.1.10" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>

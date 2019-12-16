@@ -2,18 +2,6 @@ namespace Elenktis.MessageBus
 {
     public class QueueDirectory
     {
-        public const string ControllerErrorQueue = "pc.core.error";
-
-        public static class Saga
-        {
-              public const string DefaultService = "pc.core.saga.ds";
-        }
-
-        public static class Spy
-        {
-            public const string DefaultService = "pc.core.spy.ds";
-        }
-
         public static class Fixer
         {
              public const string DefaultService = "pc.core.fixer.ds";
@@ -23,7 +11,8 @@ namespace Elenktis.MessageBus
         {
             public const string Error = "pc.core.eventlogger.controller.error";
 
-            public const string DSSagaEvent = "pc.core.eventlogger.controller.event";
+            public const string DefaultServiceWorkflow =
+                "pc.core.eventlogger.controller.ds";
 
         }
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Elenktis.Chassis.EventLogger.Event;
 using Elenktis.Message;
 using Elenktis.MessageBus;
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using NServiceBus;
 
@@ -11,9 +12,10 @@ namespace Elenktis.Chassis.EventLogger
 {
     public class DSSagaEventHandler : IHandleMessages<DSSagaEvent>
     {
-        public DSSagaEventHandler(LogStrategist logStrategist)
+        public DSSagaEventHandler(LogStrategist logStrategist, ILogger logger)
         {
             _logStrategist = logStrategist;
+            _logger = logger;
         }
 
         public async Task Handle(DSSagaEvent message, IMessageHandlerContext context)
@@ -24,10 +26,12 @@ namespace Elenktis.Chassis.EventLogger
             }
             catch(Exception ex)
             {
-                await context.Send(new ErrorEvent(ex, ControllerUri.EventLogger));
+                _logger.LogError(ex, ex.Message);
+                //await context.Send(new ErrorEvent(ex, ControllerUri.EventLogger));
             }
         }
 
         private LogStrategist _logStrategist;
+        private ILogger _logger;
     }
 }
