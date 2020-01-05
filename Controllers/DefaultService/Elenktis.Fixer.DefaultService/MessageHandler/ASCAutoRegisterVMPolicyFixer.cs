@@ -15,8 +15,8 @@ using System.Linq;
 namespace Elenktis.Fixer.DefaultService
 {
     public class ASCAutoRegisterVMPolicyFixer :
-        IConsumer<ASCAutoRegisterVMPolicyStart>,
-        IPolicyFixer<ASCAutoRegisterVMPolicyStart, ASCAutoRegisterVMPolicyComplete>
+        IConsumer<ASCAutoRegisterVMPolicyFix>,
+        IPolicyFixer<ASCAutoRegisterVMPolicyFix>
     {
         public ASCAutoRegisterVMPolicyFixer
             (DSFixerSecret secret, IPlanQueryManager planManager, IAzure azure)
@@ -26,17 +26,19 @@ namespace Elenktis.Fixer.DefaultService
             _azure = azure;
         }
 
-        public async Task Consume(ConsumeContext<ASCAutoRegisterVMPolicyStart> context)
+        public async Task Consume(ConsumeContext<ASCAutoRegisterVMPolicyFix> context)
         {
             try
             {
+                ASCAutoRegisterVMPolicyFix policyFixMsg = context.Message;
+
                 SetCurrentAzureSubscriptionId(context.Message.SubscriptionId, _azure);
 
-                var policyCompleteMsg = await AssessPolicy(context.Message, _azure, _planManager);
+                policyFixMsg =
+                    await AssessPolicy(policyFixMsg, _azure, _planManager);
 
-                await FixPolicy(policyCompleteMsg, _azure, _planManager);
-
-                policyCompleteMsg.TimeSentFromFixer = DateTime.Now;
+                policyFixMsg =
+                    await FixPolicy(policyFixMsg, _azure, _planManager);
 
                 var uriBuilder = new UriBuilder
                     ("https", _secret.ASBHost, 443, QueueDirectory.EventLogger.DefaultServiceWorkflow);
@@ -44,7 +46,7 @@ namespace Elenktis.Fixer.DefaultService
                 var sendEndpoint =
                     await context.GetSendEndpoint(uriBuilder.Uri);
                 
-                await sendEndpoint.Send(policyCompleteMsg);
+                await sendEndpoint.Send(policyFixMsg);
             }
             catch(Exception ex)
             {
@@ -58,59 +60,70 @@ namespace Elenktis.Fixer.DefaultService
             _azure.SetCurrentSubscriptionId(subscriptionId);
         }
 
-        public async Task<ASCAutoRegisterVMPolicyComplete> AssessPolicy
-            (ASCAutoRegisterVMPolicyStart policyStartMsg, IAzure azureManager, IPlanQueryManager policyQueryManager)
+        public async Task<ASCAutoRegisterVMPolicyFix> AssessPolicy
+            (ASCAutoRegisterVMPolicyFix policyFixMsg, IAzure azureManager, IPlanQueryManager policyQueryManager)
         {
-            var policyCompleteMsg = new ASCAutoRegisterVMPolicyComplete();
-            policyCompleteMsg.SubscriptionId = policyStartMsg.SubscriptionId;
-            policyCompleteMsg.CorrelationId = policyStartMsg.CorrelationId;
-            policyCompleteMsg.TimeReceivedFromTriggerer = DateTime.Now;
+            policyFixMsg.TimeReceivedAtFixer = DateTime.Now;
+            policyFixMsg.SubscriptionId = policyFixMsg.SubscriptionId;
+            policyFixMsg.CorrelationId = policyFixMsg.CorrelationId;
+            policyFixMsg.TimeSentToFixerFromTriggerer = DateTime.Now;
             
             var dsp =
-                await policyQueryManager.GetDefaultServicePlansAsync(policyCompleteMsg.SubscriptionId);
+                await policyQueryManager.
+                    GetDefaultServicePlansAsync(policyFixMsg.SubscriptionId);
             
-            policyCompleteMsg.AssessPolicyName =
+            policyFixMsg.AssessPolicyName =
                 dsp.ASCAutoRegisterVMEnabledPolicy.AsString
-                (policyCompleteMsg.SubscriptionId, p => p.ToAssess);
+                (policyFixMsg.SubscriptionId, p => p.ToAssess);
             
-            policyCompleteMsg.ToAssess = dsp.ASCAutoRegisterVMEnabledPolicy.ToAssess;
+            policyFixMsg.ToAssess = dsp.ASCAutoRegisterVMEnabledPolicy.ToAssess;
 
-            if(!policyCompleteMsg.ToAssess)
-                return policyCompleteMsg;
+            if(!policyFixMsg.ToAssess)
+                return policyFixMsg;
 
             var settings = await azureManager.SecurityCenterClient
                 .AutoProvisioningSettings.ListAsync();
             
             if(!settings.Any(s => s.Name == "default" && s.AutoProvision == "On"))
-                policyCompleteMsg.AddActivity($"Assessment: AutoProvision settings not found");
+            {
+                policyFixMsg.AddActivity($"Assessment: AutoProvision settings not found");
+                policyFixMsg.PostAssessToFix = true;
+            }
             else
             {
-                policyCompleteMsg.IsResourceSettingExist = true;
-                policyCompleteMsg.AddActivity($"Assessment Skipped: {policyCompleteMsg.AssessPolicyName} = {policyCompleteMsg.ToAssess.ToString()}");
+                policyFixMsg.PostAssessToFix = false;
+                policyFixMsg.AddActivity($"Assessment Skipped: {policyFixMsg.AssessPolicyName} = {policyFixMsg.ToAssess.ToString()}");
             }
         
-            return policyCompleteMsg;
+            return policyFixMsg;
         }
 
-        public async Task FixPolicy
-            (ASCAutoRegisterVMPolicyComplete policyCompleteMsg, IAzure azureManager, IPlanQueryManager policyQueryManager)
+        public async Task<ASCAutoRegisterVMPolicyFix> FixPolicy
+            (ASCAutoRegisterVMPolicyFix policyFixMsg, IAzure azureManager, IPlanQueryManager policyQueryManager)
         {
-           var dsp = await policyQueryManager.GetDefaultServicePlansAsync(policyCompleteMsg.SubscriptionId);
+           var dsp = await policyQueryManager.GetDefaultServicePlansAsync(policyFixMsg.SubscriptionId);
         
-            policyCompleteMsg.FixPolicyName =
+            policyFixMsg.FixPolicyName =
                 dsp.ASCAutoRegisterVMEnabledPolicy.AsString
-                    (policyCompleteMsg.SubscriptionId, p=>p.ToAssess);
+                    (policyFixMsg.SubscriptionId, p=>p.ToAssess);
 
-            policyCompleteMsg.ToFix = dsp.ASCAutoRegisterVMEnabledPolicy.ToRemediate;
+            policyFixMsg.ToFix = dsp.ASCAutoRegisterVMEnabledPolicy.ToRemediate;
 
-            if(policyCompleteMsg.ToFix && !policyCompleteMsg.IsResourceSettingExist)
+            if(!policyFixMsg.PostAssessToFix)
             {
-                await _azure.SecurityCenterClient.AutoProvisioningSettings.CreateAsync("default", "On");
-            
-                policyCompleteMsg.AddActivity("Fixer: AutoProvisioningSettings created with Name 'default' and value 'On'");
+                 policyFixMsg.AddActivity("Fixer skipped: Either AutoProvisioningSettings exists or ToFix Policy = false");
             }
             else
-                policyCompleteMsg.AddActivity("Fixer skipped: Either AutoProvisioningSettings exists or ToFix Policy = false");
+            {
+                if(policyFixMsg.ToFix)
+                {
+                    await _azure.SecurityCenterClient.AutoProvisioningSettings.CreateAsync("default", "On");
+        
+                    policyFixMsg.AddActivity("Fixer: AutoProvisioningSettings created with Name 'default' and value 'On'");
+                }
+            }
+
+            return policyFixMsg;
         }
 
 

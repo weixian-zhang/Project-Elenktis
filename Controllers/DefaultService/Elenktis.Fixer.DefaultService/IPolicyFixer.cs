@@ -4,13 +4,13 @@ using Elenktis.Policy;
 
 namespace Elenktis.Fixer.DefaultService
 {
-    public interface IPolicyFixer<TPolicyStartMsg, TPolicyCompleteMsg>
+    public interface IPolicyFixer<TPolicyFixMessage>
     {
         void SetCurrentAzureSubscriptionId(string subscriptionId, IAzure azureManager);
 
-        Task<TPolicyCompleteMsg> AssessPolicy
-            (TPolicyStartMsg policyStartMsg, IAzure azureManager, IPlanQueryManager policyQueryManager);
+        Task<TPolicyFixMessage> AssessPolicy
+            (TPolicyFixMessage policyFixMsg, IAzure azureManager, IPlanQueryManager policyQueryManager);
         
-        Task FixPolicy(TPolicyCompleteMsg policyCompleteMsg, IAzure azureManager, IPlanQueryManager policyQueryManager);
+        Task<TPolicyFixMessage> FixPolicy(TPolicyFixMessage policyFixMsg, IAzure azureManager, IPlanQueryManager policyQueryManager);
     }
 }

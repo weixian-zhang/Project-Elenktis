@@ -3,13 +3,19 @@ using System.Text;
 
 namespace Elenktis.Message.DefaultService
 {
-    public class ASCAutoRegisterVMPolicyComplete
+    public class ASCAutoRegisterVMPolicyFix
     {
         public Guid CorrelationId { get; set; }
 
-        public DateTime TimeReceivedFromTriggerer { get; set; }
+        public string SubscriptionId { get; set; }
 
-        public DateTime TimeSentFromFixer { get; set; }
+        public DateTime TimeSentToFixerFromTriggerer { get; set; }
+
+        public DateTime TimeReceivedAtFixer { get; set; }
+
+        public DateTime TimeSentToLoggerFromFixer { get; set; }
+
+        public string Controller { get; set; }
 
         //full uri of Policy name
         public string AssessPolicyName { get; set; }
@@ -23,9 +29,7 @@ namespace Elenktis.Message.DefaultService
 
         //prevent PolicyFix from checking setting/state again
         //settings could be anything: "is backup enabled", "logged to App Insights" and etc
-        public bool IsResourceSettingExist { get; set; }
-
-        public string SubscriptionId { get; set; }
+        public bool PostAssessToFix { get; set; }
 
         public string AffectedResourceType { get; set; } = "";
 

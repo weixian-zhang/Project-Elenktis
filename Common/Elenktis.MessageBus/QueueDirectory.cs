@@ -5,6 +5,9 @@ namespace Elenktis.MessageBus
         public static class Fixer
         {
              public const string DefaultService = "pc.core.fixer.ds";
+             public const string SecurityHygiene = "pc.core.fixer.sh";
+             public const string Monitoring = "pc.core.fixer.monitoring";
+             public const string Governance = "pc.core.fixer.gov";
         }
 
         public static class EventLogger

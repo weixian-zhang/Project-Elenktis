@@ -59,6 +59,7 @@ namespace Elenktis.Fixer.DefaultService
                         e.Consumer(() => {
                             return new ASCAutoRegisterVMPolicyFixer(secret, planQueryManager, azure);
                         });
+                        
                     });
             });
 

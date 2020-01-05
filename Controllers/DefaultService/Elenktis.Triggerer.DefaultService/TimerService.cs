@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Elenktis.Azure;
-using Elenktis.Message;
 using Elenktis.Message.DefaultService;
 using Elenktis.MessageBus;
 using MassTransit;
@@ -41,10 +40,12 @@ namespace Elenktis.Saga.DefaultServiceSaga
                 var sendEndpoint = await _bus.GetSendEndpoint(uriBuilder.Uri);
 
                 await sendEndpoint.Send(
-                    new ASCAutoRegisterVMPolicyStart() {
+                    new ASCAutoRegisterVMPolicyFix() {
                         CorrelationId = Guid.NewGuid(),
                         SubscriptionId = sub.SubscriptionId,
-                        TimeSentToHandler = DateTime.Now
+                        TimeSentToFixerFromTriggerer = DateTime.Now,
+                        Controller = ControllerUri.DefaultServiceTriggerer
+                        
                 });
             }
         }
