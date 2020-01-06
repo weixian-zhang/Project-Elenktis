@@ -10,9 +10,9 @@ using NServiceBus;
 
 namespace Elenktis.Chassis.EventLogger
 {
-    public class DSSagaEventHandler : IHandleMessages<DSSagaEvent>
+    public class DefaultServiceEventHandler : IHandleMessages<DSSagaEvent>
     {
-        public DSSagaEventHandler(LogStrategist logStrategist, ILogger logger)
+        public DefaultServiceEventHandler(LogStrategist logStrategist, ILogger logger)
         {
             _logStrategist = logStrategist;
             _logger = logger;

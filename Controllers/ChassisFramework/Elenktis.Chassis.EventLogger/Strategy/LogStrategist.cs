@@ -18,7 +18,7 @@ namespace Elenktis.Chassis.EventLogger
             switch(controllerName)
             {
                 case ControllerUri.DefaultServiceSaga:
-                    await new DSSagaLogStrategy(_db).LogAsync(data);
+                    await new DefaultServiceWorkflowTrackLogStrategy(_db).LogAsync(data);
                     break;
             }
         }

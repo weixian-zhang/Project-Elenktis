@@ -8,7 +8,6 @@ using Elenktis.Secret;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
-using NServiceBus;
 using Serilog;
 
 namespace Elenktis.Chassis.EventLogger
@@ -44,35 +43,6 @@ namespace Elenktis.Chassis.EventLogger
                 _secrets = SecretHydratorFactory.Create().Hydrate<EventLoggerSecret>();
 
                 var logDb = InitMongoDb();
-
-                var dsSagaConfig = ASBConfigFactory.Create
-                    (QueueDirectory.EventLogger.DSSagaEvent,
-                    _secrets.ServiceBusConnectionString, ControllerUri.EventLogger);
-
-                dsSagaConfig.DefineCriticalErrorAction(context => {
-                    Log.Error(context.Exception, context.Error);
-                    return Task.FromResult(1);
-                });
-
-                dsSagaConfig.RegisterComponents(config => {
-                    config.ConfigureComponent<IMongoDatabase>(compFac => {
-                        return logDb;
-                    }, DependencyLifecycle.SingleInstance);
-
-                    config.ConfigureComponent<LogStrategist>(compFac => {
-                        return new LogStrategist(logDb);
-                    },DependencyLifecycle.SingleInstance);
-
-                    config.ConfigureComponent<ILogger>(compFac => {
-                        return Log.Logger;
-                    },DependencyLifecycle.SingleInstance);
-                });
-                
-                var errorBusConfig = ASBConfigFactory.Create
-                    (QueueDirectory.EventLogger.Error,
-                    _secrets.ServiceBusConnectionString, ControllerUri.EventLogger);
-
-                await Endpoint.Start(dsSagaConfig);
             }
             catch(Exception ex)
             {
@@ -80,6 +50,44 @@ namespace Elenktis.Chassis.EventLogger
             }
         }
 
+    //private static async Task InitMsgBus()
+        // {
+        //     try
+        //     {
+        //         var planQueryManager = new PlanQueryManager(new PolicySecret()
+        //                 {
+        //                     EtcdHost  = _secrets.EtcdHost,
+        //                     EtcdPort = _secrets.EtcdPort
+        //                 });
+                
+        //         var azure = AzureRMFactory.AuthAndCreateInstance
+        //             (_secrets.TenantId, _secrets.ClientId, _secrets.ClientSecret);
+
+        //         _bus = Bus.Factory.CreateUsingAzureServiceBus(config => {
+        //                 var host = config.Host(new Uri("https://"+_secrets.ASBHost), h =>
+        //                 {
+        //                     h.SharedAccessSignature(s =>
+        //                     {
+        //                         s.KeyName = _secrets.ASBSASKeyName;
+        //                         s.SharedAccessKey = _secrets.ASBSASKeyValue;
+        //                         s.TokenTimeToLive = TimeSpan.FromDays(1);
+        //                         s.TokenScope = TokenScope.Namespace;
+        //                     });
+        //                 });
+        //         });
+                
+        //          _busHandle = await _bus.StartAsync(_cancelToken);
+                
+        
+        //     }
+        //     catch(Exception ex)
+        //     {
+        //         Log.Logger.Error(ex, ex.Message);
+
+        //         await _busHandle.StopAsync();
+        //     }
+        // }
+        
         private static IMongoDatabase InitMongoDb()
         {
             try
@@ -111,5 +119,37 @@ namespace Elenktis.Chassis.EventLogger
         }
 
         private static EventLoggerSecret _secrets;
+
+
+        
+
+                // var dsSagaConfig = ASBConfigFactory.Create
+                //     (QueueDirectory.EventLogger.DSSagaEvent,
+                //     _secrets.ServiceBusConnectionString, ControllerUri.EventLogger);
+
+                // dsSagaConfig.DefineCriticalErrorAction(context => {
+                //     Log.Error(context.Exception, context.Error);
+                //     return Task.FromResult(1);
+                // });
+
+                // dsSagaConfig.RegisterComponents(config => {
+                //     config.ConfigureComponent<IMongoDatabase>(compFac => {
+                //         return logDb;
+                //     }, DependencyLifecycle.SingleInstance);
+
+                //     config.ConfigureComponent<LogStrategist>(compFac => {
+                //         return new LogStrategist(logDb);
+                //     },DependencyLifecycle.SingleInstance);
+
+                //     config.ConfigureComponent<ILogger>(compFac => {
+                //         return Log.Logger;
+                //     },DependencyLifecycle.SingleInstance);
+                // });
+                
+                // var errorBusConfig = ASBConfigFactory.Create
+                //     (QueueDirectory.EventLogger.Error,
+                //     _secrets.ServiceBusConnectionString, ControllerUri.EventLogger);
+
+                // await Endpoint.Start(dsSagaConfig);
     }
 }

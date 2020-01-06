@@ -5,12 +5,11 @@
     <UserSecretsId>136f4c20-2678-4d4b-95ba-10bc4c06d738</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.2.1"/>
-    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="3.4.0"/>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0"/>
-    <PackageReference Include="NServiceBus" Version="7.1.10"/>
     <PackageReference Include="MongoDB.Driver" Version="2.9.3"/>
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.2-dev-00824"/>
+    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="5.5.6"/>
+    <PackageReference Include="MassTransit.Persistence.MongoDb" Version="2.0.0"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Messages\Elenktis.Message\Elenktis.Message.csproj"/>

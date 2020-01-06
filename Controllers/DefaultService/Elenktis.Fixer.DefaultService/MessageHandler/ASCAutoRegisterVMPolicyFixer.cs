@@ -92,7 +92,7 @@ namespace Elenktis.Fixer.DefaultService
             else
             {
                 policyFixMsg.PostAssessToFix = false;
-                policyFixMsg.AddActivity($"Assessment Skipped: {policyFixMsg.AssessPolicyName} = {policyFixMsg.ToAssess.ToString()}");
+                policyFixMsg.AddActivity("AutoProvision settings already exist");
             }
         
             return policyFixMsg;

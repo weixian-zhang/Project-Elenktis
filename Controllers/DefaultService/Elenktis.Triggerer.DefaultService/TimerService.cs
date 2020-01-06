@@ -44,7 +44,7 @@ namespace Elenktis.Saga.DefaultServiceSaga
                         CorrelationId = Guid.NewGuid(),
                         SubscriptionId = sub.SubscriptionId,
                         TimeSentToFixerFromTriggerer = DateTime.Now,
-                        Controller = ControllerUri.DefaultServiceTriggerer
+                        FixerController = ControllerUri.DefaultServiceFixer
                         
                 });
             }

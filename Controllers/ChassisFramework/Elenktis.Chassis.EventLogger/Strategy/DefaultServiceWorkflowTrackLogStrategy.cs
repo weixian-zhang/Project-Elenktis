@@ -4,9 +4,9 @@ using MongoDB.Driver;
 
 namespace Elenktis.Chassis.EventLogger
  {
-    public class DSSagaLogStrategy : ILogStrategy
+    public class DefaultServiceWorkflowTrackLogStrategy : ILogStrategy
     {
-        public DSSagaLogStrategy(IMongoDatabase db)
+        public DefaultServiceWorkflowTrackLogStrategy(IMongoDatabase db)
         {
             _db = db;
         }

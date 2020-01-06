@@ -15,7 +15,7 @@ namespace Elenktis.Message.DefaultService
 
         public DateTime TimeSentToLoggerFromFixer { get; set; }
 
-        public string Controller { get; set; }
+        public string FixerController { get; set; }
 
         //full uri of Policy name
         public string AssessPolicyName { get; set; }
